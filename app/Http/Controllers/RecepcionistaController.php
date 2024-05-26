@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\DoctorModel;
+use App\Models\RecepcionistaModel;
 
-class DoctorController extends Controller
+class RecepcionistaController extends Controller
 {
      #WEB
      public function getIndex() {
-        return view('ecografias.doctor.index');
+        return view('ecografias.recepcionista.index');
     }
 
     #API REST
@@ -20,8 +20,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = DoctorModel::all();
-        return ['data' => $doctor, 'status' => 200];
+        $recepcionista = RecepcionistaModel::all();
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     /**
@@ -37,14 +37,14 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = DoctorModel::create([
+        $recepcionista = RecepcionistaModel::create([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
             'genero' => $request->get('genero'),
         ]);
 
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     /**
@@ -52,8 +52,8 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        return ['data' => $doctor, 'status' => 200];
+        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     /**
@@ -69,14 +69,14 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
             'genero' => $request->get('genero'),       
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     /**
@@ -84,25 +84,25 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista->update([
             'estado' => 0 
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     public function restore(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista->update([
             'estado' => 1 
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $recepcionista, 'status' => 200];
     }
 
     public function disabled()
     {
-        $doctor = DoctorModel::where('estado', 0)->get();
-        return ['data' => $doctor, 'status' => 200];
+        $recepcionista = RecepcionistaModel::where('estado', 0)->get();
+        return ['data' => $recepcionista, 'status' => 200];
     }
 }

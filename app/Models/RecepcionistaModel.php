@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class RecepcionistaModel extends Model
 {
     use HasFactory;
-
-    protected $table = 'rol'; // Nombre de la tabla
+    protected $table = 'recepcionista';
     protected $primaryKey = 'id';
     protected $fillable = [
         'nombre',
-        'estado'
+        'paterno',
+        'materno',
+        'estado',
     ];
 
     public $timestamps = true;
 
-    /**
-     * Relación con el modelo User
-     */
-    public function users()
+    public function user()
     {
-        return $this->hasMany(User::class, 'role_id');
+        return $this->belongsTo(User::class);
     }
 }

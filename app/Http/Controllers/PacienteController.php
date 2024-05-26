@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\DoctorModel;
+use App\Models\PacienteModel;
 
-class DoctorController extends Controller
+
+class PacienteController extends Controller
 {
-     #WEB
-     public function getIndex() {
-        return view('ecografias.doctor.index');
+    
+    #WEB
+    public function getIndex() {
+        return view('ecografias.paciente.index');
     }
 
     #API REST
@@ -20,8 +22,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = DoctorModel::all();
-        return ['data' => $doctor, 'status' => 200];
+        $paciente = PacienteModel::all();
+        return ['data' => $paciente, 'status' => 200];
     }
 
     /**
@@ -37,14 +39,15 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = DoctorModel::create([
+        $paciente = PacienteModel::create([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
             'genero' => $request->get('genero'),
+            'fecha_nacimiento' => $request->get('fecha_nacimiento'),
         ]);
 
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $paciente, 'status' => 200];
     }
 
     /**
@@ -52,8 +55,8 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        return ['data' => $doctor, 'status' => 200];
+        $paciente = PacienteModel::findOrFail($id); 
+        return ['data' => $paciente, 'status' => 200];
     }
 
     /**
@@ -69,14 +72,15 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $paciente = PacienteModel::findOrFail($id); 
+        $paciente->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
-            'genero' => $request->get('genero'),       
+            'genero' => $request->get('genero'),
+            'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $paciente, 'status' => 200];
     }
 
     /**
@@ -84,25 +88,26 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $paciente = PacienteModel::findOrFail($id); 
+        $paciente->update([
             'estado' => 0 
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $paciente, 'status' => 200];
     }
 
     public function restore(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
-        $doctor->update([
+        $paciente = PacienteModel::findOrFail($id); 
+        $paciente->update([
             'estado' => 1 
         ]);
-        return ['data' => $doctor, 'status' => 200];
+        return ['data' => $paciente, 'status' => 200];
     }
 
     public function disabled()
     {
-        $doctor = DoctorModel::where('estado', 0)->get();
-        return ['data' => $doctor, 'status' => 200];
+        $paciente = PacienteModel::where('estado', 0)->get();
+        return ['data' => $paciente, 'status' => 200];
     }
 }
+

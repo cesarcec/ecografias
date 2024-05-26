@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-    <h3 class="my-2 mx-2">Doctores</h1>
+    <h3 class="my-2 mx-2">Recepcionistas</h1>
 
         <div class="container">
             <label for="nombre">Nombre</label>
@@ -14,8 +14,6 @@
             <input id="paterno" class="form-control" type="text">
             <label for="materno">Materno</label>
             <input id="materno" class="form-control" type="text">
-            <label for="genero">Genero</label>
-            <input id="genero" class="form-control" type="text">
 
             <button id="save" class="btn btn-primary my-2">Guardar</button>
         </div>
@@ -32,7 +30,7 @@
                     <th data-field="nombre">Nombre</th>
                     <th data-field="paterno">Paterno</th>
                     <th data-field="materno">Materno</th>
-                    <th data-field="genero">Genero</th>
+
                     <th data-field="estado">Estado</th>
                     <th data-field="action">Acciones</th>
                 </tr>
@@ -53,7 +51,6 @@
                     <th data-field="nombre">Nombre</th>
                     <th data-field="paterno">Paterno</th>
                     <th data-field="materno">Paterno</th>
-                    <th data-field="genero">genero</th>
                     <th data-field="estado">Estado</th>
                     <th data-field="action">Acciones</th>
                 </tr>
@@ -77,8 +74,6 @@
             <input id="paterno_edit" class="form-control" type="text">
             <label for="materno_edit">Materno</label>
             <input id="materno_edit" class="form-control" type="text">
-            <label for="genero_edit">Genero</label>
-            <input id="genero_edit" class="form-control" type="text">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -127,14 +122,13 @@
                 "nombre",
                 "paterno",
                 "materno",
-                "genero",
             ],
             loadRelations: false,
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
         };
 
-        const crudHandler = new CrudHandler(apiClient, "doctor", config);
+        const crudHandler = new CrudHandler(apiClient, "recepcionista", config);
 
         document.addEventListener("DOMContentLoaded", () => {
             crudHandler.init();
@@ -142,5 +136,4 @@
 
     </script>
 @endsection
-
 
