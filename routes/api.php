@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Tipo_estudioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
@@ -38,5 +39,18 @@ Route::get('/recepcionista', [RecepcionistaController::class, 'index']);
 Route::post('/recepcionista/store', [RecepcionistaController::class, 'store']);
 Route::put('/recepcionista/update/{id}', [RecepcionistaController::class, 'update']);
 Route::put('/recepcionista/destroy/{id}', [RecepcionistaController::class, 'destroy']);
+<<<<<<< HEAD
 Route::put('/recepcionista/restore/{id}', [RecepcionistaControllerr::class, 'restore']);
 Route::get('/recepcionista/disabled', [RecepcionistaController::class, 'disabled']);
+=======
+Route::put('/recepcionista/restore/{id}', [RecepcionistaController::class, 'restore']);
+Route::get('/recepcionista/disabled', [RecepcionistaController::class, 'disabled']);
+
+
+Route::get('/tipo_estudio', [Tipo_estudioController::class, 'index']);
+Route::post('/tipo_estudio/store', [Tipo_estudioController::class, 'store']);
+Route::put('/tipo_estudio/update/{id}', [Tipo_estudioController::class, 'update']);
+Route::put('/tipo_estudio/destroy/{id}', [Tipo_estudioController::class, 'destroy']);
+Route::put('/tipo_estudio/restore/{id}', [Tipo_estudioController::class, 'restore']);
+Route::get('/tipo_estudio/disabled', [Tipo_estudioController::class, 'disabled']);
+>>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
