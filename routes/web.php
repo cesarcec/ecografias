@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -27,3 +28,4 @@ Route::get('/doctor', [DoctorController::class, 'getIndex']);
 Route::get('/paciente', [PacienteController::class, 'getIndex']);
 Route::get('/recepcionista', [RecepcionistaController::class, 'getIndex']);
 Route::get('/tipo_estudio', [Tipo_estudioController::class, 'getIndex']);
+Route::get('/dashboard', [UserController::class, 'getIndex']);

@@ -20,7 +20,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = DoctorModel::all();
+        $doctor = DoctorModel::where('estado', 1)->get();
         return ['data' => $doctor, 'status' => 200];
     }
 
@@ -52,7 +52,7 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
+        $doctor = DoctorModel::findOrFail($id);
         return ['data' => $doctor, 'status' => 200];
     }
 
@@ -69,12 +69,12 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
+        $doctor = DoctorModel::findOrFail($id);
         $doctor->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('paterno'),
-            'genero' => $request->get('genero'),       
+            'genero' => $request->get('genero'),
         ]);
         return ['data' => $doctor, 'status' => 200];
     }
@@ -84,18 +84,18 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
+        $doctor = DoctorModel::findOrFail($id);
         $doctor->update([
-            'estado' => 0 
+            'estado' => 0
         ]);
         return ['data' => $doctor, 'status' => 200];
     }
 
     public function restore(string $id)
     {
-        $doctor = DoctorModel::findOrFail($id); 
+        $doctor = DoctorModel::findOrFail($id);
         $doctor->update([
-            'estado' => 1 
+            'estado' => 1
         ]);
         return ['data' => $doctor, 'status' => 200];
     }
