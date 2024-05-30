@@ -9,11 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<<<<<<< HEAD
-    <title>CEDISA CENTRO DE IMAGENOLOGIA</title>
-=======
     <title>CEDISA</title>
->>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,11 +36,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-<<<<<<< HEAD
-                <div class="sidebar-brand-text mx-3">CEDISA centro de imagenologia </div>
-=======
                 <div class="sidebar-brand-text mx-3">CEDISA - centro de imagenologia </div>
->>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
             </a>
 
             <!-- Divider -->
