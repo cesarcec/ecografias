@@ -5,18 +5,11 @@
 @endsection
 
 @section('contenido')
-    <h3 class="my-2 mx-2">Especialistas</h1>
+    <h3 class="my-2 mx-2">TIPO_ESTUDIO</h1>
 
         <div class="container">
             <label for="nombre">Nombre</label>
             <input id="nombre" class="form-control" type="text">
-            <label for="paterno">Paterno</label>
-            <input id="paterno" class="form-control" type="text">
-            <label for="materno">Materno</label>
-            <input id="materno" class="form-control" type="text">
-            <label for="genero">Genero</label>
-            <input id="genero" class="form-control" type="text">
-
             <button id="save" class="btn btn-primary my-2">Guardar</button>
         </div>
 
@@ -30,11 +23,8 @@
                 <tr>
                     <th data-field="id">ID</th>
                     <th data-field="nombre">Nombre</th>
-                    <th data-field="paterno">Paterno</th>
-                    <th data-field="materno">Materno</th>
-                    <th data-field="genero">Genero</th>
                     <th data-field="estado">Estado</th>
-                    <th data-field="action">Acciones</th>
+                    <th data-field="action">Estado</th>
                 </tr>
             </thead>
         </table>
@@ -51,11 +41,7 @@
                 <tr>
                     <th data-field="id">ID</th>
                     <th data-field="nombre">Nombre</th>
-                    <th data-field="paterno">Paterno</th>
-                    <th data-field="materno">Paterno</th>
-                    <th data-field="genero">genero</th>
-                    <th data-field="estado">Estado</th>
-                    <th data-field="action">Acciones</th>
+                    <th data-field="action">Estado</th>
                 </tr>
             </thead>
         </table>
@@ -71,14 +57,7 @@
         </div>
         <div class="modal-body">
             <input id="id_edit" type="hidden">
-            <label for="nombre_edit">Nombre</label>
-            <input id="nombre_edit" class="form-control" type="text">
-            <label for="paterno_edit">Paterno</label>
-            <input id="paterno_edit" class="form-control" type="text">
-            <label for="materno_edit">Materno</label>
-            <input id="materno_edit" class="form-control" type="text">
-            <label for="genero_edit">Genero</label>
-            <input id="genero_edit" class="form-control" type="text">
+            <input id="nombre_edit" type="text">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -99,6 +78,21 @@
 
 
     <script>
+        const tabla = $("#table");
+        tabla.bootstrapTable();
+
+        async function peticionRoles() {
+            const response = await fetch('http://localhost/ecografias/public/api/tipo_estudio/');
+            if (response.ok) {
+                const datos = await response.json();
+                tabla.bootstrapTable('load', datos);
+                console.log(datos);
+
+            } else {
+                console.log('not');
+            }
+        }
+
         const formatAction = (element) => {
             return `
             <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="fa fa-pencil"></i>Editar</button>
@@ -124,17 +118,14 @@
             labelPrefixEdit: "_edit",
             selectors: [
                 "id",
-                "nombre",
-                "paterno",
-                "materno",
-                "genero",
+                "nombre"
             ],
             loadRelations: false,
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
         };
 
-        const crudHandler = new CrudHandler(apiClient, "doctor", config);
+        const crudHandler = new CrudHandler(apiClient, "tipo_estudio", config);
 
         document.addEventListener("DOMContentLoaded", () => {
             crudHandler.init();

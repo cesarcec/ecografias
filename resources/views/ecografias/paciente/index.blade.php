@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-    <h3 class="my-2 mx-2">Especialistas</h1>
+    <h3 class="my-2 mx-2">Pacientes</h1>
 
         <div class="container">
             <label for="nombre">Nombre</label>
@@ -16,6 +16,9 @@
             <input id="materno" class="form-control" type="text">
             <label for="genero">Genero</label>
             <input id="genero" class="form-control" type="text">
+
+            <label for="fecha_nacimiento">Fecha  de nacimiento</label>
+            <input id="fecha_nacimiento" class="form-control" type="date">
 
             <button id="save" class="btn btn-primary my-2">Guardar</button>
         </div>
@@ -32,8 +35,11 @@
                     <th data-field="nombre">Nombre</th>
                     <th data-field="paterno">Paterno</th>
                     <th data-field="materno">Materno</th>
-                    <th data-field="genero">Genero</th>
+                    <th data-field="genero">genero</th>
                     <th data-field="estado">Estado</th>
+
+                    <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
+
                     <th data-field="action">Acciones</th>
                 </tr>
             </thead>
@@ -55,6 +61,9 @@
                     <th data-field="materno">Paterno</th>
                     <th data-field="genero">genero</th>
                     <th data-field="estado">Estado</th>
+
+                    <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
+
                     <th data-field="action">Acciones</th>
                 </tr>
             </thead>
@@ -79,6 +88,10 @@
             <input id="materno_edit" class="form-control" type="text">
             <label for="genero_edit">Genero</label>
             <input id="genero_edit" class="form-control" type="text">
+
+            <label for="fecha_nacimiento_edit">Fecha de nacimiento</label>
+            <input id="fecha_nacimiento_edit" class="form-control" type="date">
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -128,13 +141,14 @@
                 "paterno",
                 "materno",
                 "genero",
+                "fecha_nacimiento",
             ],
             loadRelations: false,
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
         };
 
-        const crudHandler = new CrudHandler(apiClient, "doctor", config);
+        const crudHandler = new CrudHandler(apiClient, "paciente", config);
 
         document.addEventListener("DOMContentLoaded", () => {
             crudHandler.init();
