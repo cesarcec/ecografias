@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estudio', function (Blueprint $table) {
+        Schema::create('orden_examen', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->string('requerimiento');
-            $table->decimal('precio', 6, 2)->default(0);
-            $table->tinyInteger('estado')->default(1);
-            $table->foreignId('tipo_estudio_id')->constrained('tipo_estudio')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('orden_examen');
     }
 };
