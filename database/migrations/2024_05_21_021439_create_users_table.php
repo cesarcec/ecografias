@@ -20,7 +20,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->foreignId('rol_id')->constrained('rol')->onDelete('cascade'); // Foreign key to roles
+            $table->tinyInteger('estado')->default(1);
+            
+            $table->unsignedBigInteger('rol_id')->nullable(true);
+            $table->foreign('rol_id')->references('id')->on('rol')->onDelete('cascade'); // Foreign key to roles
             $table->timestamps();
         });
 

@@ -73,13 +73,8 @@ class DoctorController extends Controller
         $doctor->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
-<<<<<<< HEAD
             'materno' => $request->get('materno'),
             'genero' => $request->get('genero'),       
-=======
-            'materno' => $request->get('paterno'),
-            'genero' => $request->get('genero'),
->>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
         ]);
         return ['data' => $doctor, 'status' => 200];
     }

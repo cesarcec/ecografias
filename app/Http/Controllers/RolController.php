@@ -99,4 +99,9 @@ class RolController extends Controller
         $roles = RolModel::where('estado', 0)->get();
         return ['data' => $roles, 'status' => 200];
     }
+
+    public function rolUsers() {
+        $data = RolModel::where('estado', 1)->with('users')->get();
+        return $data;
+    }
 }

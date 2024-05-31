@@ -40,11 +40,7 @@ class RecepcionistaController extends Controller
         $recepcionista = RecepcionistaModel::create([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
-<<<<<<< HEAD
             'materno' => $request->get('materno'),
-=======
-            'materno' => $request->get('paterno'),
->>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
             'genero' => $request->get('genero'),
         ]);
 
@@ -77,11 +73,7 @@ class RecepcionistaController extends Controller
         $recepcionista->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
-<<<<<<< HEAD
             'materno' => $request->get('materno'),
-=======
-            'materno' => $request->get('paterno'),
->>>>>>> 13baf7e0f59c2be5981a4ef7a4191028ba2bdcb8
             'genero' => $request->get('genero'),       
         ]);
         return ['data' => $recepcionista, 'status' => 200];

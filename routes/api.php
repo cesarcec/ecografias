@@ -7,6 +7,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -49,3 +50,6 @@ Route::put('/tipo_estudio/update/{id}', [Tipo_estudioController::class, 'update'
 Route::put('/tipo_estudio/destroy/{id}', [Tipo_estudioController::class, 'destroy']);
 Route::put('/tipo_estudio/restore/{id}', [Tipo_estudioController::class, 'restore']);
 Route::get('/tipo_estudio/disabled', [Tipo_estudioController::class, 'disabled']);
+
+Route::get('/user-rol', [UserController::class, 'userRol']);
+Route::get('/rol-users', [RolController::class, 'rolUsers']);
