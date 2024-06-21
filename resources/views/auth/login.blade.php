@@ -1,5 +1,5 @@
 <x-guest-layout>
-<div class="bg-cover bg-center min-h-screen flex items-center justify-center" style="background-image: url('{{ asset('imagenes/fondos_login.jpg') }}');">
+<div class="bg-cover bg-center min-h-screen flex items-center justify-center" style="background-image: url('{{ asset('assets/img/fondos_login.jpg') }}');">
 
     <x-authentication-card>
         <x-slot name="logo">

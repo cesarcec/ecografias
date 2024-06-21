@@ -96,7 +96,7 @@
     <script>
         const formatAction = (element) => {
             return `
-            <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="fa fa-pencil"></i>Editar</button>
+            <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i>Editar</button>
             <button data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i>Eliminar</button>`;
         };
 

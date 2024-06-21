@@ -151,7 +151,7 @@ class CrudHandler {
 
         this.hideLoader();
 
-        if (response.status == 200) {
+        if (response.status == 200 || response.status == 201) {
             this.handleSuccessResponseInsert(response);
         } else {
             this.showAlert("error", "Ocurrió un problema", 1500);

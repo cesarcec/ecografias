@@ -16,4 +16,6 @@ class UserController extends Controller
         $result->load('rol'); //select user.* from user, rol where user.rol_id = rol.id 
         return $result;
     }
+
+    
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tipo_estudioModel;
 
-class Tipo_estudioController extends Controller
+class TipoEstudioController extends Controller
 {
      #WEB
      public function getIndex() {

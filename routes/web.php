@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Tipo_estudioController;
+use App\Http\Controllers\TipoEstudioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
@@ -27,5 +27,5 @@ Route::get('/roles', [RolController::class, 'getIndex']);
 Route::get('/doctor', [DoctorController::class, 'getIndex']);
 Route::get('/paciente', [PacienteController::class, 'getIndex']);
 Route::get('/recepcionista', [RecepcionistaController::class, 'getIndex']);
-Route::get('/tipo_estudio', [Tipo_estudioController::class, 'getIndex']);
+Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
 Route::get('/dashboard', [UserController::class, 'getIndex']);
