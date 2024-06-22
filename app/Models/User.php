@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\RolModel;
+use App\Models\Rol;
 
 class User extends Authenticatable
 {
@@ -86,6 +86,6 @@ class User extends Authenticatable
 
     public function rol()
     {
-        return $this->belongsTo(RolModel::class, 'rol_id');
+        return $this->belongsTo(Rol::class, 'rol_id');
     }
 }

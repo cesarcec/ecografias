@@ -5,24 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PacienteModel extends Model
+class TipoEstudio extends Model
 {
     use HasFactory;
-    protected $table = 'paciente';
+    protected $table = 'tipo_estudio';
     protected $primaryKey = 'id';
     protected $fillable = [
         'nombre',
-        'paterno',
-        'materno',
-        'genero',
-        'fecha_nacimiento',
         'estado'
     ];
 
     public $timestamps = true;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    public function estudios() {
+        return $this->hasMany(EstudioModel::class, 'tipo_estudio_id');
     }
 }

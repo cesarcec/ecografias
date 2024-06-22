@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('estudio', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 250);
+            $table->string('descripcion', 500);
+            $table->string('requerimientos', 250);
+            $table->decimal('precio', 10, 2);
+            $table->foreignId('tipo_estudio_id')->constrained('tipo_estudio');
             $table->timestamps();
         });
     }

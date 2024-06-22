@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RolModel;
+use App\Models\Rol;
 
 class RolController extends Controller
 {
@@ -20,7 +20,7 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = RolModel::all();
+        $roles = Rol::where('estado', 1)->get();;
         return ['data' => $roles, 'status' => 200];
     }
 
@@ -37,7 +37,7 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = RolModel::create([
+        $rol = Rol::create([
             'nombre' => $request->get('nombre'),
         ]);
 
@@ -49,7 +49,7 @@ class RolController extends Controller
      */
     public function show(string $id)
     {
-        $rol = RolModel::findOrFail($id); 
+        $rol = Rol::findOrFail($id); 
         return ['data' => $rol, 'status' => 200];
     }
 
@@ -66,7 +66,7 @@ class RolController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $rol = RolModel::findOrFail($id); 
+        $rol = Rol::findOrFail($id); 
         $rol->update([
             'nombre' => $request->get('nombre')        
         ]);
@@ -78,7 +78,7 @@ class RolController extends Controller
      */
     public function destroy(string $id)
     {
-        $rol = RolModel::findOrFail($id); 
+        $rol = Rol::findOrFail($id); 
         $rol->update([
             'estado' => 0 
         ]);
@@ -87,7 +87,7 @@ class RolController extends Controller
 
     public function restore(string $id)
     {
-        $rol = RolModel::findOrFail($id); 
+        $rol = Rol::findOrFail($id); 
         $rol->update([
             'estado' => 1 
         ]);
@@ -96,12 +96,12 @@ class RolController extends Controller
 
     public function disabled()
     {
-        $roles = RolModel::where('estado', 0)->get();
+        $roles = Rol::where('estado', 0)->get();
         return ['data' => $roles, 'status' => 200];
     }
 
     public function rolUsers() {
-        $data = RolModel::where('estado', 1)->with('users')->get();
+        $data = Rol::where('estado', 1)->with('users')->get();
         return $data;
     }
 }

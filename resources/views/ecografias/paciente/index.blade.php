@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="tab-content">
-            <div class="active tab-pane">
+            <div class="active tab-pane" id="tab-index">
                 <table id="table" data-search="true" data-side-pagination="server" data-pagination="true">
                     <thead>
                         <tr>
@@ -82,7 +82,7 @@
                     </thead>
                 </table>
             </div>
-            <div class="tab-pane">
+            <div class="tab-pane" id="tab-delete">
                 <table id="table-delete" data-search="true" data-side-pagination="server" data-pagination="true">
                     <thead>
                         <tr>
@@ -101,14 +101,17 @@
                 </table>
             </div>
         </div>
-    </section>  
+    </section>
     <!-- Modal -->
     <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
                 </div>
                 <div class="modal-body">
                     <input id="id_edit" type="hidden">
@@ -126,7 +129,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="button" id="update" class="btn btn-primary">Actualizar</button>
                 </div>
             </div>

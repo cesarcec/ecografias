@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tipo_estudioModel;
+use App\Models\TipoEstudio;
 
 class TipoEstudioController extends Controller
 {
@@ -19,7 +19,7 @@ class TipoEstudioController extends Controller
      */
     public function index()
     {
-        $tipo_estudio = Tipo_estudioModel::all();
+        $tipo_estudio = TipoEstudio::where('estado', 1)->get();;
         return ['data' => $tipo_estudio, 'status' => 200];
     }
 
@@ -36,7 +36,7 @@ class TipoEstudioController extends Controller
      */
     public function store(Request $request)
     {
-        $tipo_estudio = Tipo_estudioModel::create([
+        $tipo_estudio = TipoEstudio::create([
             'nombre' => $request->get('nombre'),
         ]);
 
@@ -48,7 +48,7 @@ class TipoEstudioController extends Controller
      */
     public function show(string $id)
     {
-        $tipo_estudio = Tipo_estudioModel::findOrFail($id);
+        $tipo_estudio = TipoEstudio::findOrFail($id);
         return ['data' => $tipo_estudio, 'status' => 200];
     }
 
@@ -65,7 +65,7 @@ class TipoEstudioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $tipo_estudio = Tipo_estudioModel::findOrFail($id);
+        $tipo_estudio = TipoEstudio::findOrFail($id);
         $tipo_estudio->update([
             'nombre' => $request->get('nombre')
         ]);
@@ -77,7 +77,7 @@ class TipoEstudioController extends Controller
      */
     public function destroy(string $id)
     {
-        $tipo_estudio = Tipo_estudioModel::findOrFail($id);
+        $tipo_estudio = TipoEstudio::findOrFail($id);
         $tipo_estudio->update([
             'estado' => 0
         ]);
@@ -86,7 +86,7 @@ class TipoEstudioController extends Controller
 
     public function restore(string $id)
     {
-        $tipo_estudio = Tipo_estudioModel::findOrFail($id);
+        $tipo_estudio = TipoEstudio::findOrFail($id);
         $tipo_estudio->update([
             'estado' => 1
         ]);
@@ -95,7 +95,7 @@ class TipoEstudioController extends Controller
 
     public function disabled()
     {
-        $tipo_estudio = Tipo_estudioModel::where('estado', 0)->get();
+        $tipo_estudio = TipoEstudio::where('estado', 0)->get();
         return ['data' => $tipo_estudio, 'status' => 200];
     }
 }

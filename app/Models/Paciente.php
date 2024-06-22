@@ -5,15 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo_estudioModel extends Model
+class Paciente extends Model
 {
     use HasFactory;
-    protected $table = 'tipo_estudio';
+    protected $table = 'paciente';
     protected $primaryKey = 'id';
     protected $fillable = [
         'nombre',
+        'paterno',
+        'materno',
+        'genero',
+        'fecha_nacimiento',
         'estado'
     ];
 
     public $timestamps = true;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

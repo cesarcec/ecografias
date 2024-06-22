@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PacienteModel;
+use App\Models\Paciente;
 
 
 class PacienteController extends Controller
@@ -22,7 +22,7 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $paciente = PacienteModel::all();
+        $paciente = Paciente::where('estado', 1)->get();;
         return ['data' => $paciente, 'status' => 200];
     }
 
@@ -39,7 +39,7 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $paciente = PacienteModel::create([
+        $paciente = Paciente::create([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
@@ -55,7 +55,7 @@ class PacienteController extends Controller
      */
     public function show(string $id)
     {
-        $paciente = PacienteModel::findOrFail($id); 
+        $paciente = Paciente::findOrFail($id); 
         return ['data' => $paciente, 'status' => 200];
     }
 
@@ -72,7 +72,7 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $paciente = PacienteModel::findOrFail($id); 
+        $paciente = Paciente::findOrFail($id); 
         $paciente->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
@@ -88,7 +88,7 @@ class PacienteController extends Controller
      */
     public function destroy(string $id)
     {
-        $paciente = PacienteModel::findOrFail($id); 
+        $paciente = Paciente::findOrFail($id); 
         $paciente->update([
             'estado' => 0 
         ]);
@@ -97,7 +97,7 @@ class PacienteController extends Controller
 
     public function restore(string $id)
     {
-        $paciente = PacienteModel::findOrFail($id); 
+        $paciente = Paciente::findOrFail($id); 
         $paciente->update([
             'estado' => 1 
         ]);
@@ -106,7 +106,7 @@ class PacienteController extends Controller
 
     public function disabled()
     {
-        $paciente = PacienteModel::where('estado', 0)->get();
+        $paciente = Paciente::where('estado', 0)->get();
         return ['data' => $paciente, 'status' => 200];
     }
 }

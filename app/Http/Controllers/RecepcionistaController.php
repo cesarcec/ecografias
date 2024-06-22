@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RecepcionistaModel;
+use App\Models\Recepcionista;
 
 class RecepcionistaController extends Controller
 {
@@ -20,7 +20,7 @@ class RecepcionistaController extends Controller
      */
     public function index()
     {
-        $recepcionista = RecepcionistaModel::all();
+        $recepcionista = Recepcionista::where('estado', 1)->get();;
         return ['data' => $recepcionista, 'status' => 200];
     }
 
@@ -37,7 +37,7 @@ class RecepcionistaController extends Controller
      */
     public function store(Request $request)
     {
-        $recepcionista = RecepcionistaModel::create([
+        $recepcionista = Recepcionista::create([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
             'materno' => $request->get('materno'),
@@ -52,7 +52,7 @@ class RecepcionistaController extends Controller
      */
     public function show(string $id)
     {
-        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista = Recepcionista::findOrFail($id); 
         return ['data' => $recepcionista, 'status' => 200];
     }
 
@@ -69,7 +69,7 @@ class RecepcionistaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista = Recepcionista::findOrFail($id); 
         $recepcionista->update([
             'nombre' => $request->get('nombre'),
             'paterno' => $request->get('paterno'),
@@ -84,7 +84,7 @@ class RecepcionistaController extends Controller
      */
     public function destroy(string $id)
     {
-        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista = Recepcionista::findOrFail($id); 
         $recepcionista->update([
             'estado' => 0 
         ]);
@@ -93,7 +93,7 @@ class RecepcionistaController extends Controller
 
     public function restore(string $id)
     {
-        $recepcionista = RecepcionistaModel::findOrFail($id); 
+        $recepcionista = Recepcionista::findOrFail($id); 
         $recepcionista->update([
             'estado' => 1 
         ]);
@@ -102,7 +102,7 @@ class RecepcionistaController extends Controller
 
     public function disabled()
     {
-        $recepcionista = RecepcionistaModel::where('estado', 0)->get();
+        $recepcionista = Recepcionista::where('estado', 0)->get();
         return ['data' => $recepcionista, 'status' => 200];
     }
 }
