@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('paterno');
             $table->string('materno');
             $table->tinyInteger('estado')->default(1);
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

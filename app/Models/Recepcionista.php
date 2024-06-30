@@ -14,6 +14,7 @@ class Recepcionista extends Model
         'nombre',
         'paterno',
         'materno',
+        'user_id',
         'estado',
     ];
 

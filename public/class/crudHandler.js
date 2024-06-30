@@ -142,6 +142,12 @@ class CrudHandler {
     async postInsert(dataClient = undefined, apiMethod = "store") {
         dataClient = dataClient ?? this.assembleObject();
 
+        if (this.config.validatePassword) {
+            if (!this.validatePassword()) {
+                return;
+            }
+        }
+
         this.showLoader();
 
         const response = await this.apiClient.post(
@@ -545,12 +551,12 @@ class CrudHandler {
         for (const key in selectors) {
             const selector = selectors[key];
             const input = document.getElementById(`${selector}${label}`);
-            if (!input) {
-                return;
-            }
-            if (input.type == "file" || input.type == "image") {
+            // if (!input) {
+            //     break;
+            // }
+            if (input && (input.type == "file" || input.type == "image")) {
                 
-            } else {
+            } else if (input) {
                 input.value = data[selector];
             }
         }
@@ -971,5 +977,20 @@ class CrudHandler {
 
             element[nameIndex] = figureElement.outerHTML;
         });
+    }
+
+    validatePassword() {
+        const password = document.getElementById('password');
+        const passwordConfirmation = document.getElementById('password_confirmation');
+        let result = true;
+        if (password.value != passwordConfirmation.value) {
+            result = false;
+            password.classList.add(this.config.classErrorInput);
+            passwordConfirmation.classList.add(this.config.classErrorInput);
+        } else {
+            password.classList.remove(this.config.classErrorInput);
+            passwordConfirmation.classList.remove(this.config.classErrorInput);
+        }
+        return result;
     }
 }

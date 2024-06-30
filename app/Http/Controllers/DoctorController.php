@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\User;
+use App\Models\Rol;
 use App\Http\Resources\DoctorResource;
 use Illuminate\Http\Response;
-use App\Http\Controllers\ApiResponse    ;
+use App\Http\Controllers\ApiResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -24,7 +28,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::where('estado', 1)->get();
+        $doctors = Doctor::where('estado', 1)->with('user')->get();
         return ApiResponse::success(DoctorResource::collection($doctors), 'Lista obtenida correctamente');
     }
 
@@ -33,8 +37,37 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = Doctor::create($request->all());
-        return ApiResponse::success(new DoctorResource($doctor), 'Registro insertado correctamente.', Response::HTTP_CREATED);
+        DB::beginTransaction();
+        $response = [];
+        try {
+            $doctor = Doctor::create([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+            ]);
+
+            $user = User::create([
+                'name' => $doctor->nombre . ' ' . $doctor->paterno,
+                'email' => $request->get('email'),
+                'password' => Hash::make($request->get('password')),
+            ]);
+
+            $rol = Rol::where('nombre', 'Doctor')->first();
+            if (!$rol) {
+                throw new \Exception('Rol no encontrado.');
+            }
+
+            $user->update(['rol_id' => $rol->id]);
+            $doctor->update(['user_id' => $user->id]);
+            
+            DB::commit();
+            $response = ApiResponse::success(new DoctorResource($doctor), 'Registro insertado correctamente.', Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**
@@ -51,9 +84,34 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $doctor = Doctor::findOrFail($id);
-        $doctor->update($request->all());
-        return ApiResponse::success(new DoctorResource($doctor), 'Registro actualizado correctamente.');
+
+        DB::beginTransaction();
+        $response = [];
+        try {
+            $doctor = Doctor::findOrFail($id);
+            $doctor->update([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+            ]);
+            $user = User::where('id', $doctor->user_id)->first();
+            $user->email = $request->get('user_email');
+            if ($request->has('password') && $request->get('password') != 'undefined') {
+                $user->password = Hash::make($request->get('password'));
+            }
+
+            $user->save();
+
+            $doctor->load('user');
+            
+            DB::commit();
+            $response = ApiResponse::success(new DoctorResource($doctor), 'Registro actualizado correctamente.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**

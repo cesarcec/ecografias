@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('genero');
             $table->date('fecha_nacimiento');
             $table->tinyInteger('estado')->default(1);
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

@@ -89,7 +89,7 @@
                             <th data-field="id">ID</th>
                             <th data-field="nombre">Nombre</th>
                             <th data-field="paterno">Paterno</th>
-                            <th data-field="materno">Paterno</th>
+                            <th data-field="materno">Materno</th>
                             <th data-field="genero">genero</th>
                             {{-- <th data-field="estado">Estado</th> --}}
 

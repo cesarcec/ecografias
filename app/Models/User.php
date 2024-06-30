@@ -10,6 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Rol;
+use App\Models\Doctor;
+use App\Models\Recepcionista;
+use App\Models\Paciente;
 
 class User extends Authenticatable
 {
@@ -76,7 +79,7 @@ class User extends Authenticatable
 
     public function doctor()
     {
-        return $this->hasOne(Doctor::class);
+        return $this->hasOne(Doctor::class, 'user_id');
     }
 
     public function recepcionista()

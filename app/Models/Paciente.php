@@ -16,7 +16,8 @@ class Paciente extends Model
         'materno',
         'genero',
         'fecha_nacimiento',
-        'estado'
+        'user_id',
+        'estado',
     ];
 
     public $timestamps = true;

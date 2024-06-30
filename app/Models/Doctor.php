@@ -15,6 +15,7 @@ class Doctor extends Model
         'paterno',
         'materno',
         'genero',
+        'user_id',
         'estado',
     ];
 
