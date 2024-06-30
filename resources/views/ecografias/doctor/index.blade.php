@@ -114,7 +114,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Doctor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -168,8 +168,6 @@
                         </div>
                     </div>
                 </div>
-                
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="button" id="update" class="btn btn-primary">Actualizar</button>
@@ -223,12 +221,14 @@
                 "password_confirmation"
             ],
             loadRelations: true,
-            relations: [{
-                name: "user",
-                nameSecondary: "user",
-                nameIndex: ["email"],
-                selectId: "user_id",
-            }, ],
+            relations: [
+                {
+                    name: "user",
+                    nameSecondary: "user",
+                    nameIndex: ["email"],
+                    selectId: "user_id",
+                }, 
+            ],
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
             validatePassword: true,

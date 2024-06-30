@@ -298,14 +298,13 @@ class CrudHandler {
         }
         const relationObject = this.config.relations;
         const nameRelation = relationObject[0].name;
-        const nameRecursive= relationObject[0].nameRecursive;
+        const nameRecursive = relationObject[0].nameRecursive;
 
         if (this.config.loadDataCartTemporary) {
             this.dataCart = this.dataIndex[nameRecursive] ?? [];
         }
 
         this.loadTableCart(this.dataRelations[nameRelation]);
-
     }
 
     async loadDataDelete(endpoint = "disabled") {
@@ -476,8 +475,8 @@ class CrudHandler {
             );
             const data = this.dataRelations[element.name];
             const names = element.nameIndex;
-            this.loadSelect({data, select, names});
-            this.loadSelect({data, select: selectEdit});
+            this.loadSelect({ data, select, names });
+            this.loadSelect({ data, select: selectEdit });
         });
     }
 
@@ -487,8 +486,8 @@ class CrudHandler {
      * @param {HTMLSelectElement} select - Elemento select del formulario.
      * @param {number} id - ID preseleccionado en el select.
      */
-    loadSelect({data, select, id = 0, names = []}) {
-        if (!select  ||  !data) {
+    loadSelect({ data, select, id = 0, names = [] }) {
+        if (!select || !data) {
             return;
         }
         select.innerHTML = "";
@@ -518,7 +517,7 @@ class CrudHandler {
         let string = "";
         for (let i = 0; i < names.length && i < 2; i++) {
             const name = names[i];
-            string +=  element[name] + " ";
+            string += element[name] + " ";
         }
         return string;
     }
@@ -555,7 +554,6 @@ class CrudHandler {
             //     break;
             // }
             if (input && (input.type == "file" || input.type == "image")) {
-                
             } else if (input) {
                 input.value = data[selector];
             }
@@ -980,9 +978,13 @@ class CrudHandler {
     }
 
     validatePassword() {
-        const password = document.getElementById('password');
-        const passwordConfirmation = document.getElementById('password_confirmation');
+        const password = document.getElementById("password");
+        const passwordConfirmation = document.getElementById(
+            "password_confirmation"
+        );
+
         let result = true;
+        
         if (password.value != passwordConfirmation.value) {
             result = false;
             password.classList.add(this.config.classErrorInput);
@@ -992,5 +994,21 @@ class CrudHandler {
             passwordConfirmation.classList.remove(this.config.classErrorInput);
         }
         return result;
+    }
+
+    validateEmptyFields(inputIds) {
+        let hasError = false;
+
+        inputIds.forEach((id) => {
+            const input = document.getElementById(id);
+            if (!input.value.trim()) {
+                input.classList.add(config.classErrorInput);
+                hasError = true;
+            } else {
+                input.classList.remove(config.classErrorInput);
+            }
+        });
+
+        return hasError;
     }
 }

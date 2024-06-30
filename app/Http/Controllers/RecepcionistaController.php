@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Recepcionista;
+use App\Models\User;
+use App\Models\Rol;
+use App\Http\Resources\RecepcionistaResource;
+use Illuminate\Http\Response;
+use App\Http\Controllers\ApiResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class RecepcionistaController extends Controller
 {
-     #WEB
-     public function getIndex() {
+    #WEB
+    public function getIndex()
+    {
         return view('ecografias.recepcionista.index');
     }
 
@@ -20,16 +28,8 @@ class RecepcionistaController extends Controller
      */
     public function index()
     {
-        $recepcionista = Recepcionista::where('estado', 1)->get();;
-        return ['data' => $recepcionista, 'status' => 200];
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $doctors = Recepcionista::where('estado', 1)->with('user')->get();
+        return ApiResponse::success(RecepcionistaResource::collection($doctors), 'Lista obtenida correctamente');
     }
 
     /**
@@ -37,14 +37,38 @@ class RecepcionistaController extends Controller
      */
     public function store(Request $request)
     {
-        $recepcionista = Recepcionista::create([
-            'nombre' => $request->get('nombre'),
-            'paterno' => $request->get('paterno'),
-            'materno' => $request->get('materno'),
-            'genero' => $request->get('genero'),
-        ]);
+        DB::beginTransaction();
+        $response = [];
+        try {
 
-        return ['data' => $recepcionista, 'status' => 200];
+            $doctor = Recepcionista::create([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+            ]);
+
+            $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+
+            $user = User::create([
+                'name' => $doctor->nombre . ' ' . $doctor->paterno,
+                'email' => $request->get('email'),
+                'password' => Hash::make($passwordRequest),
+            ]);
+
+            $rol = Rol::where('nombre', 'Recepcionista')->firstOrFail();
+            $user->update(['rol_id' => $rol->id]);
+
+            $doctor->update(['user_id' => $user->id]);
+            $doctor->load('user');
+
+            DB::commit();
+            $response = ApiResponse::success(new RecepcionistaResource($doctor), 'Registro insertado correctamente.', Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**
@@ -52,16 +76,8 @@ class RecepcionistaController extends Controller
      */
     public function show(string $id)
     {
-        $recepcionista = Recepcionista::findOrFail($id); 
-        return ['data' => $recepcionista, 'status' => 200];
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $doctor = Recepcionista::findOrFail($id);
+        return ApiResponse::success(new RecepcionistaResource($doctor), 'Registro encontrado correctamente.');
     }
 
     /**
@@ -69,14 +85,36 @@ class RecepcionistaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $recepcionista = Recepcionista::findOrFail($id); 
-        $recepcionista->update([
-            'nombre' => $request->get('nombre'),
-            'paterno' => $request->get('paterno'),
-            'materno' => $request->get('materno'),
-            'genero' => $request->get('genero'),       
-        ]);
-        return ['data' => $recepcionista, 'status' => 200];
+
+        DB::beginTransaction();
+        $response = [];
+        try {
+
+            $doctor = Recepcionista::findOrFail($id);
+            $doctor->update([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+            ]);
+
+            $user = User::where('id', $doctor->user_id)->first();
+            $user->email = $request->get('user_email');
+            if ($request->has('password') && $request->get('password') != 'undefined') {
+                $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+                $user->password = Hash::make($passwordRequest);
+            }
+            $user->save();
+            
+            $doctor->load('user');
+            
+            DB::commit();
+            $response = ApiResponse::success(new RecepcionistaResource($doctor), 'Registro actualizado correctamente.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**
@@ -84,25 +122,21 @@ class RecepcionistaController extends Controller
      */
     public function destroy(string $id)
     {
-        $recepcionista = Recepcionista::findOrFail($id); 
-        $recepcionista->update([
-            'estado' => 0 
-        ]);
-        return ['data' => $recepcionista, 'status' => 200];
+        $doctor = Recepcionista::findOrFail($id);
+        $doctor->update(['estado' => 0]);
+        return ApiResponse::success(new RecepcionistaResource($doctor), 'Registro deshabilitado correctamente.');
     }
 
     public function restore(string $id)
     {
-        $recepcionista = Recepcionista::findOrFail($id); 
-        $recepcionista->update([
-            'estado' => 1 
-        ]);
-        return ['data' => $recepcionista, 'status' => 200];
+        $doctor = Recepcionista::findOrFail($id);
+        $doctor->update(['estado' => 1]);
+        return ApiResponse::success(new RecepcionistaResource($doctor), 'Registro restaurado correctamente.');
     }
 
     public function disabled()
     {
-        $recepcionista = Recepcionista::where('estado', 0)->get();
-        return ['data' => $recepcionista, 'status' => 200];
+        $doctors = Recepcionista::where('estado', 0)->get();
+        return ApiResponse::success(RecepcionistaResource::collection($doctors), 'Lista de deshabilitados obtenida correctamente');
     }
 }

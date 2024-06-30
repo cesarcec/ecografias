@@ -40,6 +40,8 @@ class DoctorController extends Controller
         DB::beginTransaction();
         $response = [];
         try {
+
+            // Crear doctor
             $doctor = Doctor::create([
                 'nombre' => $request->get('nombre'),
                 'paterno' => $request->get('paterno'),
@@ -47,20 +49,24 @@ class DoctorController extends Controller
                 'genero' => $request->get('genero'),
             ]);
 
+            // Valor por defecto de la contraseña en caso que esté vacía
+            $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+
+            // Crear usuario
             $user = User::create([
                 'name' => $doctor->nombre . ' ' . $doctor->paterno,
                 'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
+                'password' => Hash::make($passwordRequest),
             ]);
 
-            $rol = Rol::where('nombre', 'Doctor')->first();
-            if (!$rol) {
-                throw new \Exception('Rol no encontrado.');
-            }
-
+            // Asignar rol al usuario
+            $rol = Rol::where('nombre', 'Doctor')->firstOrFail();
             $user->update(['rol_id' => $rol->id]);
+
+            // Relacionar doctor y usuario
             $doctor->update(['user_id' => $user->id]);
-            
+            $doctor->load('user'); // Cargar la relación
+
             DB::commit();
             $response = ApiResponse::success(new DoctorResource($doctor), 'Registro insertado correctamente.', Response::HTTP_CREATED);
         } catch (\Exception $e) {
@@ -88,6 +94,7 @@ class DoctorController extends Controller
         DB::beginTransaction();
         $response = [];
         try {
+
             $doctor = Doctor::findOrFail($id);
             $doctor->update([
                 'nombre' => $request->get('nombre'),
@@ -95,14 +102,15 @@ class DoctorController extends Controller
                 'materno' => $request->get('materno'),
                 'genero' => $request->get('genero'),
             ]);
+
             $user = User::where('id', $doctor->user_id)->first();
             $user->email = $request->get('user_email');
             if ($request->has('password') && $request->get('password') != 'undefined') {
-                $user->password = Hash::make($request->get('password'));
+                $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+                $user->password = Hash::make($passwordRequest);
             }
-
             $user->save();
-
+            
             $doctor->load('user');
             
             DB::commit();
