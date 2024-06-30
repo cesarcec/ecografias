@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Paciente;
-
+use App\Models\User;
+use App\Models\Rol;
+use App\Http\Resources\PacienteResource;
+use Illuminate\Http\Response;
+use App\Http\Controllers\ApiResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PacienteController extends Controller
 {
-    
     #WEB
-    public function getIndex() {
+    public function getIndex()
+    {
         return view('ecografias.paciente.index');
     }
 
@@ -22,16 +28,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $paciente = Paciente::where('estado', 1)->get();;
-        return ['data' => $paciente, 'status' => 200];
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $doctors = Paciente::where('estado', 1)->with('user')->get();
+        return ApiResponse::success(PacienteResource::collection($doctors), 'Lista obtenida correctamente');
     }
 
     /**
@@ -39,15 +37,39 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $paciente = Paciente::create([
-            'nombre' => $request->get('nombre'),
-            'paterno' => $request->get('paterno'),
-            'materno' => $request->get('materno'),
-            'genero' => $request->get('genero'),
-            'fecha_nacimiento' => $request->get('fecha_nacimiento'),
-        ]);
+        DB::beginTransaction();
+        $response = [];
+        try {
 
-        return ['data' => $paciente, 'status' => 200];
+            $paciente = Paciente::create([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+                'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
+            ]);
+
+            $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+
+            $user = User::create([
+                'name' => $paciente->nombre . ' ' . $paciente->paterno,
+                'email' => $request->get('email'),
+                'password' => Hash::make($passwordRequest),
+            ]);
+
+            $rol = Rol::where('nombre', 'Paciente')->firstOrFail();
+            $user->update(['rol_id' => $rol->id]);
+
+            $paciente->update(['user_id' => $user->id]);
+            $paciente->load('user'); 
+
+            DB::commit();
+            $response = ApiResponse::success(new PacienteResource($paciente), 'Registro insertado correctamente.', Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**
@@ -55,16 +77,8 @@ class PacienteController extends Controller
      */
     public function show(string $id)
     {
-        $paciente = Paciente::findOrFail($id); 
-        return ['data' => $paciente, 'status' => 200];
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $paciente = Paciente::findOrFail($id);
+        return ApiResponse::success(new PacienteResource($paciente), 'Registro encontrado correctamente.');
     }
 
     /**
@@ -72,15 +86,37 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $paciente = Paciente::findOrFail($id); 
-        $paciente->update([
-            'nombre' => $request->get('nombre'),
-            'paterno' => $request->get('paterno'),
-            'materno' => $request->get('materno'),
-            'genero' => $request->get('genero'),
-            'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
-        ]);
-        return ['data' => $paciente, 'status' => 200];
+
+        DB::beginTransaction();
+        $response = [];
+        try {
+
+            $paciente = Paciente::findOrFail($id);
+            $paciente->update([
+                'nombre' => $request->get('nombre'),
+                'paterno' => $request->get('paterno'),
+                'materno' => $request->get('materno'),
+                'genero' => $request->get('genero'),
+                'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
+            ]);
+
+            $user = User::where('id', $paciente->user_id)->first();
+            $user->email = $request->get('user_email');
+            if ($request->has('password') && $request->get('password') != 'undefined') {
+                $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
+                $user->password = Hash::make($passwordRequest);
+            }
+            $user->save();
+            
+            $paciente->load('user');
+            
+            DB::commit();
+            $response = ApiResponse::success(new PacienteResource($paciente), 'Registro actualizado correctamente.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ApiResponse::error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return $response;
     }
 
     /**
@@ -88,26 +124,21 @@ class PacienteController extends Controller
      */
     public function destroy(string $id)
     {
-        $paciente = Paciente::findOrFail($id); 
-        $paciente->update([
-            'estado' => 0 
-        ]);
-        return ['data' => $paciente, 'status' => 200];
+        $paciente = Paciente::findOrFail($id);
+        $paciente->update(['estado' => 0]);
+        return ApiResponse::success(new PacienteResource($paciente), 'Registro deshabilitado correctamente.');
     }
 
     public function restore(string $id)
     {
-        $paciente = Paciente::findOrFail($id); 
-        $paciente->update([
-            'estado' => 1 
-        ]);
-        return ['data' => $paciente, 'status' => 200];
+        $paciente = Paciente::findOrFail($id);
+        $paciente->update(['estado' => 1]);
+        return ApiResponse::success(new PacienteResource($paciente), 'Registro restaurado correctamente.');
     }
 
     public function disabled()
     {
-        $paciente = Paciente::where('estado', 0)->get();
-        return ['data' => $paciente, 'status' => 200];
+        $doctors = Paciente::where('estado', 0)->get();
+        return ApiResponse::success(PacienteResource::collection($doctors), 'Lista de deshabilitados obtenida correctamente');
     }
 }
-

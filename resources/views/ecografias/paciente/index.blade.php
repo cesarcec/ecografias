@@ -39,6 +39,22 @@
                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
                         <input id="fecha_nacimiento" class="form-control" type="date">
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Correo</label>
+                            <input id="email" class="form-control" type="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Contraseña</label>
+                        <input id="password" class="form-control" type="password">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password_confirmation">Repite la contraseña</label>
+                        <input id="password_confirmation" class="form-control" type="password">
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -73,9 +89,8 @@
                             <th data-field="paterno">Paterno</th>
                             <th data-field="materno">Materno</th>
                             <th data-field="genero">genero</th>
-                            {{-- <th data-field="estado">Estado</th> --}}
-
                             <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
+                            <th data-field="user_email">Correo</th>
 
                             <th data-field="action">Acciones</th>
                         </tr>
@@ -91,10 +106,8 @@
                             <th data-field="paterno">Paterno</th>
                             <th data-field="materno">Materno</th>
                             <th data-field="genero">genero</th>
-                            {{-- <th data-field="estado">Estado</th> --}}
-
                             <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
-
+                            <th data-field="user_email">Correo</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -115,18 +128,59 @@
                 </div>
                 <div class="modal-body">
                     <input id="id_edit" type="hidden">
-                    <label for="nombre_edit">Nombre</label>
-                    <input id="nombre_edit" class="form-control" type="text">
-                    <label for="paterno_edit">Paterno</label>
-                    <input id="paterno_edit" class="form-control" type="text">
-                    <label for="materno_edit">Materno</label>
-                    <input id="materno_edit" class="form-control" type="text">
-                    <label for="genero_edit">Genero</label>
-                    <input id="genero_edit" class="form-control" type="text">
-
-                    <label for="fecha_nacimiento_edit">Fecha de nacimiento</label>
-                    <input id="fecha_nacimiento_edit" class="form-control" type="date">
-
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nombre_edit">Nombre</label>
+                                <input id="nombre_edit" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="paterno_edit">Paterno</label>
+                                <input id="paterno_edit" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="materno_edit">Materno</label>
+                                <input id="materno_edit" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="user_email_edit">Correo</label>
+                                <input id="user_email_edit" class="form-control" type="email">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fecha_nacimiento_edit">Fecha de nacimiento</label>
+                                <input id="fecha_nacimiento_edit" class="form-control" type="date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="genero_edit">Genero</label>
+                                <input id="genero_edit" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password_edit">Nueva Contraseña</label>
+                                <input id="password_edit" class="form-control" type="password">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -176,10 +230,24 @@
                 "materno",
                 "genero",
                 "fecha_nacimiento",
+                "email",
+                "user_email",
+                "password",
+                "password_confirmation"
             ],
-            loadRelations: false,
+            loadRelations: true,
+            relations: [
+                {
+                    name: "user",
+                    nameSecondary: "user",
+                    nameIndex: ["email"],
+                    selectId: "user_id",
+                }, 
+            ],
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
+            validatePassword: true,
+            classErrorInput: 'input-error',
         };
 
         const crudHandler = new CrudHandler(apiClient, "paciente", config);
