@@ -490,27 +490,31 @@ class CrudHandler {
         if (!select || !data) {
             return;
         }
-        select.innerHTML = "";
-        /* const optionElementFirst= document.createElement("option");
-        optionElementFirst.value = null;
-        optionElementFirst.text = "Seleccione una opción";
-        select.add(optionElementFirst); */
-        data.forEach((element) => {
-            const optionElement = document.createElement("option");
-            optionElement.value = element.id;
-            let nameIndexSelect = element.name;
-            if (!element.name) {
-                nameIndexSelect = this.concatNamesSelect(element, names);
-            }
+       try {
+            select.innerHTML = "";
+            /* const optionElementFirst= document.createElement("option");
+            optionElementFirst.value = null;
+            optionElementFirst.text = "Seleccione una opción";
+            select.add(optionElementFirst); */
+            data.forEach((element) => {
+                const optionElement = document.createElement("option");
+                optionElement.value = element.id;
+                let nameIndexSelect = element.name;
+                if (!element.name) {
+                    nameIndexSelect = this.concatNamesSelect(element, names);
+                }
 
-            optionElement.text = `${element.id} - ${nameIndexSelect}`;
+                optionElement.text = `${element.id} - ${nameIndexSelect}`;
 
-            if (element.id == id) {
-                optionElement.selected = true;
-            }
+                if (element.id == id) {
+                    optionElement.selected = true;
+                }
 
-            select.add(optionElement);
-        });
+                select.add(optionElement);
+            });
+       } catch (error) {
+        
+       }
     }
 
     concatNamesSelect(element, names) {

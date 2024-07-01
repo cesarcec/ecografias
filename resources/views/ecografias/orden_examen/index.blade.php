@@ -10,35 +10,50 @@
         <div class="card-header pointer-cursor" data-toggle="collapse" data-target="#collapse-form" aria-expanded="false"
             aria-controls="collapse-form">
             <div class="d-flex justify-content-between">
-                <h3 class="my-2 mx-2">Estudios</h1>
+                <h3 class="my-2 mx-2">Ordenes de examen</h1>
             </div>
         </div>
         <div class="card-body">
             <div class="collapse show" id="collapse-form">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text">
+                        <label for="fecha_cita">Fecha de Cita</label>
+                        <input id="fecha_cita" class="form-control" type="date">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="descripcion">Descripción</label>
-                        <input id="descripcion" class="form-control" type="text">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="requerimientos">Requerimientos</label>
-                        <input id="requerimientos" class="form-control" type="text">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="precio">Precio</label>
-                        <input id="precio" class="form-control" type="number" step="any">
+                        <label for="fecha_programada">Fecha de programación de examen</label>
+                        <input id="fecha_programada" class="form-control" type="date">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="tipo_estudio_id">Tipo de estudio</label>
-                        <select class="form-control" name="tipo_estudio_id" id="tipo_estudio_id"></select>
+                        <label for="hora">Hora de programación</label>
+                        <input id="hora" class="form-control" type="time">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="estado_orden">Estado de orden</label>
+                        <input id="estado_orden" class="form-control" type="text" value="Cita programada" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="paciente_id">Paciente</label>
+                        <select class="form-control" name="paciente_id" id="paciente_id"></select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="doctor_id">Especialista</label>
+                        <select class="form-control" name="doctor_id" id="doctor_id"></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="estudio_id">Estudio</label>
+                        <select class="form-control" name="estudio_id" id="estudio_id"></select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="recepcionista_id">Recepcionista</label>
+                        {{-- <input class="form-control" type="text" value="{{Auth::user()->name}}" disabled> --}}
+                        <select class="form-control" name="recepcionista_id" id="recepcionista_id"></select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -70,11 +85,14 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
-                            <th data-field="nombre">Nombre</th>
-                            <th data-field="descripcion">Descripción</th>
-                            <th data-field="requerimientos">Requerimientos</th>
-                            <th data-field="precio">Precio</th>
-                            <th data-field="tipo_estudio_nombre">Tipo de estudio</th>
+                            <th data-field="fecha_cita">Nombre</th>
+                            <th data-field="fecha_programada">Descripción</th>
+                            <th data-field="hora">Requerimientos</th>
+                            <th data-field="estado_orden">Precio</th>
+                            <th data-field="paciente_nombre">Paciente</th>
+                            <th data-field="doctor_nombre">Especialista</th>
+                            <th data-field="estudio_nombre">Estudio</th>
+                            <th data-field="recepcionista_nombre">Recepcionista</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -85,11 +103,14 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
-                            <th data-field="nombre">Nombre</th>
-                            <th data-field="descripcion">Descripción</th>
-                            <th data-field="requerimientos">Requerimientos</th>
-                            <th data-field="precio">Precio</th>
-                            <th data-field="tipo_estudio_nombre">Tipo de estudio</th>
+                            <th data-field="fecha_cita">Nombre</th>
+                            <th data-field="fecha_programada">Descripción</th>
+                            <th data-field="hora">Requerimientos</th>
+                            <th data-field="estado_orden">Precio</th>
+                            <th data-field="paciente_nombre">Paciente</th>
+                            <th data-field="doctor_nombre">Especialista</th>
+                            <th data-field="estudio_nombre">Estudio</th>
+                            <th data-field="recepcionista_nombre">Recepcionista</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -104,7 +125,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar Doctor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,28 +136,44 @@
                 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nombre_edit">Nombre</label>
-                            <input id="nombre_edit" class="form-control" type="text">
+                            <label for="fecha_cita_edit">Fecha de Cita</label>
+                            <input id="fecha_cita_edit" class="form-control" type="date">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="descripcion_edit">Descripción</label>
-                            <input id="descripcion_edit" class="form-control" type="text">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="requerimientos_edit">Requerimientos</label>
-                            <input id="requerimientos_edit" class="form-control" type="text">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="precio_edit">Precio</label>
-                            <input id="precio_edit" class="form-control" type="number" step="any">
+                            <label for="fecha_programada_edit">Fecha de programación</label>
+                            <input id="fecha_programada_edit" class="form-control" type="date">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="tipo_estudio_id_edit">Tipo de estudio</label>
-                            <select class="form-control" name="tipo_estudio_id_edit" id="tipo_estudio_id_edit"></select>
+                            <label for="hora_edit">Hora de programación</label>
+                            <input id="hora_edit" class="form-control" type="time">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="estado_orden_edit">Estado de orden</label>
+                            <input id="estado_orden_edit" class="form-control" type="text" value="Cita programada" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="paciente_id_edit">Paciente</label>
+                            <select class="form-control" name="paciente_id_edit" id="paciente_id_edit"></select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="doctor_id_edit">Especialista</label>
+                            <select class="form-control" name="doctor_id_edit" id="doctor_id_edit"></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="estudio_id_edit">Estudio</label>
+                            <select class="form-control" name="estudio_id_edit" id="estudio_id_edit"></select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="recepcionista_id_edit">Recepcionista</label>
+                            <select class="form-control" name="recepcionista_id_edit" id="recepcionista_id_edit"></select>
+
+                            {{-- <input class="form-control" id="recepcionista_id_edit" type="text" value="{{Auth::user()->name}}"> --}}
                         </div>
                     </div>
                 
@@ -183,26 +220,47 @@
             labelPrefixEdit: "_edit",
             selectors: [
                 "id",
-                "nombre",
-                "descripcion",
-                "requerimientos",
-                "precio",
-                "tipo_estudio_id",
+                "fecha_cita",
+                "fecha_programada",
+                "hora",
+                "estado_orden",
+                "paciente_id",
+                "doctor_id",
+                "estudio_id",
+                "recepcionista_id",
             ],
             loadRelations: true,
             relations: [
                 {
-                    name: "tipo_estudio", // Nombre en relations (index backend)
-                    nameSecondary: "tipo_estudio", // Nombre en object (index backend)
+                    name: "paciente", // Nombre en relations (index backend)
+                    nameSecondary: "paciente", // Nombre en object (index backend)
                     nameIndex: ["nombre"], //nameSecondary + nameIndex
-                    selectId: "tipo_estudio_id",
+                    selectId: "paciente_id",
                 }, 
+                {
+                    name: "doctor", 
+                    nameSecondary: "doctor", 
+                    nameIndex: ["nombre"], 
+                    selectId: "doctor_id",
+                },
+                {
+                    name: "estudio", 
+                    nameSecondary: "estudio", 
+                    nameIndex: ["nombre"], 
+                    selectId: "estudio_id",
+                },
+                {
+                    name: "recepcionista", 
+                    nameSecondary: "recepcionista", 
+                    nameIndex: ["nombre"], 
+                    selectId: "recepcionista_id",
+                },
             ],
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
         };
 
-        const crudHandler = new CrudHandler(apiClient, "estudio", config);
+        const crudHandler = new CrudHandler(apiClient, "orden", config);
 
         document.addEventListener("DOMContentLoaded", () => {
             crudHandler.init();

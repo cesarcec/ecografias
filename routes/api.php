@@ -9,6 +9,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
 use App\Http\Controllers\RepartidorController;
 use App\Http\Controllers\EstudioController;
+use App\Http\Controllers\OrdenExamenController;
 use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
@@ -64,6 +65,13 @@ Route::put('/estudio/update/{id}', [EstudioController::class, 'update']);
 Route::put('/estudio/destroy/{id}', [EstudioController::class, 'destroy']);
 Route::put('/estudio/restore/{id}', [EstudioController::class, 'restore']);
 Route::get('/estudio/disabled', [EstudioController::class, 'disabled']);
+
+Route::get('/orden', [OrdenExamenController::class, 'index']);
+Route::post('/orden/store', [OrdenExamenController::class, 'store']);
+Route::put('/orden/update/{id}', [OrdenExamenController::class, 'update']);
+Route::put('/orden/destroy/{id}', [OrdenExamenController::class, 'destroy']);
+Route::put('/orden/restore/{id}', [OrdenExamenController::class, 'restore']);
+Route::get('/orden/disabled', [OrdenExamenController::class, 'disabled']);
 
 Route::get('/user-rol', [UserController::class, 'userRol']);
 Route::get('/rol-users', [RolController::class, 'rolUsers']);

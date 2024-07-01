@@ -8,6 +8,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
 use App\Http\Controllers\RepartidorController;
 use App\Http\Controllers\EstudioController;
+use App\Http\Controllers\OrdenExamenController;
 use App\Http\Controllers\UserController;
 
 
@@ -32,6 +33,7 @@ Route::get('/recepcionista', [RecepcionistaController::class, 'getIndex']);
 Route::get('/repartidor', [RepartidorController::class, 'getIndex']);
 Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
 Route::get('/estudio', [EstudioController::class, 'getIndex']);
+Route::get('/orden', [OrdenExamenController::class, 'getIndex']);
 
 
 Route::get('/dashboard', [UserController::class, 'getIndex']);

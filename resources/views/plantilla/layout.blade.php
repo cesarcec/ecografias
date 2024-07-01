@@ -91,6 +91,20 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrden"
+                    aria-expanded="true" aria-controls="collapseOrden">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Órdenes de examen</span>
+                </a>
+                <div id="collapseOrden" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menú de órdenes:</h6>
+                        <a class="collapse-item" href="{{ url('/orden') }}">Órdenes de examen</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

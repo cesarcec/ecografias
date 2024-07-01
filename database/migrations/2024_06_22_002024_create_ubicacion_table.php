@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('latitud', 100);
             $table->string('longitud', 100);
             $table->string('referencia', 250);
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }
