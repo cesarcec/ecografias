@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 class ApiResponse {
 
-    public static function success($data = [], $message = 'Operation successful', $status = 200)
+    public static function success($data = [], $message = 'Operation successful', $status = 200, $relations = [])
     {
         return response()->json([
             'message' => $message,
             'status' => $status,
-            'data' => $data
+            'data' => $data,
+            'relations' => $relations
         ], $status);
     }
 

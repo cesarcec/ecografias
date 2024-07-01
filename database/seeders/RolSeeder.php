@@ -28,5 +28,9 @@ class RolSeeder extends Seeder
         Rol::create([
             'nombre' => 'Paciente',
         ]);
+
+        Rol::create([
+            'nombre' => 'Repartidor',
+        ]);
     }
 }

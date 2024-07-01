@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('paterno', 50);
             $table->string('materno', 50);
             $table->string('telefono', 50);
+            $table->tinyInteger('estado')->default(1);
             $table->string('licencia_conducir', 250);
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

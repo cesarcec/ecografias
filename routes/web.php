@@ -6,6 +6,8 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
+use App\Http\Controllers\RepartidorController;
+use App\Http\Controllers\EstudioController;
 use App\Http\Controllers\UserController;
 
 
@@ -27,6 +29,10 @@ Route::get('/roles', [RolController::class, 'getIndex']);
 Route::get('/doctor', [DoctorController::class, 'getIndex']);
 Route::get('/paciente', [PacienteController::class, 'getIndex']);
 Route::get('/recepcionista', [RecepcionistaController::class, 'getIndex']);
+Route::get('/repartidor', [RepartidorController::class, 'getIndex']);
 Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
+Route::get('/estudio', [EstudioController::class, 'getIndex']);
+
+
 Route::get('/dashboard', [UserController::class, 'getIndex']);
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');

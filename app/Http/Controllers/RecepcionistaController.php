@@ -28,8 +28,8 @@ class RecepcionistaController extends Controller
      */
     public function index()
     {
-        $doctors = Recepcionista::where('estado', 1)->with('user')->get();
-        return ApiResponse::success(RecepcionistaResource::collection($doctors), 'Lista obtenida correctamente');
+        $recepcionistas = Recepcionista::where('estado', 1)->with('user')->get();
+        return ApiResponse::success(RecepcionistaResource::collection($recepcionistas), 'Lista obtenida correctamente');
     }
 
     /**
@@ -136,7 +136,7 @@ class RecepcionistaController extends Controller
 
     public function disabled()
     {
-        $doctors = Recepcionista::where('estado', 0)->get();
-        return ApiResponse::success(RecepcionistaResource::collection($doctors), 'Lista de deshabilitados obtenida correctamente');
+        $recepcionistas = Recepcionista::where('estado', 0)->get();
+        return ApiResponse::success(RecepcionistaResource::collection($recepcionistas), 'Lista de deshabilitados obtenida correctamente');
     }
 }

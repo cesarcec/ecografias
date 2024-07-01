@@ -21,24 +21,38 @@
                         <input id="nombre" class="form-control" type="text">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="descripcion">Descripción</label>
-                        <input id="descripcion" class="form-control" type="text">
+                        <label for="paterno">Paterno</label>
+                        <input id="paterno" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="requerimientos">Requerimientos</label>
-                        <input id="requerimientos" class="form-control" type="text">
+                        <label for="materno">Materno</label>
+                        <input id="materno" class="form-control" type="text">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="precio">Precio</label>
-                        <input id="precio" class="form-control" type="number" step="any">
+                        <label for="telefono">Teléfono</label>
+                        <input id="telefono" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="tipo_estudio_id">Tipo de estudio</label>
-                        <select class="form-control" name="tipo_estudio_id" id="tipo_estudio_id"></select>
+                        <label for="licencia_conducir">Nro. Licencia de conducir</label>
+                        <input id="licencia_conducir" class="form-control" type="text">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Correo</label>
+                        <input id="email" class="form-control" type="email">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Contraseña</label>
+                        <input id="password" class="form-control" type="password">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password_confirmation">Repite la contraseña</label>
+                        <input id="password_confirmation" class="form-control" type="password">
                     </div>
                 </div>
                 <div class="form-row">
@@ -71,10 +85,11 @@
                         <tr>
                             <th data-field="id">ID</th>
                             <th data-field="nombre">Nombre</th>
-                            <th data-field="descripcion">Descripción</th>
-                            <th data-field="requerimientos">Requerimientos</th>
-                            <th data-field="precio">Precio</th>
-                            <th data-field="tipo_estudio_nombre">Tipo de estudio</th>
+                            <th data-field="paterno">Paterno</th>
+                            <th data-field="materno">Materno</th>
+                            <th data-field="telefono">Teléfono</th>
+                            <th data-field="licencia_conducir">Nro. Licencia de conducir</th>
+                            <th data-field="user_email">Correo</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -86,10 +101,11 @@
                         <tr>
                             <th data-field="id">ID</th>
                             <th data-field="nombre">Nombre</th>
-                            <th data-field="descripcion">Descripción</th>
-                            <th data-field="requerimientos">Requerimientos</th>
-                            <th data-field="precio">Precio</th>
-                            <th data-field="tipo_estudio_nombre">Tipo de estudio</th>
+                            <th data-field="paterno">Paterno</th>
+                            <th data-field="materno">Materno</th>
+                            <th data-field="telefono">Teléfono</th>
+                            <th data-field="licencia_conducir">Nro. Licencia de conducir</th>
+                            <th data-field="user_email">Correo</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -113,32 +129,44 @@
                 <div class="modal-body">
                     <input id="id_edit" type="hidden">
                 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
                             <label for="nombre_edit">Nombre</label>
                             <input id="nombre_edit" class="form-control" type="text">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="descripcion_edit">Descripción</label>
-                            <input id="descripcion_edit" class="form-control" type="text">
+                        <div class="col-md-6 form-group">
+                            <label for="paterno_edit">Paterno</label>
+                            <input id="paterno_edit" class="form-control" type="text">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="requerimientos_edit">Requerimientos</label>
-                            <input id="requerimientos_edit" class="form-control" type="text">
+                
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="materno_edit">Materno</label>
+                            <input id="materno_edit" class="form-control" type="text">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="precio_edit">Precio</label>
-                            <input id="precio_edit" class="form-control" type="number" step="any">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="tipo_estudio_id_edit">Tipo de estudio</label>
-                            <select class="form-control" name="tipo_estudio_id_edit" id="tipo_estudio_id_edit"></select>
+                        <div class="col-md-6 form-group">
+                            <label for="telefono_edit">Teléfono</label>
+                            <input id="telefono_edit" class="form-control" type="text">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="licencia_conducir">Nro. Licencia de Conducir</label>
+                            <input id="licencia_conducir" class="form-control" type="text">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="user_email_edit">Correo</label>
+                            <input id="user_email_edit" class="form-control" type="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="password_edit">Nueva Contraseña</label>
+                            <input id="password_edit" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -184,25 +212,31 @@
             selectors: [
                 "id",
                 "nombre",
-                "descripcion",
-                "requerimientos",
-                "precio",
-                "tipo_estudio_id",
+                "paterno",
+                "materno",
+                "telefono",
+                "licencia_conducir",
+                "email",
+                "user_email",
+                "password",
+                "password_confirmation"
             ],
             loadRelations: true,
             relations: [
                 {
-                    name: "tipo_estudio", // Nombre en relations (index backend)
-                    nameSecondary: "tipo_estudio", // Nombre en object (index backend)
-                    nameIndex: ["nombre"], //nameSecondary + nameIndex
-                    selectId: "tipo_estudio_id",
+                    name: "user",
+                    nameSecondary: "user",
+                    nameIndex: ["email"],
+                    selectId: "user_id",
                 }, 
             ],
             formatAction: formatAction,
             formatActionRestore: formatActionRestore,
+            validatePassword: true,
+            classErrorInput: 'input-error',
         };
 
-        const crudHandler = new CrudHandler(apiClient, "estudio", config);
+        const crudHandler = new CrudHandler(apiClient, "repartidor", config);
 
         document.addEventListener("DOMContentLoaded", () => {
             crudHandler.init();

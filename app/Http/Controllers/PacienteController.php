@@ -28,8 +28,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $doctors = Paciente::where('estado', 1)->with('user')->get();
-        return ApiResponse::success(PacienteResource::collection($doctors), 'Lista obtenida correctamente');
+        $pacientes = Paciente::where('estado', 1)->with('user')->get();
+        return ApiResponse::success(PacienteResource::collection($pacientes), 'Lista obtenida correctamente');
     }
 
     /**
@@ -138,7 +138,7 @@ class PacienteController extends Controller
 
     public function disabled()
     {
-        $doctors = Paciente::where('estado', 0)->get();
-        return ApiResponse::success(PacienteResource::collection($doctors), 'Lista de deshabilitados obtenida correctamente');
+        $pacientes = Paciente::where('estado', 0)->get();
+        return ApiResponse::success(PacienteResource::collection($pacientes), 'Lista de deshabilitados obtenida correctamente');
     }
 }

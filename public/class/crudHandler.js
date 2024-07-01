@@ -476,7 +476,7 @@ class CrudHandler {
             const data = this.dataRelations[element.name];
             const names = element.nameIndex;
             this.loadSelect({ data, select, names });
-            this.loadSelect({ data, select: selectEdit });
+            this.loadSelect({ data, select: selectEdit, names});
         });
     }
 
