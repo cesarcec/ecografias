@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class OrdenExamenController extends Controller
 {
@@ -134,5 +135,18 @@ class OrdenExamenController extends Controller
     {
         $ordenes = OrdenExamen::where('estado', 0)->get();
         return ApiResponse::success(OrdenExamenResource::collection($ordenes), 'Lista de deshabilitados obtenida correctamente');
+    }
+
+    //Generación de pdf
+    public function generarComprobantePDF(string $id)
+    {
+        $orden = OrdenExamen::findOrFail($id);
+
+        $data = [
+            'orden' => $orden
+        ];
+
+        $pdf = PDF::loadView('ecografias.orden_examen.comprobante', $data);
+        return $pdf->stream('comprobante.pdf');
     }
 }

@@ -32,7 +32,11 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="estado_orden">Estado de orden</label>
-                        <input id="estado_orden" class="form-control" type="text" value="Cita programada" disabled>
+                        {{-- <input id="estado_orden" class="form-control" type="text" value="Cita programada"> --}}
+                        <select class="form-control" name="estado_orden" id="estado_orden" disabled>
+                            <option value="Cita programada">Cita programada</option>
+                            <option value="Cita programada">Cita completada</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -52,8 +56,16 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="recepcionista_id">Recepcionista</label>
-                        {{-- <input class="form-control" type="text" value="{{Auth::user()->name}}" disabled> --}}
-                        <select class="form-control" name="recepcionista_id" id="recepcionista_id"></select>
+                        <input class="form-control" type="text" value="{{Auth::user()->name}}" disabled>
+                        @php
+                            $idPersonal = 0;
+                            if (Auth::user()->recepcionista) {
+                                $idPersonal = Auth::user()->recepcionista->id;
+                            } else if (Auth::user()->doctor) {
+                                $idPersonal = Auth::user()->doctor->id;
+                            }  
+                        @endphp
+                        <input class="form-control" id="recepcionista_id" type="hidden" value="{{$idPersonal}}" disabled>
                     </div>
                 </div>
                 <div class="form-row">
@@ -85,10 +97,10 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
-                            <th data-field="fecha_cita">Nombre</th>
-                            <th data-field="fecha_programada">Descripción</th>
-                            <th data-field="hora">Requerimientos</th>
-                            <th data-field="estado_orden">Precio</th>
+                            <th data-field="fecha_cita">Fecha cita</th>
+                            <th data-field="fecha_programada">Fecha programada</th>
+                            <th data-field="hora">Hora</th>
+                            <th data-field="estado_orden">Estado de cita</th>
                             <th data-field="paciente_nombre">Paciente</th>
                             <th data-field="doctor_nombre">Especialista</th>
                             <th data-field="estudio_nombre">Estudio</th>
@@ -103,10 +115,10 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
-                            <th data-field="fecha_cita">Nombre</th>
-                            <th data-field="fecha_programada">Descripción</th>
-                            <th data-field="hora">Requerimientos</th>
-                            <th data-field="estado_orden">Precio</th>
+                            <th data-field="fecha_cita">Fecha cita</th>
+                            <th data-field="fecha_programada">Fecha programada</th>
+                            <th data-field="hora">Hora</th>
+                            <th data-field="estado_orden">Estado de cita</th>
                             <th data-field="paciente_nombre">Paciente</th>
                             <th data-field="doctor_nombre">Especialista</th>
                             <th data-field="estudio_nombre">Estudio</th>
@@ -198,7 +210,8 @@
         const formatAction = (element) => {
             return `
             <button title="Editar" data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i></button>
-            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>`;
+            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>
+            <a href="${URL_WEB}orden-cita-medica/${element.id}/comprobante" target="_blank" title="Nota de cita" data-id="${element.id}" class="btn btn-sm btn-primary note"><i class="bi bi-file-earmark-pdf"></i></a>`;
         };
 
         const formatActionRestore = (element) => {

@@ -11,6 +11,7 @@ class UserController extends Controller
     public function getIndex() {
         $userAuth = Auth::user();
         $userAuth->load('doctor', 'paciente', 'recepcionista', 'rol');
+        // return $userAuth;
         return view('ecografias.dashboard.index')->with('user', $userAuth);
     }
 
