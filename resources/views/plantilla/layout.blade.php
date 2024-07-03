@@ -85,6 +85,7 @@
                 <div id="collapseStudy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menú de estudios:</h6>
+                        <a class="collapse-item" href="{{ url('/sala') }}">Salas</a>
                         <a class="collapse-item" href="{{ url('/tipo_estudio') }}">Tipo de estudios</a>
                         <a class="collapse-item" href="{{ url('/estudio') }}">Estudios</a>
                     </div>

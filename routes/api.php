@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TipoEstudioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
@@ -10,6 +9,9 @@ use App\Http\Controllers\RecepcionistaController;
 use App\Http\Controllers\RepartidorController;
 use App\Http\Controllers\EstudioController;
 use App\Http\Controllers\OrdenExamenController;
+use App\Http\Controllers\TipoEstudioController;
+use App\Http\Controllers\SalaController;
+use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
@@ -59,6 +61,13 @@ Route::put('/tipo_estudio/destroy/{id}', [TipoEstudioController::class, 'destroy
 Route::put('/tipo_estudio/restore/{id}', [TipoEstudioController::class, 'restore']);
 Route::get('/tipo_estudio/disabled', [TipoEstudioController::class, 'disabled']);
 
+Route::get('/sala', [SalaController::class, 'index']);
+Route::post('/sala/store', [SalaController::class, 'store']);
+Route::put('/sala/update/{id}', [SalaController::class, 'update']);
+Route::put('/sala/destroy/{id}', [SalaController::class, 'destroy']);
+Route::put('/sala/restore/{id}', [SalaController::class, 'restore']);
+Route::get('/sala/disabled', [SalaController::class, 'disabled']);
+
 Route::get('/estudio', [EstudioController::class, 'index']);
 Route::post('/estudio/store', [EstudioController::class, 'store']);
 Route::put('/estudio/update/{id}', [EstudioController::class, 'update']);
@@ -72,6 +81,13 @@ Route::put('/orden/update/{id}', [OrdenExamenController::class, 'update']);
 Route::put('/orden/destroy/{id}', [OrdenExamenController::class, 'destroy']);
 Route::put('/orden/restore/{id}', [OrdenExamenController::class, 'restore']);
 Route::get('/orden/disabled', [OrdenExamenController::class, 'disabled']);
+
+Route::get('/examen', [ExamenController::class, 'index']);
+Route::post('/examen/store', [ExamenController::class, 'store']);
+Route::put('/examen/update/{id}', [ExamenController::class, 'update']);
+Route::put('/examen/destroy/{id}', [ExamenController::class, 'destroy']);
+Route::put('/examen/restore/{id}', [ExamenController::class, 'restore']);
+Route::get('/examen/disabled', [ExamenController::class, 'disabled']);
 
 Route::get('/user-rol', [UserController::class, 'userRol']);
 Route::get('/rol-users', [RolController::class, 'rolUsers']);

@@ -141,7 +141,7 @@ class OrdenExamenController extends Controller
     public function generarComprobantePDF(string $id)
     {
         $orden = OrdenExamen::findOrFail($id);
-
+        $orden->load('paciente', 'doctor', 'recepcionista', 'estudio');
         $data = [
             'orden' => $orden
         ];

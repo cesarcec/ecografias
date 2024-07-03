@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('examens', function (Blueprint $table) {
+        Schema::create('examen', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha');
+            $table->string('observaciones');
+            $table->tinyInteger('estado')->default(1);
+            $table->foreignId('orden_examen_id')->constrained('orden_examen');
+            $table->foreignId('sala_id')->constrained('sala');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('examens');
+        Schema::dropIfExists('examen');
     }
 };

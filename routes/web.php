@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TipoEstudioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
@@ -9,6 +8,9 @@ use App\Http\Controllers\RecepcionistaController;
 use App\Http\Controllers\RepartidorController;
 use App\Http\Controllers\EstudioController;
 use App\Http\Controllers\OrdenExamenController;
+use App\Http\Controllers\TipoEstudioController;
+use App\Http\Controllers\SalaController;
+use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\UserController;
 
 
@@ -36,9 +38,13 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/recepcionista', [RecepcionistaController::class, 'getIndex']);
     Route::get('/repartidor', [RepartidorController::class, 'getIndex']);
     Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
+    Route::get('/sala', [SalaController::class, 'getIndex']);
     Route::get('/estudio', [EstudioController::class, 'getIndex']);
+
+    //Citas médicas
     Route::get('/orden', [OrdenExamenController::class, 'getIndex']);
     Route::get('/orden-cita-medica/{id}/comprobante', [OrdenExamenController::class, 'generarComprobantePDF']);
+    Route::get('/realizar-examen-cita/{id}', [ExamenController::class, 'getRealizarExamen']);
 });
 
 

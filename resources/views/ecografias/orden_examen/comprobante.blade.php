@@ -1,70 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Comprobante de Cita Médica</title>
     <style>
+        /* Estilos generales */
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Fondo blanco para impresión */
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
         }
         .container {
-            width: 70%;
+            width: 80%; /* Ajuste para imprimir en horizontal */
             margin: auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
             border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para alinear el logo y el título */
         }
+        /* Encabezado */
         .header {
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            text-align: center;
             margin-bottom: 20px;
-            display: table;
-            width: 100%;
+            position: relative; /* Para alinear el logo y el título */
         }
-        .header-left {
-            display: table-cell;
-            vertical-align: middle;
-        }
-        .header-right {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: right;
-        }
-        .header h2 {
+        .title {
+            font-size: 24px;
+            color: #01366e;
             margin: 0;
-            font-size: 1.5em;
-            color: #007BFF;
+            position: absolute;
+            top: 30px; /* Alineación vertical */
+            left: 20px; /* Alineación horizontal */
         }
-        .header img {
+        .logo {
             max-width: 150px;
+            position: absolute;
+            top: 20px; /* Alineación vertical */
+            right: 20px; /* Alineación horizontal */
         }
+        /* Contenido */
         .content {
-            margin: 20px 0;
+            margin-bottom: 20px;
+            margin-top: 100px;
         }
-        .content table {
+        .table-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden; /* Para contener el borde al rededor de la tabla */
+        }
+        .table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
         }
-        .content th, .content td {
-            text-align: left;
-            padding: 10px;
+        .table th, .table td {
+            padding: 8px; /* Reducir el padding para achicar el tamaño de la tabla */
             border: 1px solid #ddd;
         }
-        .content th {
+        .table th {
             background-color: #f4f4f4;
+            text-align: left;
             font-weight: bold;
         }
+        .requirements {
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+        /* Pie de página */
         .footer {
             text-align: center;
             border-top: 1px solid #ddd;
             padding-top: 10px;
-            font-size: 0.9em;
             color: #666;
+            font-size: 0.9em;
             margin-top: 20px;
         }
     </style>
@@ -72,52 +85,54 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-left">
-                <h3>Comprobante de Cita Médica</h2>
-            </div>
-            <div class="header-right">
-                <img src="ruta_al_logo_de_la_clinica" alt="Logo de la Clínica">
-            </div>
+            <h1 class="title">Detalle de Cita Médica</h1>
+            <img src="{{asset('assets/img/cedisa_logo_final-01.svg')}}" alt="Logo de la Clínica" class="logo">
         </div>
         <div class="content">
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <td>{{ $orden->id }}</td>
-                </tr>
-                <tr>
-                    <th>Fecha de la Cita</th>
-                    <td>{{ $orden->fecha_cita }}</td>
-                </tr>
-                <tr>
-                    <th>Fecha Programada</th>
-                    <td>{{ $orden->fecha_programada }}</td>
-                </tr>
-                <tr>
-                    <th>Hora</th>
-                    <td>{{ $orden->hora }}</td>
-                </tr>
-                <tr>
-                    <th>Estado de la Orden</th>
-                    <td>{{ $orden->estado_orden }}</td>
-                </tr>
-                <tr>
-                    <th>ID del Paciente</th>
-                    <td>{{ $orden->paciente_id }}</td>
-                </tr>
-                <tr>
-                    <th>ID del Doctor</th>
-                    <td>{{ $orden->doctor_id }}</td>
-                </tr>
-                <tr>
-                    <th>ID del Estudio</th>
-                    <td>{{ $orden->estudio_id }}</td>
-                </tr>
-                <tr>
-                    <th>ID de la Recepcionista</th>
-                    <td>{{ $orden->recepcionista_id }}</td>
-                </tr>
-            </table>
+            <div class="table-container">
+                <table class="table">
+                    <tr>
+                        <th>Nro. de cita</th>
+                        <td>{{ $orden->id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de la Cita</th>
+                        <td>{{ $orden->fecha_cita }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha Programada</th>
+                        <td>{{ $orden->fecha_programada }}</td>
+                    </tr>
+                    <tr>
+                        <th>Hora</th>
+                        <td>{{ $orden->hora }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado de la Orden</th>
+                        <td>{{ $orden->estado_orden }}</td>
+                    </tr>
+                    <tr>
+                        <th>Paciente</th>
+                        <td>{{ $orden->paciente->nombre. ' '  . $orden->paciente->paterno}}</td>
+                    </tr>
+                    <tr>
+                        <th>Doctor programado</th>
+                        <td>{{ $orden->doctor->nombre . ' '  . $orden->doctor->paterno }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estudio a realizar</th>
+                        <td>{{ $orden->estudio->nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Recepcionista de atención</th>
+                        <td>{{ $orden->recepcionista->nombre. ' ' . $orden->recepcionista->paterno }}</td>
+                    </tr>
+                    <!-- Requisitos para cumplir la cita -->
+                    <tr>
+                        <th colspan="2" class="requirements">Requisitos para cumplir la cita: Traer CI, exámenes médicos si aplica, llegar 20 minutos antes</th>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="footer">
             <p>Este comprobante ha sido generado por el sistema de gestión de citas médicas.</p>
