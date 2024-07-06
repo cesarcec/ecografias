@@ -165,7 +165,8 @@
         const formatAction = (element) => {
             return `
             <button title="Editar" data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i></button>
-            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>`;
+            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>
+            <a href="${URL_WEB}resultado-create/${element.id}" title="Realizar resultado de examen" data-id="${element.id}" class="btn btn-sm btn-primary note my-1"><i class="bi bi-check-circle-fill"></i></a>`;
         };
 
         const formatActionRestore = (element) => {

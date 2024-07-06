@@ -116,6 +116,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menú de Exámenes:</h6>
                         <a class="collapse-item" href="{{ url('/examen') }}">Examen</a>
+                        <a class="collapse-item" href="{{ url('/resultado') }}">Resultados</a>
                     </div>
                 </div>
             </li>

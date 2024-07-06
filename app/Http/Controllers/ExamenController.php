@@ -55,7 +55,7 @@ class ExamenController extends Controller
 
             $orden = OrdenExamen::findOrFail($examen->orden_examen_id);
             $orden->update(["estado_orden" => "Examen realizado"]);
-            $examen->load('ordenExamen', 'sala');
+            $examen->load('ordenExamen.doctor.user', 'ordenExamen.paciente.user', 'ordenExamen.recepcionista.user', 'ordenExamen.estudio', 'sala');
 
 
             DB::commit();
@@ -94,7 +94,7 @@ class ExamenController extends Controller
                 'orden_examen_id' => $request->get('orden_examen_id'),       
                 'sala_id' => $request->get('sala_id'),          
             ]);
-            $examen->load('ordenExamen', 'sala');
+            $examen->load('ordenExamen.doctor', 'ordenExamen.paciente', 'ordenExamen.recepcionista', 'ordenExamen.estudio', 'sala');
             
             DB::commit();
             $response = ApiResponse::success(new ExamenResource($examen), 'Registro actualizado correctamente.');

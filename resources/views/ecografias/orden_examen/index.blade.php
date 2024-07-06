@@ -229,7 +229,7 @@
             <button title="Editar" data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i></button>
             <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>
             <a href="${URL_WEB}orden-cita-medica/${element.id}/comprobante" target="_blank" title="Nota de cita" data-id="${element.id}" class="btn btn-sm btn-primary note my-1"><i class="bi bi-file-earmark-pdf"></i></a>
-            <a href="${URL_WEB}realizar-examen-cita/${element.id}" title="Realizar examen" data-id="${element.id}" class="btn btn-sm btn-secondary note my-1"><i class="bi bi-lungs"></i></a>`;
+            <a href="${URL_WEB}examen-cita/${element.id}" title="Realizar examen" data-id="${element.id}" class="btn btn-sm btn-secondary note my-1"><i class="bi bi-lungs"></i></a>`;
         };
 
         const formatActionRestore = (element) => {
@@ -254,6 +254,7 @@
                 "fecha_cita",
                 "fecha_programada",
                 "hora_inicio",
+                "hora_fin",
                 "estado_orden",
                 "paciente_id",
                 "doctor_id",

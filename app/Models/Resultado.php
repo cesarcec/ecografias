@@ -11,9 +11,9 @@ class Resultado extends Model
     protected $table = 'resultado';
     protected $fillable = [
         'informe',
-        'fecha',
         'conclusion',
         'recomendacion',
+        'fecha',
         'imagen_1',
         'imagen_2',
         'imagen_3',

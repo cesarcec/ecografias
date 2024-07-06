@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('conclusion');
             $table->string('recomendacion');
             $table->date('fecha');
-            $table->string('imagen_1');
-            $table->string('imagen_2');
-            $table->string('imagen_3');
+            $table->string('imagen_1')->nullable();
+            $table->string('imagen_2')->nullable();
+            $table->string('imagen_3')->nullable();
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('examen_id')->constrained('examen');
             $table->timestamps();
