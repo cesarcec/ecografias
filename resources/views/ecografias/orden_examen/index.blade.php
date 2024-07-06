@@ -27,9 +27,16 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="hora">Hora de programación</label>
-                        <input id="hora" class="form-control" type="time">
+                        <label for="hora_inicio">Hora de inicio</label>
+                        <input id="hora_inicio" class="form-control" type="time">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="hora_fin">Hora de fin</label>
+                        <input id="hora_fin" class="form-control" type="time">
+                    </div>
+                    
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="estado_orden">Estado de orden</label>
                         {{-- <input id="estado_orden" class="form-control" type="text" value="Cita programada"> --}}
@@ -38,22 +45,23 @@
                             <option value="Cita programada">Cita completada</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="paciente_id">Paciente</label>
                         <select class="form-control" name="paciente_id" id="paciente_id"></select>
                     </div>
+                    
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="doctor_id">Especialista</label>
                         <select class="form-control" name="doctor_id" id="doctor_id"></select>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="estudio_id">Estudio</label>
                         <select class="form-control" name="estudio_id" id="estudio_id"></select>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="recepcionista_id">Recepcionista</label>
                         <input class="form-control" type="text" value="{{Auth::user()->name}}" disabled>
@@ -99,7 +107,8 @@
                             <th data-field="id">ID</th>
                             <th data-field="fecha_cita">Fecha cita</th>
                             <th data-field="fecha_programada">Fecha programada</th>
-                            <th data-field="hora">Hora</th>
+                            <th data-field="hora_inicio">Hora de inicio</th>
+                            <th data-field="hora_fin">Hora de fin</th>
                             <th data-field="estado_orden">Estado de cita</th>
                             <th data-field="paciente_nombre">Paciente</th>
                             <th data-field="doctor_nombre">Especialista</th>
@@ -117,7 +126,8 @@
                             <th data-field="id">ID</th>
                             <th data-field="fecha_cita">Fecha cita</th>
                             <th data-field="fecha_programada">Fecha programada</th>
-                            <th data-field="hora">Hora</th>
+                            <th data-field="hora_inicio">Hora de inicio</th>
+                            <th data-field="hora_fin">Hora de fin</th>
                             <th data-field="estado_orden">Estado de cita</th>
                             <th data-field="paciente_nombre">Paciente</th>
                             <th data-field="doctor_nombre">Especialista</th>
@@ -158,29 +168,36 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="hora_edit">Hora de programación</label>
-                            <input id="hora_edit" class="form-control" type="time">
+                            <label for="hora_inicio_edit">Hora de inicio</label>
+                            <input id="hora_inicio_edit" class="form-control" type="time">
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="hora_fin_edit">Hora de fin</label>
+                            <input id="hora_fin_edit" class="form-control" type="time">
+                        </div>
+                        
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="estado_orden_edit">Estado de orden</label>
                             <input id="estado_orden_edit" class="form-control" type="text" value="Cita programada" disabled>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="paciente_id_edit">Paciente</label>
                             <select class="form-control" name="paciente_id_edit" id="paciente_id_edit"></select>
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="doctor_id_edit">Especialista</label>
                             <select class="form-control" name="doctor_id_edit" id="doctor_id_edit"></select>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="estudio_id_edit">Estudio</label>
                             <select class="form-control" name="estudio_id_edit" id="estudio_id_edit"></select>
                         </div>
+                    </div>
+                    <div class="form-group">
                         <div class="form-group col-md-6">
                             <label for="recepcionista_id_edit">Recepcionista</label>
                             <select class="form-control" name="recepcionista_id_edit" id="recepcionista_id_edit"></select>
@@ -236,7 +253,7 @@
                 "id",
                 "fecha_cita",
                 "fecha_programada",
-                "hora",
+                "hora_inicio",
                 "estado_orden",
                 "paciente_id",
                 "doctor_id",

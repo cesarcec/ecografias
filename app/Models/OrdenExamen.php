@@ -16,7 +16,8 @@ class OrdenExamen extends Model
     protected $fillable = [
         'fecha_cita',
         'fecha_programada',
-        'hora',
+        'hora_inicio',
+        'hora_fin',
         'estado_orden',
         'paciente_id',
         'recepcionista_id',

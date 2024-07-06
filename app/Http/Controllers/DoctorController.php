@@ -47,6 +47,7 @@ class DoctorController extends Controller
                 'paterno' => $request->get('paterno'),
                 'materno' => $request->get('materno'),
                 'genero' => $request->get('genero'),
+                'especialidad' => $request->get('especialidad'),
             ]);
 
             // Valor por defecto de la contraseña en caso que esté vacía
@@ -101,6 +102,7 @@ class DoctorController extends Controller
                 'paterno' => $request->get('paterno'),
                 'materno' => $request->get('materno'),
                 'genero' => $request->get('genero'),
+                'especialidad' => $request->get('especialidad'),
             ]);
 
             $user = User::where('id', $doctor->user_id)->first();

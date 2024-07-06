@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_cita');
             $table->date('fecha_programada');
-            $table->time('hora');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
             $table->string('estado_orden', 100);
             $table->foreignId('paciente_id')->nullable()->constrained('paciente');
             $table->foreignId('recepcionista_id')->nullable()->constrained('recepcionista');

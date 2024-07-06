@@ -55,7 +55,8 @@ class OrdenExamenController extends Controller
             $orden = OrdenExamen::create([
                 'fecha_cita' => $request->get('fecha_cita'),
                 'fecha_programada' => $request->get('fecha_programada'),
-                'hora' => $request->get('hora'),
+                'hora_inicio' => $request->get('hora_inicio'),
+                'hora_fin' => $request->get('hora_fin'),
                 'estado_orden' => $request->get('estado_orden'),
                 'paciente_id' => $request->get('paciente_id'),       
                 'recepcionista_id' => $request->get('recepcionista_id'),       
