@@ -39,6 +39,7 @@ Route::put('/paciente/update/{id}', [PacienteController::class, 'update']);
 Route::put('/paciente/destroy/{id}', [PacienteController::class, 'destroy']);
 Route::put('/paciente/restore/{id}', [PacienteController::class, 'restore']);
 Route::get('/paciente/disabled', [PacienteController::class, 'disabled']);
+Route::get('/paciente/citas/{id}', [PacienteController::class, 'citas']);
 
 Route::get('/recepcionista', [RecepcionistaController::class, 'index']);
 Route::post('/recepcionista/store', [RecepcionistaController::class, 'store']);
