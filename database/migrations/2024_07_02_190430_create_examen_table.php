@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('examen', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('observaciones');
+            $table->string('observaciones', 2048);
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('orden_examen_id')->constrained('orden_examen');
             $table->foreignId('sala_id')->constrained('sala');

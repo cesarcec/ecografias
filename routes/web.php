@@ -12,6 +12,7 @@ use App\Http\Controllers\TipoEstudioController;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\ResultadoController;
+use App\Http\Controllers\ClienteWebController;
 use App\Http\Controllers\UserController;
 
 
@@ -41,14 +42,19 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
     Route::get('/sala', [SalaController::class, 'getIndex']);
     Route::get('/estudio', [EstudioController::class, 'getIndex']);
-    Route::get('/resultado', [ResultadoController::class, 'getIndex']);
-    Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
 
     //Citas médicas
     Route::get('/orden', [OrdenExamenController::class, 'getIndex']);
     Route::get('/orden-cita-medica/{id}/comprobante', [OrdenExamenController::class, 'generarComprobantePDF']);
     Route::get('/examen-cita/{id}', [ExamenController::class, 'getRealizarExamen']);
+    // Resultados
+    Route::get('/resultado', [ResultadoController::class, 'getIndex']);
+    Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
+    Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
 });
+
+ //Cliente web
+ Route::get('/cliente-web', [ClienteWebController::class, 'getIndex']);
 
 
 

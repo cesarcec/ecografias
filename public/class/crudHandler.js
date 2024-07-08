@@ -141,6 +141,7 @@ class CrudHandler {
      */
     async postInsert(dataClient = undefined, apiMethod = "store") {
         dataClient = dataClient ?? this.assembleObject();
+        let result = true;
 
         if (this.config.validatePassword) {
             if (!this.validatePassword()) {
@@ -150,18 +151,26 @@ class CrudHandler {
 
         this.showLoader();
 
-        const response = await this.apiClient.post(
-            `${this.entity}/${apiMethod}`,
-            dataClient
-        );
-
-        this.hideLoader();
-
-        if (response.status == 200 || response.status == 201) {
-            this.handleSuccessResponseInsert(response);
-        } else {
+        try {
+            const response = await this.apiClient.post(
+                `${this.entity}/${apiMethod}`,
+                dataClient
+            );
+    
+            this.hideLoader();
+    
+            if (response.status == 200 || response.status == 201) {
+                this.handleSuccessResponseInsert(response);
+            } else {
+                this.showAlert("error", "Ocurrió un problema", 1500);
+                result = false;
+            }
+        } catch (error) {
             this.showAlert("error", "Ocurrió un problema", 1500);
+            console.error(error);
+            result = false;
         }
+        return result;
     }
 
     async perfomApiResquest({
@@ -961,13 +970,13 @@ class CrudHandler {
         if (!this.config.ImageContent || !this.config.ImageContent.loadImage) {
             return;
         }
-        const fieldName = this.config.ImageContent.fieldName ?? "image";
-        const nameIndex = this.config.ImageContent.nameIndex ?? "image_index";
+        const fieldName = this.config.ImageContent.fieldName ?? "imagen";
+        const nameIndex = this.config.ImageContent.nameIndex ?? "imagen_index";
         const styles = this.config.ImageContent.stylesImage;
         data.forEach((element) => {
             const figureElement = document.createElement("figure");
             const imageElement = document.createElement("img");
-            imageElement.src = `${URL_WEB}assets/images/${element[fieldName]}`;
+            imageElement.src = `${URL_WEB}assets/img/resultado/${element[fieldName]}`;
             figureElement.appendChild(imageElement);
 
             for (const property in styles) {

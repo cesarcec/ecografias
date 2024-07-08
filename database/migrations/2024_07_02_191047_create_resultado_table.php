@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('resultado', function (Blueprint $table) {
             $table->id();
-            $table->string('informe');
-            $table->string('conclusion');
-            $table->string('recomendacion');
+            $table->string('informe', 2048);
+            $table->string('conclusion', 2048);
+            $table->string('recomendacion', 2048);
             $table->date('fecha');
-            $table->string('imagen_1')->nullable();
-            $table->string('imagen_2')->nullable();
-            $table->string('imagen_3')->nullable();
+            $table->string('imagen_1', 2048)->nullable();
+            $table->string('imagen_2', 2048)->nullable();
+            $table->string('imagen_3', 2048)->nullable();
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('examen_id')->constrained('examen');
             $table->timestamps();

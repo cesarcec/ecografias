@@ -29,7 +29,9 @@ class ExamenController extends Controller
      */
     public function index()
     {
-        $examenes = Examen::where('estado', 1)->with('ordenExamen.doctor.user', 'ordenExamen.paciente.user', 'sala')->get();
+        $examenes = Examen::where('estado', 1)
+            ->with('ordenExamen.doctor.user', 'ordenExamen.paciente.user', 'sala')
+            ->get();
         $salas = ['salas' => Sala::where('estado', 1)->get()];
         $response = ApiResponse::success(ExamenResource::collection($examenes), 'Lista obtenida correctamente', 200, $salas);
        

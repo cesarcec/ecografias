@@ -75,7 +75,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <button id="clear" class="btn btn-secondary my-2">Limpiar</button>
-                        <button id="save" class="btn btn-primary my-2">Guardar</button>
+                        <button id="save-custom" class="btn btn-primary my-2">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -177,6 +177,14 @@
                 vistaPrevia.src = '';  
             }
         }
+
+        $("#save-custom").click(() => {
+            crudHandler.postInsert();
+            setTimeout(() => {
+                window.location.href = URL_WEB + 'resultado'
+            }, 1000);
+        });
+
 
     </script>
 @endsection

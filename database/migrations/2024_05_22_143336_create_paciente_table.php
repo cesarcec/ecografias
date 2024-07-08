@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id('id');
             $table->string('nombre');
             $table->string('paterno');
-            $table->string('materno');
-            $table->string('genero');
-            $table->date('fecha_nacimiento');
+            $table->string('materno')->nullable();
+            $table->string('genero')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();

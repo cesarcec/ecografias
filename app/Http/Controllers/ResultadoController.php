@@ -9,8 +9,10 @@ use App\Models\Examen;
 use App\Http\Resources\ResultadoResource;
 use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class ResultadoController extends Controller
 {
@@ -35,10 +37,13 @@ class ResultadoController extends Controller
      */
     public function index()
     {
-        $resultados = Resultado::where('estado', 1)->with('examen')->get();
+        $resultados = Resultado::where('estado', 1)
+            ->with('examen.ordenExamen.paciente.user', 'examen.ordenExamen.doctor.user', 'examen.ordenExamen.estudio')
+            ->get();
+
         $examenes = ['examenes' => Examen::where('estado', 1)->get()];
         $response = ApiResponse::success(ResultadoResource::collection($resultados), 'Lista obtenida correctamente', 200, $examenes);
-       
+
         return $response;
     }
 
@@ -102,10 +107,10 @@ class ResultadoController extends Controller
                 'conclusion' => $request->get('conclusion'),
                 'recomendacion' => $request->get('recomendacion'),
                 'fecha' => $request->get('fecha'),
-                'examen_id' => $request->get('examen_id'),      
+                'examen_id' => $request->get('examen_id'),
             ]);
             $resultado->load('examen');
-            
+
             DB::commit();
             $response = ApiResponse::success(new ResultadoResource($resultado), 'Registro actualizado correctamente.');
         } catch (\Exception $e) {
@@ -149,22 +154,34 @@ class ResultadoController extends Controller
                 $imagen => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            $filename = time() . '-' . $data->getKey() . '.' . $file->getClientOriginalExtension();
+            $microtime = explode(' ', microtime());
+            $microseconds = isset($microtime[0]) ? $microtime[0] : '';
+            $filename = time() . '-' . $data->getKey() . '-' . str_replace('.', '', $microseconds) . '.' . $file->getClientOriginalExtension();
 
             try {
                 $uploadSuccess = $file->move($destinationPath, $filename);
 
                 if ($uploadSuccess) {
-                    $data->{$imagen} = $destinationPath . $filename;
+                    $data->{$imagen} = $filename;
                     $data->save();
                     $success = true;
                 }
             } catch (\Exception $e) {
-                \Log::error('Error al cargar archivo: ' . $e->getMessage());
+                // \Log::error('Error al cargar archivo: ' . $e->getMessage());
             }
         }
 
         return $success;
+    }
+
+    public function generarPdf(string $id)
+    {
+        $resultado = Resultado::findOrFail($id);
+        $resultado->load('examen.ordenExamen.doctor.user', 'examen.ordenExamen.paciente.user', 'examen.ordenExamen.recepcionista.user', 'examen.ordenExamen.estudio', 'examen.sala');
+
+        $pdf = PDF::loadView('ecografias.resultado.comprobante', compact('resultado'));
+
+        return $pdf->stream('resultado-' . $resultado->id . '.pdf');
     }
 
     public function uploadImage2($request, $data, $imagen, $destinationPath)
@@ -199,11 +216,10 @@ class ResultadoController extends Controller
                     $success = true;
                 }
             } catch (\Exception $e) {
-                \Log::error('Error al cargar archivo: ' . $e->getMessage());
+                // \Log::error('Error al cargar archivo: ' . $e->getMessage());
             }
         }
 
         return $success;
     }
-
 }

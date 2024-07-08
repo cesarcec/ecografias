@@ -7,7 +7,7 @@
 
 
 @section('contenido')
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header pointer-cursor" data-toggle="collapse" data-target="#collapse-form" aria-expanded="false"
             aria-controls="collapse-form">
             <div class="d-flex justify-content-between">
@@ -69,14 +69,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    {{-- <section class="tablets mt-3">
+    <section class="tablets mt-3">
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="#tab-index" data-toggle="tab"><i
-                                class="bi bi-scissors"></i>&nbsp;&nbsp;Especialistas</a>
+                                class="bi bi-scissors"></i>&nbsp;&nbsp;Resultados</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#tab-delete" data-toggle="tab"><i
                                 class="bi bi-trash"></i>&nbsp;&nbsp;Eliminados</a>
@@ -90,11 +90,14 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
+                            <th data-field="examen_id">Nro de examen</th>
+                            <th data-field="examen.orden_examen.paciente.user.name">Paciente</th>
+                            <th data-field="examen.orden_examen.doctor.user.name">Doctor</th>
                             <th data-field="informe">Informe</th>
                             <th data-field="conclusion">Conclusiones</th>
                             <th data-field="recomendacion">Recomendaciones</th>
                             <th data-field="fecha">Fecha</th>
-                            <th data-field="image_1_index">Tipo de estudio</th>
+                            <th data-field="imagen_index">Imagen</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
@@ -105,23 +108,26 @@
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
+                            <th data-field="examen_id">Nro de examen</th>
+                            <th data-field="examen.orden_examen.paciente.user.name">Paciente</th>
+                            <th data-field="examen.orden_examen.doctor.user.name">Doctor</th>
                             <th data-field="informe">Informe</th>
                             <th data-field="conclusion">Conclusiones</th>
                             <th data-field="recomendacion">Recomendaciones</th>
                             <th data-field="fecha">Fecha</th>
-                            <th data-field="image_1_index">Tipo de estudio</th>
+                            <th data-field="imagen_index">Tipo de estudio</th>
                             <th data-field="action">Acciones</th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
-    </section> --}}
+    </section>
 
 
     <!-- Modal -->
     <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Doctor</h5>
@@ -196,7 +202,8 @@
         const formatAction = (element) => {
             return `
             <button title="Editar" data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i></button>
-            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>`;
+            <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>
+            <a href="${URL_WEB}resultado-comprobante/${element.id}" target="_blank" title="Comprobante resultado" data-id="${element.id}" class="btn btn-sm btn-primary note my-1"><i class="bi bi-file-earmark-pdf"></i></a>`;
         };
 
         const formatActionRestore = (element) => {
@@ -235,8 +242,9 @@
             ],
             ImageContent: {
                 loadImage: true,
-                nameIndex: "image_index",
-                namePreview: "image_preview",
+                nameIndex: "imagen_index",
+                namePreview: "imagen_preview",
+                fieldName: 'imagen_1',
                 stylesImage: {
                     width: "100px",
                     height: "100px",
