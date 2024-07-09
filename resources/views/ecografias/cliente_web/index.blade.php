@@ -203,6 +203,7 @@
 </section>
 <!--/ testimonial-->
 
+<<<<<<< HEAD
 
 <!--contact-->
 <section id="contact" class="section-padding">
@@ -221,11 +222,58 @@
                 <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@nombrecompania.com</p>
                 <div class="space"></div>
                 <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 800 123 1234</p>
+=======
+   
+
+    <!--testimonial-->
+    <!--testimonio-->
+    <section id="testimonial" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="ser-title">¿Qué dicen nuestros pacientes?</h2>
+                    <hr class="botm-line">
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="testi-details">
+                        <!-- Paragraph -->
+                        <p>La atención médica fue excelente. El equipo se aseguró de que me sintiera cómodo y bien
+                            cuidado durante toda mi visita.</p>
+                    </div>
+                    <div class="testi-info">
+                        
+                        <h3>Alex<span>Texas</span></h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="testi-details">
+                        <!-- Paragraph -->
+                        <p>Estoy muy agradecida por el servicio recibido. Los doctores son muy profesionales y el
+                            personal muy amable.</p>
+                    </div>
+                    <div class="testi-info">
+                       
+                        <h3>María<span>Lopez</span></h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="testi-details">
+                        <!-- Paragraph -->
+                        <p>Recomiendo esta clínica a todos. La calidad del servicio y la atención al detalle fueron
+                            excepcionales.</p>
+                    </div>
+                    <div class="testi-info">
+                       
+                        <h3>Juan<span>Pérez</span></h3>
+                    </div>
+                </div>
+>>>>>>> dd3e517990e2cacc4a81e588788205dac740852a
             </div>
             <div class="col-md-8 col-sm-8 marb20">
                 <div class="contact-info">
                     <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una cita!</h3>
                     <div class="space"></div>
+<<<<<<< HEAD
                     <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
                     <div id="errormessage"></div>
                     <form action="" method="post" role="form" class="contactForm">
@@ -270,6 +318,68 @@
                                 data-msg="Por favor ingresa al menos 8 caracteres de contraseña" type="password"/>
                             <div class="validation"></div>
                         </div>
+=======
+                    <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa Barbara<br>Santa Cruz - Centro</p>
+                    <div class="space"></div>
+                    <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
+                    <div class="space"></div>
+                    <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+78505745</p>
+                </div>
+                <div class="col-md-8 col-sm-8 marb20">
+                    <div class="contact-info">
+                        <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una cita!</h3>
+                        <div class="space"></div>
+                        <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                        <div id="errormessage"></div>
+                        <form action="" method="post" role="form" class="contactForm">
+                            <div class="form-group">
+                              <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" class="form-control br-radius-zero"
+                                    id="nombre" placeholder="Tu Nombre" data-rule="minlen:4"
+                                    data-msg="Por favor ingresa al menos 4 caracteres" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre">Paterno</label>
+                              <input type="text" name="paterno" class="form-control br-radius-zero"
+                                  id="paterno" placeholder="Tu Apellido paterno" data-rule="minlen:4"
+                                  data-msg="Por favor ingresa al menos 4 caracteres" />
+                              <div class="validation"></div>
+                              <div class="form-group">
+                              <label for="nombre">Materno</label>
+                              <input type="text" name="materno" class="form-control br-radius-zero"
+                                  id="materno" placeholder="Tu Apellido materno" data-rule="minlen:4"
+                                  data-msg="Por favor ingresa al menos 4 caracteres" />
+                              <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre">Fecha de nacimiento</label>
+                              <input type="date" name="fecha_nacimiento" class="form-control br-radius-zero"
+                                  id="fecha_nacimiento" placeholder="Fecha de nacimiento"/>
+                              <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre">Género</label>
+                              <select name="genero" id="genero" class="form-control">
+                                <option value="M">Hombre</option>
+                                <option value="F">Mujer</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre">Correo</label>
+                              <input type="email" class="form-control br-radius-zero" name="email"
+                                    id="email" placeholder="Tu Correo Electrónico" data-rule="email"
+                                    data-msg="Por favor ingresa un correo electrónico válido" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre">Contraseña</label>
+                              <input class="form-control br-radius-zero" name="password"
+                                    id="password" placeholder="Tu Contraseña" data-rule="minlen:4"
+                                    data-msg="Por favor ingresa al menos 8 caracteres de contraseña" type="password"/>
+                                <div class="validation"></div>
+                            </div>
+>>>>>>> dd3e517990e2cacc4a81e588788205dac740852a
 
                         <input type="hidden" value="Sin materno" id="materno">
 

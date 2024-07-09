@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -103,6 +103,8 @@
                 </a>
                 <div id="collapseStudy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Registra Usuarios:</h6>
+                        <a class="collapse-item" href="{{ url('/paciente') }}">Pacientes</a>
                         <h6 class="collapse-header">Menú de estudios:</h6>
                         <a class="collapse-item" href="{{ url('/sala') }}">Salas</a>
                         <a class="collapse-item" href="{{ url('/tipo_estudio') }}">Tipo de estudios</a>

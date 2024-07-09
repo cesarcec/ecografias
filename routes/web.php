@@ -31,7 +31,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/dashboard', [UserController::class, 'getIndex']);
+Route::get('/dashboard', [UserController::class, 'getIndex'])->name('dashboard');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function() {
