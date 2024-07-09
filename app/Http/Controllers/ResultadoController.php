@@ -25,7 +25,13 @@ class ResultadoController extends Controller
     public function getResultadoCreate(string $id_examen)
     {
         $examen = Examen::findOrFail($id_examen);
-        $examen->load('ordenExamen.doctor.user', 'ordenExamen.paciente.user', 'ordenExamen.recepcionista.user', 'ordenExamen.estudio', 'sala');
+        $examen->load(
+            'ordenExamen.doctor.user', 
+            'ordenExamen.paciente.user', 
+            'ordenExamen.recepcionista.user', 
+            'ordenExamen.estudio', 
+            'sala'
+        );
         // return $examen;
         return view('ecografias.resultado.create')->with('examen', $examen);
     }

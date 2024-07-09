@@ -155,31 +155,6 @@
                 }
             @endphp
 
-
-            @php
-
-                if ($user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' || $user->rol->nombre == 'Doctor' || $user->rol->nombre == 'Paciente') { 
-            @endphp
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExamen"
-                    aria-expanded="true" aria-controls="collapseExamen">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Haz tu propia cita</span>
-                </a>
-                <div id="collapseExamen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menú de Exámenes:</h6>
-                        <a class="collapse-item" href="{{ url('/examen') }}">Examen</a>
-                        <a class="collapse-item" href="{{ url('/resultado') }}">Resultados</a>
-                    </div>
-                </div>
-            </li>
-
-            @php
-                }
-            @endphp
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
