@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
@@ -62,6 +63,8 @@ class PacienteController extends Controller
 
             $paciente->update(['user_id' => $user->id]);
             $paciente->load('user'); 
+
+            Auth::login($user);
 
             DB::commit();
             $response = ApiResponse::success(new PacienteResource($paciente), 'Registro insertado correctamente.', Response::HTTP_CREATED);
@@ -140,5 +143,11 @@ class PacienteController extends Controller
     {
         $pacientes = Paciente::where('estado', 0)->get();
         return ApiResponse::success(PacienteResource::collection($pacientes), 'Lista de deshabilitados obtenida correctamente');
+    }
+
+    public function citas(string $id) {
+        $pacientes = Paciente::findOrFail($id);
+        $pacientes->load('ordenExamenes');
+        return $pacientes;
     }
 }

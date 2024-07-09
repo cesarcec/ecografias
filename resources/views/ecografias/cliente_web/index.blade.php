@@ -35,7 +35,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"><img src="img/logo.png" class="img-responsive"
+                            <a class="navbar-brand" href="#"><img src="{{asset('assets/img/cedisa_logo_final-01.svg')}}" class="img-responsive"
                                     style="width: 140px; margin-top: -16px;"></a>
                         </div>
                         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -44,7 +44,30 @@
                                 <li class=""><a href="#service">Servicios</a></li>
                                 <li class=""><a href="#about">Acerca de</a></li>
                                 <li class=""><a href="#testimonial">Testimonios</a></li>
-                                <li class=""><a href="#contact">Contáctanos</a></li>
+                                <li class="">
+                                    @php
+                                        if (Auth::user()) {
+                                    @endphp
+                                            <div class="dropdown">
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <i class="fa fa-user" aria-hidden="true"></i> 
+                                                {{Auth::user()->name}}
+                                                <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                    <li><a href="#">Mis citas</a></li>
+                                                    <li><a href="#">Mis resultados</a></li>
+                                                    <li><a href="{{ route('logout')}}">Cerrar sesión</a></li>
+                                                    <li role="separator" class="divider"></li>
+                                                </ul>
+                                            </div>
+                                      @php
+                                        } else {
+                                            echo '<li class=""><a href="#contact">Crear cuenta</a></li>';
+                                        }
+                                      @endphp
+                                      
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -485,7 +508,8 @@
             setTimeout(() => {
               crudHandler.showAlert('success', 'Ahora puedes iniciar sesión con tus credenciales', 2000);
               setTimeout(() => {
-                  window.location.href = URL_WEB + "login";
+                 window.location.href = URL_WEB + "login";
+                 //window.location.reload();
               }, 2000);
             }, 1600);
         });

@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function() {
 
  //Cliente web
  Route::get('/cliente-web', [ClienteWebController::class, 'getIndex']);
+ Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
 
 
 

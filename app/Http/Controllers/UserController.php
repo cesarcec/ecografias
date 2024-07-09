@@ -10,8 +10,13 @@ class UserController extends Controller
 {
     public function getIndex() {
         $userAuth = Auth::user();
-        $userAuth->load('doctor', 'paciente', 'recepcionista', 'rol');
+        if (!$userAuth) {
+            return redirect('/cliente-web');
+        }
         // return $userAuth;
+        if ( $userAuth->rol->nombre == 'Paciente') {
+            return view('ecografias.cliente_web.index');
+        }
         return view('ecografias.dashboard.index')->with('user', $userAuth);
     }
 
