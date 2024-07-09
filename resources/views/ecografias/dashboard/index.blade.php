@@ -199,40 +199,7 @@
 
                            <!-- Row -->
 <!-- Row -->
-<div class="row">
-    <div class="col-md mb-4">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="https://placekitten.com/300/300" alt="Gatito">
-            <div class="card-body">
-                <p class="card-text">Cuadro 1</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-4">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="https://placekitten.com/300/300" alt="Gatito">
-            <div class="card-body">
-                <p class="card-text">Cuadro 2</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-4">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="https://placekitten.com/300/300" alt="Gatito">
-            <div class="card-body">
-                <p class="card-text">Cuadro 3</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-4">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="https://placekitten.com/300/300" alt="Gatito">
-            <div class="card-body">
-                <p class="card-text">Cuadro 4</p>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 </div>
 

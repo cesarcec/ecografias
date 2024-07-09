@@ -146,7 +146,7 @@
                             <input id="materno_edit" class="form-control" type="text">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label for="especialidad_edit">Género</label>
+                            <label for="especialidad_edit">Especialidad</label>
                             <input id="especialidad_edit" class="form-control" type="text">
                         </div>
                     </div>
@@ -216,6 +216,7 @@
                 "paterno",
                 "materno",
                 "genero",
+                "especialidad",
                 "email",
                 "user_email",
                 "password",
