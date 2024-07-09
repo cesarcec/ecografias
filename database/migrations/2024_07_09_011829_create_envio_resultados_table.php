@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('estado_envio');
             $table->tinyInteger('estado')->default(1);
             $table->foreignId('resultado_id')->constrained('resultado');
-            $table->foreignId('ubicacion_id')->constrained('ubicacion');
-            $table->foreignId('repartidor_id')->constrained('repartidor');
+            $table->foreignId('ubicacion_id')->nullable()->constrained('ubicacion');
+            $table->foreignId('repartidor_id')->nullable()->constrained('repartidor');
             $table->timestamps();
         });
     }

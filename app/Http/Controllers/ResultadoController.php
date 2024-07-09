@@ -9,6 +9,7 @@ use App\Models\Examen;
 use App\Http\Resources\ResultadoResource;
 use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
+use App\Models\OrdenExamen;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,24 @@ class ResultadoController extends Controller
     {
         return view('ecografias.resultado.index');
     }
+    
+
+    public function generarPdf(string $id)
+    {
+        $resultado = Resultado::findOrFail($id);
+        $resultado->load(
+            'examen.ordenExamen.doctor.user', 
+            'examen.ordenExamen.paciente.user', 
+            'examen.ordenExamen.recepcionista.user', 
+            'examen.ordenExamen.estudio', 'examen.sala'
+        );
+
+        $pdf = PDF::loadView('ecografias.resultado.comprobante', compact('resultado'));
+
+        return $pdf->stream('resultado-' . $resultado->id . '.pdf');
+    }
+
+    #API REST
 
     public function getResultadoCreate(string $id_examen)
     {
@@ -44,8 +63,11 @@ class ResultadoController extends Controller
     public function index()
     {
         $resultados = Resultado::where('estado', 1)
-            ->with('examen.ordenExamen.paciente.user', 'examen.ordenExamen.doctor.user', 'examen.ordenExamen.estudio')
-            ->get();
+            ->with(
+                'examen.ordenExamen.paciente.user', 
+                'examen.ordenExamen.doctor.user', 
+                'examen.ordenExamen.estudio'
+            )->get();
 
         $examenes = ['examenes' => Examen::where('estado', 1)->get()];
         $response = ApiResponse::success(ResultadoResource::collection($resultados), 'Lista obtenida correctamente', 200, $examenes);
@@ -94,6 +116,11 @@ class ResultadoController extends Controller
     public function show(string $id)
     {
         $resultado = Resultado::findOrFail($id);
+        $resultado->load (
+            'examen.ordenExamen.paciente.user', 
+            'examen.ordenExamen.doctor.user', 
+            'examen.ordenExamen.estudio'
+        );
         return ApiResponse::success(new ResultadoResource($resultado), 'Registro encontrado correctamente.');
     }
 
@@ -180,52 +207,19 @@ class ResultadoController extends Controller
         return $success;
     }
 
-    public function generarPdf(string $id)
-    {
-        $resultado = Resultado::findOrFail($id);
-        $resultado->load('examen.ordenExamen.doctor.user', 'examen.ordenExamen.paciente.user', 'examen.ordenExamen.recepcionista.user', 'examen.ordenExamen.estudio', 'examen.sala');
-
-        $pdf = PDF::loadView('ecografias.resultado.comprobante', compact('resultado'));
-
-        return $pdf->stream('resultado-' . $resultado->id . '.pdf');
+    public function resultadoPaciente(string $paciente_id) {
+        $resultado = Resultado::select('resultado.*')
+                                ->join('examen', 'resultado.examen_id', 'examen.id')
+                                ->join('orden_examen', 'examen.orden_examen_id', 'orden_examen.id')
+                                ->join('paciente', 'orden_examen.paciente_id', 'paciente.id')
+                                ->where('paciente.id',  $paciente_id)
+                                ->get();
+        $resultado->load (
+            'examen.ordenExamen.paciente.user', 
+            'examen.ordenExamen.doctor.user', 
+            'examen.ordenExamen.estudio'
+        );
+        return ApiResponse::success(ResultadoResource::collection($resultado), 'Lista de obtenida correctamente');
     }
 
-    public function uploadImage2($request, $data, $imagen, $destinationPath)
-    {
-        $success = false;
-
-        if ($request->hasFile($imagen) && $request->file($imagen)->isValid()) {
-            $file = $request->file($imagen);
-
-            $request->validate([
-                $imagen => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
-
-            // Eliminar la imagen anterior si existe
-            if ($data->{$imagen}) {
-                $oldImagePath = public_path($data->{$imagen});
-
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-            }
-
-            $filename = time() . '-' . $data->getKey() . '.' . $file->getClientOriginalExtension();
-
-            try {
-                // Mover la nueva imagen al directorio publico
-                $uploadSuccess = $file->move(public_path($destinationPath), $filename);
-
-                if ($uploadSuccess) {
-                    $data->{$imagen} = $destinationPath . $filename;
-                    $data->save();
-                    $success = true;
-                }
-            } catch (\Exception $e) {
-                // \Log::error('Error al cargar archivo: ' . $e->getMessage());
-            }
-        }
-
-        return $success;
-    }
 }

@@ -52,4 +52,8 @@ class OrdenExamen extends Model
     {
         return $this->belongsTo(Estudio::class);
     }
+
+    public function examenes() {
+        return $this->hasMany(Examen::class, 'orden_examen_id');
+    }
 }

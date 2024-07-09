@@ -15,12 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('cliente_web/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cliente_web/css/style.custom.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
-    <!-- =======================================================
-    Theme Name: Medilab
-    Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+    @yield('css')
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -56,15 +51,16 @@
                                                 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                    <li><a href="{{ route('resultado', ['id' => Auth::user()->load('paciente')->id]) }}">Mis Resultados</a></li>
                                                     <li><a href="#">Mis citas</a></li>
-                                                    <li><a href="#">Mis resultados</a></li>
                                                     <li><a href="{{ route('logout')}}">Cerrar sesión</a></li>
                                                     <li role="separator" class="divider"></li>
                                                 </ul>
                                             </div>
                                       @php
                                         } else {
-                                            echo '<li class=""><a href="#contact">Crear cuenta</a></li>';
+                                            echo '<li class=""><a href="'. route('login') . '">Iniciar sesión</a></li>
+                                                  <li class=""><a href="#contact">Crear cuenta</a></li>';
                                         }
                                       @endphp
                                       
@@ -74,12 +70,38 @@
                     </div>
                 </div>
             </nav>
+            @php
+                if (asset('cliente-web')) {
+            @endphp
             <div class="container">
-                @yield('container')
+                <div class="row">
+                    <div class="banner-info">
+                        <div class="banner-logo text-center">
+                            <img src="{{ asset('assets/img/cedisa_logo_final-01.svg') }}" class="img-responsive logo">
+                        </div>
+                        <div class="banner-text text-center">
+                            <h1 class="white">CITA MÉDICA EN TU ESCRITORIO!!</h1>
+                            <p class="medical-appointment-text">Recuerde siempre llevar consigo cualquier documentación
+                                médica relevante. Su bienestar es nuestra prioridad</p>
+                            <a href="#contact" class="btn btn-appoint">Haga una cita</a>
+                        </div>
+                        <div class="overlay-detail text-center">
+                            <a href="#service"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            @php
+                }
+            @endphp
         </div>
     </section>
     <!--/ banner-->
+
+    
+    <div class="container">
+        @yield('container')
+    </div>
     
 
     <!--footer-->
@@ -142,84 +164,7 @@
     <script src="{{ asset('cliente_web/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('cliente_web/js/custom.js') }}"></script>
     <script src="{{ asset('cliente_web/contactform/contactform.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('class/urlLocal.js') }}"></script>
-    <script src="{{ asset('class/apiCLient.js') }}"></script>
-    <script src="{{ asset('class/crudHandler.js') }}"></script>
-
-
-    <script>
-        const formatAction = (element) => {
-            return `
-            <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i> Editar</button>
-            <button data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Eliminar</button>`;
-        };
-
-        const formatActionRestore = (element) => {
-            return `
-            <button data-id="${element.id}" class="btn btn-sm btn-info restore"><i class="fa fa-undo"></i>Restaurar</button>`;
-        };
-
-        const apiClient = new ApiClient(URL_API_REST);
-        const config = {
-            // table: $("#table"),  
-            // tableDeletes: $("#table-delete"),
-            // loaderObject: loader,
-            modalEdit: "modal_edit",
-            // saveBtn: "save",
-            updateBtn: "update",
-            editShowBtn: ".edit",
-            deleteBtn: ".delete",
-            restoreBtn: ".restore",
-            labelPrefixEdit: "_edit",
-            selectors: [
-                "id",
-                "nombre",
-                "paterno",
-                "materno",
-                "genero",
-                "fecha_nacimiento",
-                "email",
-                "user_email",
-                "password",
-                "password_confirmation"
-            ],
-            loadRelations: true,
-            relations: [
-                {
-                    name: "user",
-                    nameSecondary: "user",
-                    nameIndex: ["email"],
-                    selectId: "user_id",
-                }, 
-            ],
-            formatAction: formatAction,
-            formatActionRestore: formatActionRestore,
-        };
-
-        const crudHandler = new CrudHandler(apiClient, "paciente", config);
-
-        document.addEventListener("DOMContentLoaded", () => {
-            crudHandler.init();
-        });
-
-        $("#save").click(() => {
-            if (!crudHandler.postInsert()) {
-              return;
-            }
-            setTimeout(() => {
-              crudHandler.showAlert('success', 'Ahora puedes iniciar sesión con tus credenciales', 2000);
-              setTimeout(() => {
-                 window.location.href = URL_WEB + "login";
-                 //window.location.reload();
-              }, 2000);
-            }, 1600);
-        });
-    </script>
-
-    
+    @yield('js')
 
 </body>
 
