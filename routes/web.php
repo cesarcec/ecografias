@@ -13,6 +13,7 @@ use App\Http\Controllers\SalaController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\ClienteWebController;
+use App\Http\Controllers\EnvioResultadoController;
 use App\Http\Controllers\UserController;
 
 
@@ -51,6 +52,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/resultado', [ResultadoController::class, 'getIndex']);
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
+    // Envios
+    // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
+    Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getCreate']);
+
 });
 
  //Cliente web

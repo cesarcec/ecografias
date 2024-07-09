@@ -9,7 +9,6 @@ class Repartidor extends Model
 {
     use HasFactory;
     protected $table = 'repartidor';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'nombre',
         'paterno',
@@ -25,5 +24,10 @@ class Repartidor extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function envios()
+    {
+        return $this->hasMany(EnvioResultado::class, 'repartidor_id');
     }
 }
