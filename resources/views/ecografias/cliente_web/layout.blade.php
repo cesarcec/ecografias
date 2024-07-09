@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('cliente_web/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cliente_web/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cliente_web/css/style.custom.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
     <!-- =======================================================
     Theme Name: Medilab
     Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -141,6 +142,8 @@
     <script src="{{ asset('cliente_web/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('cliente_web/js/custom.js') }}"></script>
     <script src="{{ asset('cliente_web/contactform/contactform.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('class/urlLocal.js') }}"></script>
     <script src="{{ asset('class/apiCLient.js') }}"></script>

@@ -55,7 +55,7 @@
                                                 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                    <li><a href="#">Mis citas</a></li>
+                                                    <li><a href="{{ route('envio', ['id' => Auth::user()->load('paciente')->id]) }}">Ver Resultados</a></li>
                                                     <li><a href="#">Mis resultados</a></li>
                                                     <li><a href="{{ route('logout')}}">Cerrar sesión</a></li>
                                                     <li role="separator" class="divider"></li>

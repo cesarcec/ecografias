@@ -11,7 +11,7 @@ class ClienteWebController extends Controller
         return view('ecografias.cliente_web.index');
     }
 
-    public function getCitas(string $id) {
-        return view('ecografias.cliente_web.citas');
+    public function getResultado(string $id) {
+        return view('ecografias.cliente_web.resultado');
     }
 }

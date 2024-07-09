@@ -54,13 +54,14 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
     // Envios
     // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
-    Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getCreate']);
+    // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
 });
 
  //Cliente web
  Route::get('/cliente-web', [ClienteWebController::class, 'getIndex']);
  Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
+ Route::get('/cliente-envio-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('envio');
 
 
 
