@@ -203,45 +203,7 @@
     </section>
     <!--cta-->
 
-    <!--about-->
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                    <div class="section-title">
-                        <h2 class="head-title lg-line">El Sueño <br>Definitivo de Medilap</h2>
-                        <hr class="botm-line">
-                        <p class="sec-para">Nos dedicamos a proporcionar una atención médica de alta calidad,
-                            innovadora y centrada en el paciente.</p>
-                        <a href="#" style="color: #0cb8b6; padding-top:10px;">Saber más..</a>
-                    </div>
-                </div>
-                <div class="col-md-9 col-sm-8 col-xs-12">
-                    <div style="visibility: visible;" class="col-sm-9 more-features-box">
-                        <div class="more-features-box-text">
-                            <div class="more-features-box-text-icon"> <i class="fa fa-angle-right"
-                                    aria-hidden="true"></i> </div>
-                            <div class="more-features-box-text-description">
-                                <h3>Información Importante para Ti</h3>
-                                <p>Nos esforzamos por ofrecerte lo mejor en atención médica, garantizando que cada
-                                    visita sea una experiencia positiva y enriquecedora.</p>
-                            </div>
-                        </div>
-                        <div class="more-features-box-text">
-                            <div class="more-features-box-text-icon"> <i class="fa fa-angle-right"
-                                    aria-hidden="true"></i> </div>
-                            <div class="more-features-box-text-description">
-                                <h3>Información Importante para Ti</h3>
-                                <p>Nuestro equipo de profesionales está aquí para ayudarte con cualquier necesidad
-                                    médica que puedas tener, asegurando tu bienestar y satisfacción.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/ about-->
+   
 
     <!--testimonial-->
     <!--testimonio-->
@@ -259,9 +221,7 @@
                             cuidado durante toda mi visita.</p>
                     </div>
                     <div class="testi-info">
-                        <!-- User Image -->
-                        <a href="#"><img src="img/thumb.png" alt="" class="img-responsive"></a>
-                        <!-- User Name -->
+                        
                         <h3>Alex<span>Texas</span></h3>
                     </div>
                 </div>
@@ -272,9 +232,7 @@
                             personal muy amable.</p>
                     </div>
                     <div class="testi-info">
-                        <!-- User Image -->
-                        <a href="#"><img src="img/thumb.png" alt="" class="img-responsive"></a>
-                        <!-- User Name -->
+                       
                         <h3>María<span>Lopez</span></h3>
                     </div>
                 </div>
@@ -285,9 +243,7 @@
                             excepcionales.</p>
                     </div>
                     <div class="testi-info">
-                        <!-- User Image -->
-                        <a href="#"><img src="img/thumb.png" alt="" class="img-responsive"></a>
-                        <!-- User Name -->
+                       
                         <h3>Juan<span>Pérez</span></h3>
                     </div>
                 </div>
@@ -310,12 +266,11 @@
                 <div class="col-md-4 col-sm-4">
                     <h3>Información de contacto</h3>
                     <div class="space"></div>
-                    <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>321 Calle Asombrosa<br> Nueva York, NY
-                        17022</p>
+                    <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa Barbara<br>Santa Cruz - Centro</p>
                     <div class="space"></div>
-                    <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@nombrecompania.com</p>
+                    <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
                     <div class="space"></div>
-                    <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 800 123 1234</p>
+                    <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+78505745</p>
                 </div>
                 <div class="col-md-8 col-sm-8 marb20">
                     <div class="contact-info">
@@ -332,9 +287,15 @@
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
-                              <label for="nombre">Apellido</label>
+                              <label for="nombre">Paterno</label>
                               <input type="text" name="paterno" class="form-control br-radius-zero"
-                                  id="paterno" placeholder="Tu Apellido" data-rule="minlen:4"
+                                  id="paterno" placeholder="Tu Apellido paterno" data-rule="minlen:4"
+                                  data-msg="Por favor ingresa al menos 4 caracteres" />
+                              <div class="validation"></div>
+                              <div class="form-group">
+                              <label for="nombre">Materno</label>
+                              <input type="text" name="materno" class="form-control br-radius-zero"
+                                  id="materno" placeholder="Tu Apellido materno" data-rule="minlen:4"
                                   data-msg="Por favor ingresa al menos 4 caracteres" />
                               <div class="validation"></div>
                             </div>
