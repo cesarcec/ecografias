@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use App\Models\EnvioResultado;
 use App\Models\Ubicacion;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EnvioResultadoController extends Controller
@@ -18,7 +18,8 @@ class EnvioResultadoController extends Controller
     #WEB
     public function getIndex()
     {
-        return view('ecografias.envio.index');
+        //return Auth()->user();
+        return view('ecografias.envio_resultado.index');
     }
 
     #API REST

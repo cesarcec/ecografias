@@ -71,7 +71,7 @@ class User extends Authenticatable
     /**
      * Relationships
      */
-    
+
     public function paciente()
     {
         return $this->hasOne(Paciente::class);
