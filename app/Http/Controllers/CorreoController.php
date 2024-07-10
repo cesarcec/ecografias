@@ -95,6 +95,24 @@ class CorreoController extends Controller
     {
         $nombre = $request->input('nombre');
         $correoDestino = 'cliente@correo.cedisa.bo';
+        // $correoDestino = $request->input('email_receptor');
+        $mensaje = $request->input('mensaje');
+
+        // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
+        Mail::to($correoDestino)->send(new EnviarCorreo($nombre, $mensaje));
+
+        return "Correo enviado correctamente a $correoDestino";
+    }
+
+    public function enviarCorreoResultado(Request $request, string $envio_id)
+    {
+
+        $envio =  EnvioResultadoController::findOrFail($envio_id);
+        $envio->load('resultado.examneeen.orden_examen.paciente.user');
+        
+        $nombre = $request->input('nombre');
+        // $correoDestino = 'cliente@correo.cedisa.bo';
+        $correoDestino = $request->input('nombre');
         $mensaje = $request->input('mensaje');
 
         // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
