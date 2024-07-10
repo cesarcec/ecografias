@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\EnviarCorreo;  
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -88,6 +89,18 @@ class CorreoController extends Controller
         } catch (Exception $e) {
             return "Error al enviar el correo: {$e->getMessage()}";
         }
+    }
+
+    public function enviarCorreo(Request $request)
+    {
+        $nombre = $request->input('nombre');
+        $correoDestino = 'cliente@correo.cedisa.bo';
+        $mensaje = $request->input('mensaje');
+
+        // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
+        Mail::to($correoDestino)->send(new EnviarCorreo($nombre, $mensaje));
+
+        return "Correo enviado correctamente a $correoDestino";
     }
 
 }
