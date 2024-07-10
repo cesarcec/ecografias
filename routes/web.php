@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
     Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
+    // Route::post('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
     Route::post('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
 
 });

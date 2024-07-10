@@ -52,13 +52,13 @@ class CorreoController extends Controller
         $userId = $user->id;
         
         // $emailRemitente = $user->email;
-        $emailRemitente = 'admin@correo.cedisa.bo';
+        $emailRemitente = 'hugo@correo.cedisa.bo';
         // $password = $user->password_zentyal;
         $password = 'milanHZ3991';
 
         $nombreRemitente = $request->get('nombre');
         // $emailReceptor = $request->get('email_receptor');
-        $emailReceptor = 'cliente@correo.cedisa.bo';
+        $emailReceptor = 'admin@correo.cedisa.bo';
         $asunto = $request->get('asunto');
         $mensaje = $request->get('mensaje');
 
@@ -94,21 +94,25 @@ class CorreoController extends Controller
     public function enviarCorreo(Request $request)
     {
         $nombre = $request->input('nombre');
-        $correoDestino = 'cliente@correo.cedisa.bo';
+        $correoDestino = 'admin@correo.cedisa.bo';
         // $correoDestino = $request->input('email_receptor');
         $mensaje = $request->input('mensaje');
 
-        // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
-        Mail::to($correoDestino)->send(new EnviarCorreo($nombre, $mensaje));
-
-        return "Correo enviado correctamente a $correoDestino";
+        try {
+            // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
+            Mail::to($correoDestino)->send(new EnviarCorreo($nombre, $mensaje));
+            return response()->json(['message' => "Correo enviado correctamente a $correoDestino"], 200);
+        } catch (\Exception $e) {
+            // Si ocurre una excepción, significa que el envío del correo falló
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function enviarCorreoResultado(Request $request, string $envio_id)
     {
 
         $envio =  EnvioResultadoController::findOrFail($envio_id);
-        $envio->load('resultado.examneeen.orden_examen.paciente.user');
+        $envio->load('resultado.examnen.orden_examen.paciente.user');
         
         $nombre = $request->input('nombre');
         // $correoDestino = 'cliente@correo.cedisa.bo';
