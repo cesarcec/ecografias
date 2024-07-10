@@ -18,7 +18,7 @@ class RecepcionistaController extends Controller
     #WEB
     public function getIndex()
     {
-        return view('ecografias.recepcionista.index');
+        return view('ecografias.Recepcionista.index');
     }
 
     #API REST
