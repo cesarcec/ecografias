@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CEDISA</title>
 
     <!-- Custom fonts for this template-->
@@ -164,9 +164,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menú de Exámenes:</h6>
                         <a class="collapse-item" href="{{ url('/envio-resultado/pendiente') }}">Pendientes</a>
-                        <a class="collapse-item" href="{{ url('/resultado') }}">Aceptados</a>
-                        <a class="collapse-item" href="{{ url('/resultado') }}">Entregados</a>
-                        <a class="collapse-item" href="{{ url('/resultado') }}">Rechazados</a>
+                        <a class="collapse-item" href="{{ url('/envio-resultado/asignado') }}">Aceptados</a>
+                        <a class="collapse-item" href="{{ url('/envio-resultado/entregados') }}">Entregados</a>
+                        <a class="collapse-item" href="{{ url('/envio-resultado/rechazados') }}">Rechazados</a>
 
                     </div>
                 </div>

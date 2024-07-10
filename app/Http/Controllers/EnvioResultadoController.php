@@ -9,6 +9,7 @@ use App\Http\Resources\EnvioResultadoResource;
 use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use App\Models\EnvioResultado;
+use App\Models\Repartidor;
 use App\Models\Ubicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -86,11 +87,11 @@ class EnvioResultadoController extends Controller
     public function envioPaciente(string $paciente_id)
     {
         $envio = EnvioResultado::select('envio_resultado.*')
-                                ->join('resultado', 'envio_resultado.resultado_id', 'resultado.id')
-                                ->join('examen', 'resultado.examen_id', 'examen.id')
-                                ->join('orden_examen', 'examen.orden_examen_id', 'orden_examen.id')
-                                ->where('orden_examen.paciente_id',  $paciente_id)
-                                ->get();
+            ->join('resultado', 'envio_resultado.resultado_id', 'resultado.id')
+            ->join('examen', 'resultado.examen_id', 'examen.id')
+            ->join('orden_examen', 'examen.orden_examen_id', 'orden_examen.id')
+            ->where('orden_examen.paciente_id',  $paciente_id)
+            ->get();
         $envio->load('ubicacion', 'repartidor', 'resultado');
         return ApiResponse::success(new EnvioResultadoResource($envio), 'Registro encontrado correctamente.');
     }
@@ -115,11 +116,11 @@ class EnvioResultadoController extends Controller
 
             $fecha_actual = now()->format('Y/m/d');
             $envio->update([
-                 'fecha' => $request->get('fecha'),
-                 'estado_envio' => $request->get('estado_envio'),
-                 'resultado_id' => $request->get('resultado_id'),
-                 'ubicacion_id' => $ubicacion->id,
-                 'repartidor_id' => $request->get('repartidor_id'),    
+                'fecha' => $request->get('fecha'),
+                'estado_envio' => $request->get('estado_envio'),
+                'resultado_id' => $request->get('resultado_id'),
+                'ubicacion_id' => $ubicacion->id,
+                'repartidor_id' => $request->get('repartidor_id'),
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
 
@@ -157,8 +158,94 @@ class EnvioResultadoController extends Controller
 
     public function pendiente()
     {
-        $envioResultados = EnvioResultado::where('estado', 1)->get();
-        //return $envioResultado;
-        return view('ecografias.envio_resultado.pendiente', compact('envioResultados'));
+        $envioResultados = EnvioResultado::where('estado', 1)->where('estado_envio', 'pendiente')->get();
+        $repartidores = Repartidor::where('estado', 1)->get();
+        //return $repartidores;
+        return view('ecografias.envio_resultado.pendiente', compact('envioResultados', 'repartidores'));
+    }
+
+    public function asignarRepartidor(Request $request)
+    {
+        try {
+            $envio = EnvioResultado::find($request->input('id_envio'));
+
+            if (!$envio) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'El envío no se encontró'
+                ], 404);
+            }
+
+            $envio->repartidor_id = $request->input('id_repartidor');
+            $envio->estado_envio = 'Asignado';
+            $envio->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'El repartidor fue asignado con éxito'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Ocurrió un error al asignar el repartidor'
+            ], 500);
+        }
+    }
+
+    public function asignado()
+    {
+        $envioResultados = EnvioResultado::where('estado', 1)->where('estado_envio', 'Asignado')->get();
+        //return $envioResultados[1]->repartidor;
+        return view('ecografias.envio_resultado.asignado', compact('envioResultados'));
+    }
+
+    public function entregar(Request $request)
+    {
+        $envio = EnvioResultado::find($request->input('id_envio'));
+        $envio->estado_envio = 'Entregado';
+        $envio->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Entregado exitosamente...'
+        ], 200);
+    }
+
+    public function entregados()
+    {
+        $envioResultados = EnvioResultado::where('estado', 1)->where('estado_envio', 'Entregado')->get();
+        //return $envioResultados[0]->repartidor;
+        return view('ecografias.envio_resultado.entregado', compact('envioResultados'));
+    }
+
+    public function rechazar(Request $request)
+    {
+        $envio = EnvioResultado::find($request->input('id_envio'));
+        $envio->estado_envio = 'Rechazado';
+        $envio->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Rechazado exitosamente...'
+        ], 200);
+    }
+
+    public function rechazados()
+    {
+        $envioResultados = EnvioResultado::where('estado', 1)->where('estado_envio', 'Rechazado')->get();
+        //return $envioResultados[0]->repartidor;
+        return view('ecografias.envio_resultado.rechazados', compact('envioResultados'));
+    }
+
+    public function informe(Request $request)
+    {
+        $envio = EnvioResultado::find($request->input('id_envio'));
+        $ubicacion = $envio->ubicacion;
+
+        return response()->json([
+            'success' => true,
+            'data' => $envio->resultado,
+            'ubicacion' => $ubicacion->referencia
+        ]);
     }
 }

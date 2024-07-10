@@ -10,7 +10,7 @@
         <div class="card-header pointer-cursor" data-toggle="collapse" data-target="#collapse-form" aria-expanded="false"
             aria-controls="collapse-form">
             <div class="d-flex justify-content-between">
-                <h3 class="my-2 mx-2">Envíos pendientes</h1>
+                <h3 class="my-2 mx-2">Envíos Entregados</h1>
             </div>
         </div>
     </div>
@@ -36,9 +36,8 @@
                             <th scope="col">ID</th>
                             <th scope="col" data-field="fecha">fecha del resultado</th>
                             <th scope="col" data-field="estado_envio">Estado de envío</th>
+                            <th scope="col" data-field="action">Repartidor</th>
                             <th scope="col" data-field="estado_envio">Detalle</th>
-                            <th scope="col" data-field="action">Asignar Repartidor</th>
-                            <th scope="col" data-field="action">Rechazar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,35 +48,15 @@
                                 <td>{{ $envioResultado->fecha }}</td>
 
                                 <td class="text-success">{{ $envioResultado->estado_envio }}</td>
-
+                                <td>
+                                    {{ $envioResultado->repartidor->nombre }}
+                                </td>
                                 <td class="text-success">
                                     <!-- Botón con ícono para activar el modal -->
                                     <button data-envio-id={{ $envioResultado->id }} type="button"
                                         class="btn btn-primary btn-modal" data-toggle="modal" data-target="#exampleModal">
                                         <i class="fas fa-info-circle ml-1"></i>
                                     </button>
-                                </td>
-
-                                <!-- Button asignar repartidor trigger modal -->
-                                <td>
-                                    <div class="row">
-                                        <div class="col col-9">
-                                            <select id="repartidor{{ $envioResultado->id }}" class="form-control">
-                                                <option value="">Seleccione un repartidor</option>
-                                                @foreach ($repartidores as $repartidor)
-                                                    <option value="{{ $repartidor->id }}">{{ $repartidor->nombre }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col col-3">
-                                            <button data-envio-id={{ $envioResultado->id }}
-                                                class="asignar btn btn-primary">Asignar</button>
-                                        </div>
-                                    </div>
-
-                                </td>
-                                <td class="text-success"><button data-envio-id={{ $envioResultado->id }}
-                                        class="rechazar btn btn-danger">Rechazar</button>
                                 </td>
 
                             </tr>
@@ -113,9 +92,9 @@
                                 <textarea disabled id="recomendaciones" class="form-control"></textarea>
                             </div>
                             {{-- <div class="col-9">
-                                <label for="paciente">Paciente</label>
-                                <input disabled id="paciente" type="text" class="form-control">
-                            </div> --}}
+                             <label for="paciente">Paciente</label>
+                             <input disabled id="paciente" type="text" class="form-control">
+                         </div> --}}
                         </div>
 
                         <div class="row">
@@ -144,11 +123,11 @@
 
 
                         {{-- <div class="row">
-                            <div class="col-12">
-                                <label for="imagen">Imagen</label>
-                                <img src="" alt="..." id="imagen" class="img-fluid mt-2">
-                            </div>
-                        </div> --}}
+                         <div class="col-12">
+                             <label for="imagen">Imagen</label>
+                             <img src="" alt="..." id="imagen" class="img-fluid mt-2">
+                         </div>
+                     </div> --}}
 
                     </div>
 
@@ -165,7 +144,58 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('class/urlLocal.js') }}"></script>
-    <script src="{{ asset('envio/js/pendiente.js') }}"></script>
+    <script src="{{ asset('envio/js/asignado.js') }}"></script>
+    <script>
+        const btn_modal = document.querySelectorAll('.btn-modal');
+        btn_modal.forEach(elemento => {
+            elemento.addEventListener('click', cargarModal);
+        });
+
+        function cargarModal(e) {
+            const btn = e.target.closest('button');
+            console.log(btn);
+            const data = {
+                id_envio: btn.getAttribute('data-envio-id')
+            };
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            console.log(`${URL_WEB}envio-resultado/informe`);
+            fetch(`${URL_WEB}envio-resultado/informe`, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                }).then(response => {
+                    console.log('Respuesta del servidor:', response);
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud: ' + response.status);
+                    }
+                    return response.json();
+                }).then(data => {
+                    console.log(data);
+
+                    datos = data.data;
+                    const numero_examen = document.getElementById('numero-examen');
+                    //const paciente = document.getElementById('paciente');
+                    const informe = document.getElementById('informe');
+                    const ubicacion = document.getElementById('ubicacion');
+                    const conclusiones = document.getElementById('conclusiones');
+                    const fecha = document.getElementById('fecha');
+                    const recomendaciones = document.getElementById('recomendaciones');
+
+                    numero_examen.value = datos.id;
+                    recomendaciones.textContent = datos.recomendacion;
+                    fecha.value = datos.fecha;
+                    conclusiones.textContent = datos.conclusion;
+                    informe.textContent = datos.informe;
+                    ubicacion.value = data.ubicacion;
+
+                })
+                .catch(error => console.error('Error de la solicitud', error));
+        }
+    </script>
+
     {{-- <script src="{{ asset('class/apiCLient.js') }}"></script>
     <script src="{{ asset('class/crudHandler.js') }}"></script> --}}
 @endsection
