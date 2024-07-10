@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use App\Models\EnvioResultado;
 use App\Models\Ubicacion;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class EnvioResultadoController extends Controller
@@ -57,11 +58,11 @@ class EnvioResultadoController extends Controller
                 'referencia'=> $request->get('referencia'),
             ]);
 
-           
+            $fecha_actual = now()->format('Y/m/d');
             $envio = EnvioResultado::create([
                 // 'fecha' => $request->get('fecha'),
-                'fecha' => now()->format('Y/m/d'),
-                'estado_envio' => $request->get('estado_envio'),
+                'fecha' => $fecha_actual,
+                'estado_envio' => 'Solicitado',
                 'resultado_id' => $request->get('resultado_id'),
                 'ubicacion_id' => $ubicacion->id,
                 'repartidor_id' => $request->get('repartidor_id'),       
@@ -80,9 +81,15 @@ class EnvioResultadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function envioPaciente(string $paciente_id)
     {
-        $envio = EnvioResultado::findOrFail($id);
+        $envio = EnvioResultado::select('envio_resultado.*')
+                                ->join('resultado', 'envio_resultado.resultado_id', 'resultado.id')
+                                ->join('examen', 'resultado.examen_id', 'examen.id')
+                                ->join('orden_examen', 'examen.orden_examen_id', 'orden_examen.id')
+                                ->where('orden_examen.paciente_id',  $paciente_id)
+                                ->get();
+        $envio->load('ubicacion', 'repartidor', 'resultado');
         return ApiResponse::success(new EnvioResultadoResource($envio), 'Registro encontrado correctamente.');
     }
 
@@ -104,12 +111,13 @@ class EnvioResultadoController extends Controller
                 'referencia'=> $request->get('referencia'),
             ]);
 
+            $fecha_actual = now()->format('Y/m/d');
             $envio->update([
-                'fecha' => $request->get('fecha'),
-                'estado_envio' => $request->get('estado_envio'),
-                // 'resultado_id' => $request->get('resultado_id'),
-                // 'ubicacion_id' => $ubicacion->id,
-                // 'repartidor_id' => $request->get('repartidor_id'),       
+                 'fecha' => $request->get('fecha'),
+                 'estado_envio' => $request->get('estado_envio'),
+                 'resultado_id' => $request->get('resultado_id'),
+                 'ubicacion_id' => $ubicacion->id,
+                 'repartidor_id' => $request->get('repartidor_id'),    
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
             

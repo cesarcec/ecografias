@@ -219,7 +219,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('class/urlLocal.js') }}"></script>
-    <script src="{{ asset('class/apiCLient.js') }}"></script>
+    <script src="{{ asset('class/apiClient.js') }}"></script>
     <script src="{{ asset('class/crudHandler.js') }}"></script>
 
 

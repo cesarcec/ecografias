@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function() {
  Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
  Route::get('/cliente-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('resultado');
  Route::get('/cliente-resultado-confirmar-envio/{id}', [ClienteWebController::class, 'getShow'])->name('confirmar');
+ Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('envios');
 
 
 

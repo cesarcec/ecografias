@@ -8,8 +8,8 @@
         <div class="row" id="collapse-form">
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="nro_resultado">Nro de resultado</label>
-                    <input id="nro_resultado" class="form-control" type="text" value="{{$resultado->id}}" disabled>
+                    <label for="resultado_id">Nro de resultado</label>
+                    <input id="resultado_id" class="form-control" type="text" value="{{$resultado->id}}" disabled>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="fecha">Fecha de resultado</label>
@@ -61,29 +61,31 @@
         </div>
     </div>
 
-    <div class="col-md-12 form-group my-2">
-        <h3 class="titulo_h3"><i class="fas fa-map-marker"></i>
-            Tu dirección
-        </h3>
-        <input id="referencia" type="text" class="form-control" placeholder="Escribe tu dirección">
-        <div class="col-12 form-group">
-            <input class="d-none" type="hidden" name="" id="latitud">
-            <input class="d-none" type="hidden" name="" id="longitud">
-    
-            <div id="map-container col-12">
-                <div id="map"></div>
-                {{-- <button id="ubicacion-actual-btn" type="button" title="Ubicación actual">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <i class="fa fa-map-marker"></i>
-                    </div>
-                </button> --}}
+    <div class="col-md-12 form-group my-2 section-map">
+        <div class="container-map-client">
+            <h3 class="titulo_h3"><i class="fas fa-map-marker"></i>
+                Tu dirección
+            </h3>
+            <input id="referencia" type="text" class="form-control" placeholder="Escribe tu dirección">
+            <div class="col-12 form-group">
+                <input class="d-none" type="hidden" name="" id="latitud">
+                <input class="d-none" type="hidden" name="" id="longitud">
+        
+                <div id="map-container col-12">
+                    <div id="map"></div>
+                    {{-- <button id="ubicacion-actual-btn" type="button" title="Ubicación actual">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                    </button> --}}
+                </div>
             </div>
         </div>
     </div>
 
     
-    <div class="form-row">
-        <div class="form-group col-md-12">
+    <div class="row container-button">
+        <div class="form-group col-12">
             <button id="clear" class="btn btn-secondary my-2">Limpiar</button>
             <button id="save" class="btn btn-primary my-2">Guardar</button>
         </div>
@@ -106,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('class/urlLocal.js') }}"></script>
-    <script src="{{ asset('class/apiCLient.js') }}"></script>
+    <script src="{{ asset('class/apiClient.js') }}"></script>
     <script src="{{ asset('class/crudHandler.js') }}"></script>
     <script src="{{ asset('plantilla/js/dropify/dropify.min.js') }}"></script>
     <script> const pacienteId = {{Auth::user()->load('paciente')->paciente->id}}</script>

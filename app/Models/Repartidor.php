@@ -30,4 +30,8 @@ class Repartidor extends Model
     {
         return $this->hasMany(EnvioResultado::class, 'repartidor_id');
     }
+
+    public function envioResultados() {
+        return $this->hasMany(EnvioResultado::class, 'repartidor_id');
+    }
 }
