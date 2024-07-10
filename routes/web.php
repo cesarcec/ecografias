@@ -53,8 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
     // Envios
-    Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex'])->name('envio.getIndex');
-    //Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
+    // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
+    // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
 });
 

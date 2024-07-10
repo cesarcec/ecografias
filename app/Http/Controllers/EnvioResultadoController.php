@@ -59,7 +59,7 @@ class EnvioResultadoController extends Controller
                 'referencia' => $request->get('referencia'),
             ]);
 
-           
+
             $envio = EnvioResultado::create([
                 // 'fecha' => $request->get('fecha'),
                 'fecha' => now()->format('Y/m/d'),
@@ -145,5 +145,12 @@ class EnvioResultadoController extends Controller
     {
         $envios = EnvioResultado::where('estado', 0)->get();
         return ApiResponse::success(EnvioResultadoResource::collection($envios), 'Lista de deshabilitados obtenida correctamente');
+    }
+
+    public function pendiente()
+    {
+        $envioResultados = EnvioResultado::where('estado', 1)->get();
+        //return $envioResultado;
+        return view('ecografias.envio_resultado.pendiente', compact('envioResultados'));
     }
 }
