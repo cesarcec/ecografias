@@ -31,7 +31,7 @@ class EnvioResultadoController extends Controller
         $envios = EnvioResultado::where('estado', 1)->with('ubicacion', 'resultado', 'repartidor')->get();
         // $tipoEstudios = ['tipo_estudio' => TipoEstudio::where('estado', 1)->get()];
         $response = ApiResponse::success(EnvioResultadoResource::collection($envios), 'Lista obtenida correctamente', 200);
-       
+
         return $response;
     }
 
@@ -53,19 +53,20 @@ class EnvioResultadoController extends Controller
         try {
 
             $ubicacion = Ubicacion::create([
-                'latitud'=> $request->get('latitud'),
-                'longitud'=> $request->get('longitud'),
-                'referencia'=> $request->get('referencia'),
+                'latitud' => $request->get('latitud'),
+                'longitud' => $request->get('longitud'),
+                'referencia' => $request->get('referencia'),
             ]);
 
             $fecha_actual = now()->format('Y/m/d');
+
             $envio = EnvioResultado::create([
                 // 'fecha' => $request->get('fecha'),
                 'fecha' => $fecha_actual,
                 'estado_envio' => 'Solicitado',
                 'resultado_id' => $request->get('resultado_id'),
                 'ubicacion_id' => $ubicacion->id,
-                'repartidor_id' => $request->get('repartidor_id'),       
+                'repartidor_id' => $request->get('repartidor_id'),
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
 
@@ -106,9 +107,9 @@ class EnvioResultadoController extends Controller
             $envio = EnvioResultado::findOrFail($id);
             $ubicacion = Ubicacion::findOrFail($envio->ubicacion_id);
             $ubicacion->update([
-                'latitud'=> $request->get('latitud'),
-                'longitud'=> $request->get('longitud'),
-                'referencia'=> $request->get('referencia'),
+                'latitud' => $request->get('latitud'),
+                'longitud' => $request->get('longitud'),
+                'referencia' => $request->get('referencia'),
             ]);
 
             $fecha_actual = now()->format('Y/m/d');
@@ -120,7 +121,7 @@ class EnvioResultadoController extends Controller
                  'repartidor_id' => $request->get('repartidor_id'),    
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
-            
+
             DB::commit();
             $response = ApiResponse::success(new EnvioResultadoResource($envio), 'Registro actualizado correctamente.');
         } catch (\Exception $e) {
@@ -151,5 +152,12 @@ class EnvioResultadoController extends Controller
     {
         $envios = EnvioResultado::where('estado', 0)->get();
         return ApiResponse::success(EnvioResultadoResource::collection($envios), 'Lista de deshabilitados obtenida correctamente');
+    }
+
+    public function pendiente()
+    {
+        $envioResultados = EnvioResultado::where('estado', 1)->get();
+        //return $envioResultado;
+        return view('ecografias.envio_resultado.pendiente', compact('envioResultados'));
     }
 }

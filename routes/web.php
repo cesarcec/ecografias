@@ -34,7 +34,7 @@ Route::middleware([
 Route::get('/dashboard', [UserController::class, 'getIndex'])->name('dashboard');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/roles', [RolController::class, 'getIndex']);
     Route::get('/doctor', [DoctorController::class, 'getIndex']);
     Route::get('/paciente', [PacienteController::class, 'getIndex']);
@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
     // Envios
-    // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
+    Route::get('/envio-resultado/pendiente', [EnvioResultadoController::class, 'pendiente']);
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
 });
