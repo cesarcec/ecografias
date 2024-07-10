@@ -273,52 +273,6 @@
                 <div class="contact-info">
                     <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una cita!</h3>
                     <div class="space"></div>
-<<<<<<< HEAD
-                    <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
-                    <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
-                        <div class="form-group">
-                          <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" class="form-control br-radius-zero"
-                                id="nombre" placeholder="Tu Nombre" data-rule="minlen:4"
-                                data-msg="Por favor ingresa al menos 4 caracteres" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="nombre">Apellido</label>
-                          <input type="text" name="paterno" class="form-control br-radius-zero"
-                              id="paterno" placeholder="Tu Apellido" data-rule="minlen:4"
-                              data-msg="Por favor ingresa al menos 4 caracteres" />
-                          <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="nombre">Fecha de nacimiento</label>
-                          <input type="date" name="fecha_nacimiento" class="form-control br-radius-zero"
-                              id="fecha_nacimiento" placeholder="Fecha de nacimiento"/>
-                          <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="nombre">Género</label>
-                          <select name="genero" id="genero" class="form-control">
-                            <option value="M">Hombre</option>
-                            <option value="F">Mujer</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="nombre">Correo</label>
-                          <input type="email" class="form-control br-radius-zero" name="email"
-                                id="email" placeholder="Tu Correo Electrónico" data-rule="email"
-                                data-msg="Por favor ingresa un correo electrónico válido" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                          <label for="nombre">Contraseña</label>
-                          <input class="form-control br-radius-zero" name="password"
-                                id="password" placeholder="Tu Contraseña" data-rule="minlen:4"
-                                data-msg="Por favor ingresa al menos 8 caracteres de contraseña" type="password"/>
-                            <div class="validation"></div>
-                        </div>
-=======
                     <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa Barbara<br>Santa Cruz - Centro</p>
                     <div class="space"></div>
                     <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
@@ -379,7 +333,6 @@
                                     data-msg="Por favor ingresa al menos 8 caracteres de contraseña" type="password"/>
                                 <div class="validation"></div>
                             </div>
->>>>>>> dd3e517990e2cacc4a81e588788205dac740852a
 
                         <input type="hidden" value="Sin materno" id="materno">
 
