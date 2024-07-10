@@ -204,7 +204,7 @@
             <button title="Editar" data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i></button>
             <button  title="Eliminar" data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>
             <a href="${URL_WEB}resultado-comprobante/${element.id}" target="_blank" title="Comprobante resultado" data-id="${element.id}" class="btn btn-sm btn-primary note my-1"><i class="bi bi-file-earmark-pdf"></i></a>
-            <a href="${URL_WEB}envio-resultado/${element.id}" title="Enviar resultado" data-id="${element.id}" class="btn btn-sm btn-success note my-1"><i class="bi bi-file-earmark-pdf"></i></a>`;
+            <a href="${URL_WEB}envio-correo/${element.id}" title="Enviar resultado por correo" data-id="${element.id}" class="btn btn-sm btn-success note my-1"><i class="bi bi-send"></i></a>`;
         };
 
         const formatActionRestore = (element) => {

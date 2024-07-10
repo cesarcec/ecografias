@@ -197,100 +197,95 @@
                         <h3>Juan<span>Pérez</span></h3>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
         </div>
     </section>
     <!--/ testimonial-->
 
-
-
-    <!--contacto-->
     <section id="contact" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="ser-title">Contáctanos</h2>
-                    <hr class="botm-line">
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <h3>Información de contacto</h3>
-                    <div class="space"></div>
-                    <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa Barbara<br>Santa Cruz -
-                        Centro</p>
-                    <div class="space"></div>
-                    <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
-                    <div class="space"></div>
-                    <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+78505745</p>
-                </div>
-                <div class="col-md-8 col-sm-8 marb20">
-                    <div class="contact-info">
-                        <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una cita!</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="ser-title">Contáctanos</h2>
+                        <hr class="botm-line">
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <h3>Información de contacto</h3>
                         <div class="space"></div>
-                        <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
-                        <div id="errormessage"></div>
-                        <form action="" method="post" role="form" class="contactForm">
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control br-radius-zero" id="nombre"
-                                    placeholder="Tu Nombre" data-rule="minlen:4"
-                                    data-msg="Por favor ingresa al menos 4 caracteres" />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="nombre">Paterno</label>
-                                <input type="text" name="paterno" class="form-control br-radius-zero" id="paterno"
-                                    placeholder="Tu Apellido paterno" data-rule="minlen:4"
-                                    data-msg="Por favor ingresa al menos 4 caracteres" />
-                                <div class="validation"></div>
+                        <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa Barbara<br>Santa Cruz -
+                            Centro</p>
+                        <div class="space"></div>
+                        <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
+                        <div class="space"></div>
+                        <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+78505745</p>
+                    </div>
+                    <div class="col-md-8 col-sm-8 marb20">
+                        <div class="contact-info">
+                            <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una cita!</h3>
+                            <div class="space"></div>
+                            <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                            <div id="errormessage"></div>
+                            <form action="" method="post" role="form" class="contactForm">
                                 <div class="form-group">
-                                    <label for="nombre">Materno</label>
-                                    <input type="text" name="materno" class="form-control br-radius-zero"
-                                        id="materno" placeholder="Tu Apellido materno" data-rule="minlen:4"
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" class="form-control br-radius-zero" id="nombre"
+                                        placeholder="Tu Nombre" data-rule="minlen:4"
                                         data-msg="Por favor ingresa al menos 4 caracteres" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nombre">Fecha de nacimiento</label>
-                                    <input type="date" name="fecha_nacimiento" class="form-control br-radius-zero"
-                                        id="fecha_nacimiento" placeholder="Fecha de nacimiento" />
+                                    <label for="nombre">Paterno</label>
+                                    <input type="text" name="paterno" class="form-control br-radius-zero" id="paterno"
+                                        placeholder="Tu Apellido paterno" data-rule="minlen:4"
+                                        data-msg="Por favor ingresa al menos 4 caracteres" />
                                     <div class="validation"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nombre">Género</label>
-                                    <select name="genero" id="genero" class="form-control">
-                                        <option value="M">Hombre</option>
-                                        <option value="F">Mujer</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nombre">Correo</label>
-                                    <input type="email" class="form-control br-radius-zero" name="email"
-                                        id="email" placeholder="Tu Correo Electrónico" data-rule="email"
-                                        data-msg="Por favor ingresa un correo electrónico válido" />
-                                    <div class="validation"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nombre">Contraseña</label>
-                                    <input class="form-control br-radius-zero" name="password" id="password"
-                                        placeholder="Tu Contraseña" data-rule="minlen:4"
-                                        data-msg="Por favor ingresa al menos 8 caracteres de contraseña"
-                                        type="password" />
-                                    <div class="validation"></div>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Materno</label>
+                                        <input type="text" name="materno" class="form-control br-radius-zero"
+                                            id="materno" placeholder="Tu Apellido materno" data-rule="minlen:4"
+                                            data-msg="Por favor ingresa al menos 4 caracteres" />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Fecha de nacimiento</label>
+                                        <input type="date" name="fecha_nacimiento" class="form-control br-radius-zero"
+                                            id="fecha_nacimiento" placeholder="Fecha de nacimiento" />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Género</label>
+                                        <select name="genero" id="genero" class="form-control">
+                                            <option value="M">Hombre</option>
+                                            <option value="F">Mujer</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Correo</label>
+                                        <input type="email" class="form-control br-radius-zero" name="email"
+                                            id="email" placeholder="Tu Correo Electrónico" data-rule="email"
+                                            data-msg="Por favor ingresa un correo electrónico válido" />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Contraseña</label>
+                                        <input class="form-control br-radius-zero" name="password" id="password"
+                                            placeholder="Tu Contraseña" data-rule="minlen:4"
+                                            data-msg="Por favor ingresa al menos 8 caracteres de contraseña"
+                                            type="password" />
+                                        <div class="validation"></div>
+                                    </div>
 
-                                <input type="hidden" value="Sin materno" id="materno">
+                                    <input type="hidden" value="Sin materno" id="materno">
 
-                                <div class="form-action">
-                                    <button id="save" type="button" class="btn btn-form">Crear cuenta</button>
-                                </div>
-                        </form>
+                                    <div class="form-action">
+                                        <button id="save" type="button" class="btn btn-form">Crear cuenta</button>
+                                    </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
-    <!--/ contact-->
 @endsection
 
 @section('css')
@@ -301,20 +296,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('class/urlLocal.js') }}"></script>
-    <script src="{{ asset('class/apiClient.js') }}"></script>
+    <script src="{{ asset('class/apiCLient.js') }}"></script>
     <script src="{{ asset('class/crudHandler.js') }}"></script>
 
 
     <script>
         const formatAction = (element) => {
             return `
-        <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i> Editar</button>
-        <button data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Eliminar</button>`;
+            <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i> Editar</button>
+            <button data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Eliminar</button>`;
         };
 
         const formatActionRestore = (element) => {
-            return `
-        <button data-id="${element.id}" class="btn btn-sm btn-info restore"><i class="fa fa-undo"></i>Restaurar</button>`;
+            return `<button data-id="${element.id}" class="btn btn-sm btn-info restore"><i class="fa fa-undo"></i>Restaurar</button>`;
         };
 
         const apiClient = new ApiClient(URL_API_REST);
@@ -372,247 +366,3 @@
         });
     </script>
 @endsection
-=======
-            </div>
-        </div>
-    </section>
-    <!--/ testimonial-->
-
-    <<<<<<< HEAD <!--contact-->
-        <section id="contact" class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="ser-title">Contáctanos</h2>
-                        <hr class="botm-line">
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <h3>Información de contacto</h3>
-                        <div class="space"></div>
-                        <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>321 Calle Asombrosa<br> Nueva York, NY
-                            17022</p>
-                        <div class="space"></div>
-                        <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@nombrecompania.com</p>
-                        <div class="space"></div>
-                        <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 800 123 1234</p>
-                        =======
-
-
-                        <!--testimonial-->
-                        <!--testimonio-->
-                        <section id="testimonial" class="section-padding">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h2 class="ser-title">¿Qué dicen nuestros pacientes?</h2>
-                                        <hr class="botm-line">
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="testi-details">
-                                            <!-- Paragraph -->
-                                            <p>La atención médica fue excelente. El equipo se aseguró de que me sintiera
-                                                cómodo y bien
-                                                cuidado durante toda mi visita.</p>
-                                        </div>
-                                        <div class="testi-info">
-
-                                            <h3>Alex<span>Texas</span></h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="testi-details">
-                                            <!-- Paragraph -->
-                                            <p>Estoy muy agradecida por el servicio recibido. Los doctores son muy
-                                                profesionales y el
-                                                personal muy amable.</p>
-                                        </div>
-                                        <div class="testi-info">
-
-                                            <h3>María<span>Lopez</span></h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="testi-details">
-                                            <!-- Paragraph -->
-                                            <p>Recomiendo esta clínica a todos. La calidad del servicio y la atención al
-                                                detalle fueron
-                                                excepcionales.</p>
-                                        </div>
-                                        <div class="testi-info">
-
-                                            <h3>Juan<span>Pérez</span></h3>
-                                        </div>
-                                    </div>
-                                    >>>>>>> dd3e517990e2cacc4a81e588788205dac740852a
-                                </div>
-                                <div class="col-md-8 col-sm-8 marb20">
-                                    <div class="contact-info">
-                                        <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una
-                                            cita!</h3>
-                                        <div class="space"></div>
-                                        <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i># 435 calle Santa
-                                            Barbara<br>Santa Cruz -
-                                            Centro</p>
-                                        <div class="space"></div>
-                                        <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>admin@correo.cedisa.bo</p>
-                                        <div class="space"></div>
-                                        <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+78505745</p>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 marb20">
-                                        <div class="contact-info">
-                                            <h3 class="cnt-ttl">¿Tienes alguna consulta? ¡Crea una cuenta para reservar una
-                                                cita!</h3>
-                                            <div class="space"></div>
-                                            <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
-                                            <div id="errormessage"></div>
-                                            <form action="" method="post" role="form" class="contactForm">
-                                                <div class="form-group">
-                                                    <label for="nombre">Nombre</label>
-                                                    <input type="text" name="nombre"
-                                                        class="form-control br-radius-zero" id="nombre"
-                                                        placeholder="Tu Nombre" data-rule="minlen:4"
-                                                        data-msg="Por favor ingresa al menos 4 caracteres" />
-                                                    <div class="validation"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="nombre">Paterno</label>
-                                                    <input type="text" name="paterno"
-                                                        class="form-control br-radius-zero" id="paterno"
-                                                        placeholder="Tu Apellido paterno" data-rule="minlen:4"
-                                                        data-msg="Por favor ingresa al menos 4 caracteres" />
-                                                    <div class="validation"></div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Materno</label>
-                                                        <input type="text" name="materno"
-                                                            class="form-control br-radius-zero" id="materno"
-                                                            placeholder="Tu Apellido materno" data-rule="minlen:4"
-                                                            data-msg="Por favor ingresa al menos 4 caracteres" />
-                                                        <div class="validation"></div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Fecha de nacimiento</label>
-                                                        <input type="date" name="fecha_nacimiento"
-                                                            class="form-control br-radius-zero" id="fecha_nacimiento"
-                                                            placeholder="Fecha de nacimiento" />
-                                                        <div class="validation"></div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Género</label>
-                                                        <select name="genero" id="genero" class="form-control">
-                                                            <option value="M">Hombre</option>
-                                                            <option value="F">Mujer</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Correo</label>
-                                                        <input type="email" class="form-control br-radius-zero"
-                                                            name="email" id="email"
-                                                            placeholder="Tu Correo Electrónico" data-rule="email"
-                                                            data-msg="Por favor ingresa un correo electrónico válido" />
-                                                        <div class="validation"></div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Contraseña</label>
-                                                        <input class="form-control br-radius-zero" name="password"
-                                                            id="password" placeholder="Tu Contraseña"
-                                                            data-rule="minlen:4"
-                                                            data-msg="Por favor ingresa al menos 8 caracteres de contraseña"
-                                                            type="password" />
-                                                        <div class="validation"></div>
-                                                    </div>
-
-                                                    <input type="hidden" value="Sin materno" id="materno">
-
-                                                    <div class="form-action">
-                                                        <button id="save" type="button" class="btn btn-form">Crear
-                                                            cuenta</button>
-                                                    </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!--/ contact-->
-                    @endsection
-
-                    @section('css')
-                    @endsection
-
-                    @section('js')
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                        <script src="{{ asset('class/urlLocal.js') }}"></script>
-                        <script src="{{ asset('class/apiCLient.js') }}"></script>
-                        <script src="{{ asset('class/crudHandler.js') }}"></script>
-
-
-                        <script>
-                            const formatAction = (element) => {
-                                return `
-        <button data-id="${element.id}" class="btn btn-sm btn-warning edit"><i class="bi bi-pencil-fill"></i> Editar</button>
-        <button data-id="${element.id}" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Eliminar</button>`;
-                            };
-
-                            const formatActionRestore = (element) => {
-                                return `
-        <button data-id="${element.id}" class="btn btn-sm btn-info restore"><i class="fa fa-undo"></i>Restaurar</button>`;
-                            };
-
-                            const apiClient = new ApiClient(URL_API_REST);
-                            const config = {
-                                // table: $("#table"),  
-                                // tableDeletes: $("#table-delete"),
-                                // loaderObject: loader,
-                                modalEdit: "modal_edit",
-                                // saveBtn: "save",
-                                updateBtn: "update",
-                                editShowBtn: ".edit",
-                                deleteBtn: ".delete",
-                                restoreBtn: ".restore",
-                                labelPrefixEdit: "_edit",
-                                selectors: [
-                                    "id",
-                                    "nombre",
-                                    "paterno",
-                                    "materno",
-                                    "genero",
-                                    "fecha_nacimiento",
-                                    "email",
-                                    "user_email",
-                                    "password",
-                                    "password_confirmation"
-                                ],
-                                loadRelations: true,
-                                relations: [{
-                                    name: "user",
-                                    nameSecondary: "user",
-                                    nameIndex: ["email"],
-                                    selectId: "user_id",
-                                }, ],
-                                formatAction: formatAction,
-                                formatActionRestore: formatActionRestore,
-                            };
-
-                            const crudHandler = new CrudHandler(apiClient, "paciente", config);
-
-                            document.addEventListener("DOMContentLoaded", () => {
-                                crudHandler.init();
-                            });
-
-                            $("#save").click(() => {
-                                if (!crudHandler.postInsert()) {
-                                    return;
-                                }
-                                setTimeout(() => {
-                                    crudHandler.showAlert('success', 'Ahora puedes iniciar sesión con tus credenciales', 2000);
-                                    setTimeout(() => {
-                                        window.location.href = URL_WEB + "login";
-                                        //window.location.reload();
-                                    }, 2000);
-                                }, 1600);
-                            });
-                        </script>
-                    @endsection
->>>>>>> 09431d3243e15b2cd18f312f8e1699d11d066835
