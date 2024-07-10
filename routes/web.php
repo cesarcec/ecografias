@@ -54,7 +54,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
     // Envios
-    // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
+    Route::get('/envio-resultado/pendiente', [EnvioResultadoController::class, 'pendiente']);
+    Route::post('/envio-resultado/asignar', [EnvioResultadoController::class, 'asignarRepartidor']);
+    Route::get('/envio-resultado/asignado', [EnvioResultadoController::class, 'asignado']);
+    Route::post('/envio-resultado/entregar', [EnvioResultadoController::class, 'entregar']);
+    Route::get('/envio-resultado/entregados', [EnvioResultadoController::class, 'entregados']);
+    Route::post('/envio-resultado/rechazar', [EnvioResultadoController::class, 'rechazar']);
+    Route::get('/envio-resultado/rechazados', [EnvioResultadoController::class, 'rechazados']);
+    Route::post('/envio-resultado/informe', [EnvioResultadoController::class, 'informe']);
+
+
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
     Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
@@ -63,13 +72,9 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
- //Cliente web
- Route::get('/cliente-web', [ClienteWebController::class, 'getIndex']);
- Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
- Route::get('/cliente-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('resultado');
- Route::get('/cliente-resultado-confirmar-envio/{id}', [ClienteWebController::class, 'getShow'])->name('confirmar');
- Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('envios');
-
-
-
-
+//Cliente web
+Route::get('/cliente-web', [ClienteWebController::class, 'getIndex']);
+Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
+Route::get('/cliente-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('resultado');
+Route::get('/cliente-resultado-confirmar-envio/{id}', [ClienteWebController::class, 'getShow'])->name('confirmar');
+Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('envios');
