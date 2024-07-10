@@ -25,14 +25,18 @@ const config = {
     labelPrefixEdit: "_edit",
     selectors: [
         "id",
-        "nombre"
+        "nombre",
+        "latitud",
+        "longitud",
+        "referencia",
+        "resultado_id",
     ],
     loadRelations: false,
     formatAction: formatAction,
     formatActionRestore: formatActionRestore,
 };
 
-const crudHandler = new CrudHandler(apiClient, "sala", config);
+const crudHandler = new CrudHandler(apiClient, "envio", config);
 
 async function initMap2() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -216,5 +220,11 @@ function ubicacionActualReady() {
 
 document.addEventListener("DOMContentLoaded", () => {
     initMap();
-    crudHandler.init();
+});
+
+$("#save").click(() => {
+    crudHandler.postInsert();
+    setTimeout(() => {
+        window.location.href = URL_WEB + 'cliente-envios';
+    }, 1500);
 });

@@ -153,6 +153,25 @@
                 </div>
             </li>
 
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEnvio"
+                    aria-expanded="true" aria-controls="collapseEnvio">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Envíos</span>
+                </a>
+                <div id="collapseEnvio" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menú de Exámenes:</h6>
+                        <a class="collapse-item" href="{{ url('/envio-resultado/pendiente') }}">Pendientes</a>
+                        <a class="collapse-item" href="{{ url('/resultado') }}">Aceptados</a>
+                        <a class="collapse-item" href="{{ url('/resultado') }}">Entregados</a>
+                        <a class="collapse-item" href="{{ url('/resultado') }}">Rechazados</a>
+
+                    </div>
+                </div>
+            </li>
+
             @php
                 }
             @endphp

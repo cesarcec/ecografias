@@ -13,6 +13,7 @@ use App\Http\Controllers\SalaController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\ClienteWebController;
+use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EnvioResultadoController;
 use App\Http\Controllers\UserController;
 
@@ -34,7 +35,7 @@ Route::middleware([
 Route::get('/dashboard', [UserController::class, 'getIndex'])->name('dashboard');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/roles', [RolController::class, 'getIndex']);
     Route::get('/doctor', [DoctorController::class, 'getIndex']);
     Route::get('/paciente', [PacienteController::class, 'getIndex']);
@@ -56,6 +57,9 @@ Route::middleware(['auth'])->group(function() {
     // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
 
+    Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
+    Route::post('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
+
 });
 
  //Cliente web
@@ -63,6 +67,7 @@ Route::middleware(['auth'])->group(function() {
  Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
  Route::get('/cliente-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('resultado');
  Route::get('/cliente-resultado-confirmar-envio/{id}', [ClienteWebController::class, 'getShow'])->name('confirmar');
+ Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('envios');
 
 
 

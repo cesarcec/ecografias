@@ -36,7 +36,7 @@
                         </div>
                         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#banner">Inicio</a></li>
+                                <li class="active"><a href="{{asset('cliente-web')}}">Inicio</a></li>
                                 <li class=""><a href="#service">Servicios</a></li>
                                 <li class=""><a href="#about">Acerca de</a></li>
                                 <li class=""><a href="#testimonial">Testimonios</a></li>
@@ -52,7 +52,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                     <li><a href="{{ route('resultado', ['id' => Auth::user()->load('paciente')->id]) }}">Mis Resultados</a></li>
-                                                    <li><a href="#">Mis citas</a></li>
+                                                    <li><a href="{{ route('envios')}}">Mis envios</a></li>
                                                     <li><a href="{{ route('logout')}}">Cerrar sesión</a></li>
                                                     <li role="separator" class="divider"></li>
                                                 </ul>

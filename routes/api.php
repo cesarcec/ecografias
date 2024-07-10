@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EnvioResultadoController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\RecepcionistaController;
 use App\Http\Controllers\RepartidorController;
@@ -98,6 +99,14 @@ Route::put('/resultado/destroy/{id}', [ResultadoController::class, 'destroy']);
 Route::put('/resultado/restore/{id}', [ResultadoController::class, 'restore']);
 Route::get('/resultado/disabled', [ResultadoController::class, 'disabled']);
 Route::get('/resultado/paciente/{id_paciente}', [ResultadoController::class, 'resultadoPaciente']);
+
+Route::get('/envio', [EnvioResultadoController::class, 'index']);
+Route::post('/envio/store', [EnvioResultadoController::class, 'store']);
+Route::put('/envio/update/{id}', [EnvioResultadoController::class, 'update']);
+Route::put('/envio/destroy/{id}', [EnvioResultadoController::class, 'destroy']);
+Route::put('/envio/restore/{id}', [EnvioResultadoController::class, 'restore']);
+Route::get('/envio/disabled', [EnvioResultadoController::class, 'disabled']);
+Route::get('/envio/paciente/{id_paciente}', [EnvioResultadoController::class, 'envioPaciente']);
 
 Route::get('/user-rol', [UserController::class, 'userRol']);
 Route::get('/rol-users', [RolController::class, 'rolUsers']);

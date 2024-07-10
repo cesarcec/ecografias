@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\EnvioResultado;
+use App\Models\Examen;
+use App\Models\OrdenExamen;
+use App\Models\Ubicacion;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,6 +26,12 @@ class DatabaseSeeder extends Seeder
             RepartidorSeeder::class,
             SalaSeeder::class,
             TipoEstudioSeeder::class,
+            UbicacionSeeder::class,
+            EstudioSeeder::class,
+            OrdenExamenSeeder::class,
+            ExamenSeeder::class,
+            ResultadoSeeder::class,
+            EnvioResultadoSeeder::class
         ]);
     }
 }

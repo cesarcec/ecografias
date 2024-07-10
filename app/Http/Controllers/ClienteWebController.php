@@ -26,4 +26,8 @@ class ClienteWebController extends Controller
         );
         return view('ecografias.cliente_web.confirmar')->with('resultado', $resultado);
     }
+
+    public function getEnvio() {
+        return view('ecografias.cliente_web.envio');
+    }
 }
