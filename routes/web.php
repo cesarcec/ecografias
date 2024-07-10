@@ -13,6 +13,7 @@ use App\Http\Controllers\SalaController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\ClienteWebController;
+use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EnvioResultadoController;
 use App\Http\Controllers\UserController;
 
@@ -55,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
     // Envios
     // Route::get('/envio-resultado', [EnvioResultadoController::class, 'getIndex']);
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
+
+    Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
+    Route::post('correo-enviar-mensaje', [CorreoController::class, 'postEnviarMensaje']);
 
 });
 
