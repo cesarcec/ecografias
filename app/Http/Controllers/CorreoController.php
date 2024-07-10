@@ -16,7 +16,7 @@ use App\Models\User;
 
 class CorreoController extends Controller
 {
-    protected $host = '192.168.43.146';
+    protected $host = '192.168.25.99';
 
     public function getEnviar()
     {
@@ -51,7 +51,8 @@ class CorreoController extends Controller
         $userId = $user->id;
         
         $emailRemitente = $user->email;
-        $password = $user->password_zentyal;
+        // $password = $user->password_zentyal;
+        $password = 'milanHZ3991';
 
         $nombreRemitente = $request->get('nombre');
         $emailReceptor = $request->get('email_receptor');
