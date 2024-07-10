@@ -44,10 +44,10 @@ class EnvioResultadoController extends Controller
     {
         /*
             Estados de los envios:
-                Solicitado
-                Confirmado
+                pendiente
+                Asignado
                 Entregado
-                Cancelado
+                Rechazado
         */
 
         DB::beginTransaction();
@@ -65,7 +65,7 @@ class EnvioResultadoController extends Controller
             $envio = EnvioResultado::create([
                 // 'fecha' => $request->get('fecha'),
                 'fecha' => $fecha_actual,
-                'estado_envio' => 'Solicitado',
+                'estado_envio' => 'pendiente',
                 'resultado_id' => $request->get('resultado_id'),
                 'ubicacion_id' => $ubicacion->id,
                 'repartidor_id' => $request->get('repartidor_id'),

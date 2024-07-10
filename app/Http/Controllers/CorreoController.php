@@ -8,8 +8,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\EnviarCorreo;  
-
+use App\Mail\EnviarCorreo;
+use App\Models\EnvioResultado;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -50,7 +50,7 @@ class CorreoController extends Controller
         $usuarioAutenticado = Auth::user();
         $user = User::findOrFail($usuarioAutenticado->id);
         $userId = $user->id;
-        
+
         // $emailRemitente = $user->email;
         $emailRemitente = 'hugo@correo.cedisa.bo';
         // $password = $user->password_zentyal;
@@ -111,9 +111,9 @@ class CorreoController extends Controller
     public function enviarCorreoResultado(Request $request, string $envio_id)
     {
 
-        $envio =  EnvioResultadoController::findOrFail($envio_id);
+        $envio =  EnvioResultado::findOrFail($envio_id);
         $envio->load('resultado.examnen.orden_examen.paciente.user');
-        
+
         $nombre = $request->input('nombre');
         // $correoDestino = 'cliente@correo.cedisa.bo';
         $correoDestino = $request->input('nombre');
@@ -124,5 +124,4 @@ class CorreoController extends Controller
 
         return "Correo enviado correctamente a $correoDestino";
     }
-
 }
