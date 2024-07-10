@@ -94,7 +94,7 @@ class CorreoController extends Controller
     public function enviarCorreo(Request $request)
     {
         $nombre = $request->input('nombre');
-        $correoDestino = 'admin@correo.cedisa.bo';
+        $correoDestino = 'roger@correo.cedisa.bo';
         // $correoDestino = $request->input('email_receptor');
         $mensaje = $request->input('mensaje');
 
