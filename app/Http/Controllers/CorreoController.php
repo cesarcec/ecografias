@@ -50,12 +50,14 @@ class CorreoController extends Controller
         $user = User::findOrFail($usuarioAutenticado->id);
         $userId = $user->id;
         
-        $emailRemitente = $user->email;
+        // $emailRemitente = $user->email;
+        $emailRemitente = 'admin@correo.cedisa.bo';
         // $password = $user->password_zentyal;
         $password = 'milanHZ3991';
 
         $nombreRemitente = $request->get('nombre');
-        $emailReceptor = $request->get('email_receptor');
+        // $emailReceptor = $request->get('email_receptor');
+        $emailReceptor = 'cliente@correo.cedisa.bo';
         $asunto = $request->get('asunto');
         $mensaje = $request->get('mensaje');
 
