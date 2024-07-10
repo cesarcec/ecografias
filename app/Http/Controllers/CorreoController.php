@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\EnviarCorreo;
+use App\Mail\HolaMundo;
 use App\Models\EnvioResultado;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -93,14 +94,14 @@ class CorreoController extends Controller
 
     public function enviarCorreo(Request $request)
     {
-        $nombre = $request->input('nombre');
-        $correoDestino = 'roger@correo.cedisa.bo';
+        $asunto = $request->get('asunto');
+        $correoDestino = $request->get('email_receptor');
         // $correoDestino = $request->input('email_receptor');
-        $mensaje = $request->input('mensaje');
-
+        //$mensaje = $request->input('mensaje');
+        $mensaje = $request->get('mensaje');
         try {
             // Envía el correo utilizando la clase Mail y el Mailable (EnviarCorreo)
-            Mail::to($correoDestino)->send(new EnviarCorreo($nombre, $mensaje));
+            Mail::to($correoDestino)->send(new HolaMundo($asunto, $mensaje));
             return response()->json(['message' => "Correo enviado correctamente a $correoDestino"], 200);
         } catch (\Exception $e) {
             // Si ocurre una excepción, significa que el envío del correo falló

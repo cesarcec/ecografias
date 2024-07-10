@@ -15,7 +15,11 @@ use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\ClienteWebController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EnvioResultadoController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
+use App\Mail\EnviarCorreo;
+use App\Mail\HolaMundo;
+use Illuminate\Support\Facades\Mail;
 
 
 Route::get('/', function () {
@@ -68,7 +72,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
     // Route::post('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
-    Route::get('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
+    
+
+    
 });
 
 //Cliente web
@@ -77,3 +83,9 @@ Route::get('/cliente-citas', [ClienteWebController::class, 'getCitas']);
 Route::get('/cliente-resultado/{id}', [ClienteWebController::class, 'getResultado'])->name('resultado');
 Route::get('/cliente-resultado-confirmar-envio/{id}', [ClienteWebController::class, 'getShow'])->name('confirmar');
 Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('envios');
+/*Route::get('/prueba', function(){
+    Mail::to('cliente@correo.cedisa.bo')->send(new HolaMundo());
+    return 'Correo enviado';
+});*/
+
+Route::get('correo-enviar-mensaje', [MailController::class, 'send']);

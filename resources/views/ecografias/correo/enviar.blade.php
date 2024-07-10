@@ -14,7 +14,7 @@
                     <h3>Enviar correo</h3>
                 </div>
                 <div class="card-body">
-                        <form action="{{asset('/correo-enviar-mensaje')}}" method="post">
+                        <form action="{{asset('/correo-enviar-mensaje')}}" method="get" id="correo">
                             @csrf 
                             <div class="form-group d-flex justify-content-center align-items-center">
                                 <label for="asunto" class="form-label col-3">Asunto:</label>
@@ -48,4 +48,54 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+        getMensaje();
+    });
+
+    function getMensaje(){
+        let form = document.getElementById('correo');
+
+        let formData = new FormData(form);
+
+
+        $.ajax({
+            url: "{{ url('correo-enviar-mensaje') }}/",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log(response);
+                if (response.codigo == 0) {
+                    //successfull(response.mensaje);
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.mensaje,
+                    });
+                    $('#crearModalOficial').modal('hide');
+                    location.reload();
+                } else {
+                    console.log(error);
+                    //swalError(response.mensaje);
+                    Toast.fire({
+                        icon: 'error',
+                        title: response.mensaje,
+                    });
+                }
+            },
+            error: function(error) {
+                console.log(error);
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Ocurrió un error al guardar el ciudad',
+                });
+                //swalError('Ocurrió un error al guardar el ciudad');
+            }
+        });
+    }
+    </script>
 @endsection
