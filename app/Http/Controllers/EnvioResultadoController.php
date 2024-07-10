@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\ApiResponse;
 use App\Models\EnvioResultado;
 use App\Models\Ubicacion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EnvioResultadoController extends Controller
@@ -17,7 +18,8 @@ class EnvioResultadoController extends Controller
     #WEB
     public function getIndex()
     {
-        return view('ecografias.envio.index');
+        //return Auth()->user();
+        return view('ecografias.envio_resultado.index');
     }
 
     #API REST
@@ -30,7 +32,7 @@ class EnvioResultadoController extends Controller
         $envios = EnvioResultado::where('estado', 1)->with('ubicacion', 'resultado', 'repartidor')->get();
         // $tipoEstudios = ['tipo_estudio' => TipoEstudio::where('estado', 1)->get()];
         $response = ApiResponse::success(EnvioResultadoResource::collection($envios), 'Lista obtenida correctamente', 200);
-       
+
         return $response;
     }
 
@@ -44,9 +46,9 @@ class EnvioResultadoController extends Controller
         try {
 
             $ubicacion = Ubicacion::create([
-                'latitud'=> $request->get('latitud'),
-                'longitud'=> $request->get('longitud'),
-                'referencia'=> $request->get('referencia'),
+                'latitud' => $request->get('latitud'),
+                'longitud' => $request->get('longitud'),
+                'referencia' => $request->get('referencia'),
             ]);
 
             $envio = EnvioResultado::create([
@@ -54,7 +56,7 @@ class EnvioResultadoController extends Controller
                 'estado_envio' => $request->get('estado_envio'),
                 'resultado_id' => $request->get('resultado_id'),
                 'ubicacion_id' => $ubicacion->id,
-                'repartidor_id' => $request->get('repartidor_id'),       
+                'repartidor_id' => $request->get('repartidor_id'),
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
 
@@ -89,9 +91,9 @@ class EnvioResultadoController extends Controller
             $envio = EnvioResultado::findOrFail($id);
             $ubicacion = Ubicacion::findOrFail($envio->ubicacion_id);
             $ubicacion->update([
-                'latitud'=> $request->get('latitud'),
-                'longitud'=> $request->get('longitud'),
-                'referencia'=> $request->get('referencia'),
+                'latitud' => $request->get('latitud'),
+                'longitud' => $request->get('longitud'),
+                'referencia' => $request->get('referencia'),
             ]);
 
             $envio->update([
@@ -102,7 +104,7 @@ class EnvioResultadoController extends Controller
                 // 'repartidor_id' => $request->get('repartidor_id'),       
             ]);
             $envio->load('resultado', 'ubicacion', 'repartidor');
-            
+
             DB::commit();
             $response = ApiResponse::success(new EnvioResultadoResource($envio), 'Registro actualizado correctamente.');
         } catch (\Exception $e) {

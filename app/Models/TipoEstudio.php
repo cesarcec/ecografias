@@ -17,7 +17,8 @@ class TipoEstudio extends Model
 
     public $timestamps = true;
 
-    public function estudios() {
-        return $this->hasMany(EstudioModel::class, 'tipo_estudio_id');
+    public function estudios()
+    {
+        return $this->hasMany(Estudio::class, 'tipo_estudio_id');
     }
 }
