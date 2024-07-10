@@ -97,6 +97,7 @@ Route::put('/resultado/update/{id}', [ResultadoController::class, 'update']);
 Route::put('/resultado/destroy/{id}', [ResultadoController::class, 'destroy']);
 Route::put('/resultado/restore/{id}', [ResultadoController::class, 'restore']);
 Route::get('/resultado/disabled', [ResultadoController::class, 'disabled']);
+Route::get('/resultado/paciente/{id_paciente}', [ResultadoController::class, 'resultadoPaciente']);
 
 Route::get('/user-rol', [UserController::class, 'userRol']);
 Route::get('/rol-users', [RolController::class, 'rolUsers']);

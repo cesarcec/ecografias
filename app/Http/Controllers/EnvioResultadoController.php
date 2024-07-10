@@ -41,6 +41,14 @@ class EnvioResultadoController extends Controller
      */
     public function store(Request $request)
     {
+        /*
+            Estados de los envios:
+                Solicitado
+                Confirmado
+                Entregado
+                Cancelado
+        */
+
         DB::beginTransaction();
         $response = [];
         try {
@@ -51,8 +59,10 @@ class EnvioResultadoController extends Controller
                 'referencia' => $request->get('referencia'),
             ]);
 
+           
             $envio = EnvioResultado::create([
-                'fecha' => $request->get('fecha'),
+                // 'fecha' => $request->get('fecha'),
+                'fecha' => now()->format('Y/m/d'),
                 'estado_envio' => $request->get('estado_envio'),
                 'resultado_id' => $request->get('resultado_id'),
                 'ubicacion_id' => $ubicacion->id,
