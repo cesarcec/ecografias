@@ -13,6 +13,6 @@ class EnvioResultadoSeeder extends Seeder
      */
     public function run(): void
     {
-      //
+        //
     }
 }

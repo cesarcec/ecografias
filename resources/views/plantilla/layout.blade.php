@@ -74,7 +74,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                     aria-expanded="true" aria-controls="collapseUsers">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="bi bi-person-badge"></i>
                     <span>Usuarios</span>
                 </a>
                 <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -85,26 +85,74 @@
                         <a class="collapse-item" href="{{ url('/recepcionista') }}">Recepcionistas</a>
                         <a class="collapse-item" href="{{ url('/repartidor') }}">Repartidores</a>
                     </div>
+                    
+                </div>
+                
+            </li>
+
+            @php
+                }   
+
+                if ( $user->rol->nombre == 'Recepcionista' ) {    
+            @endphp
+            
+
+           
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="bi bi-person-badge"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Registra Usuarios:</h6>
+                        <a class="collapse-item" href="{{ url('/paciente') }}">Pacientes</a>
+                       
+                    </div>
                 </div>
             </li>
 
             @php
                 }   
 
-                if ($user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista') {    
+                if ($user->rol->nombre == 'Recepcionista' ) {    
             @endphp
-            
+           
+
                     
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudy"
                     aria-expanded="true" aria-controls="collapseStudy">
-                    <i class="fas fa-fw fa-cog"></i>
+                   <i class="bi bi-lungs-fill"></i>
                     <span>Estudios</span>
                 </a>
                 <div id="collapseStudy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Registra Usuarios:</h6>
-                        <a class="collapse-item" href="{{ url('/paciente') }}">Pacientes</a>
+                        <h6 class="collapse-header">Menú de estudios:</h6>
+                        <a class="collapse-item" href="{{ url('/sala') }}">Salas</a>
+                        <a class="collapse-item" href="{{ url('/tipo_estudio') }}">Tipo de estudios</a>
+                        <a class="collapse-item" href="{{ url('/estudio') }}">Estudios</a>
+                    </div>
+                </div>
+            </li>
+
+            @php
+                }   
+                if ($user->rol->nombre == 'Administrador' ) {    
+            @endphp
+           
+
+                    
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudy"
+                    aria-expanded="true" aria-controls="collapseStudy">
+                   <i class="bi bi-lungs-fill"></i>
+                    <span>Estudios</span>
+                </a>
+                <div id="collapseStudy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menú de estudios:</h6>
                         <a class="collapse-item" href="{{ url('/sala') }}">Salas</a>
                         <a class="collapse-item" href="{{ url('/tipo_estudio') }}">Tipo de estudios</a>
@@ -116,19 +164,31 @@
             @php
                 }
 
-                if ($user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' || $user->rol->nombre == 'Doctor') {    
+                if ($user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' ) {    
             @endphp
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrden"
                     aria-expanded="true" aria-controls="collapseOrden">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
                     <span>Órdenes de examen</span>
                 </a>
                 <div id="collapseOrden" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menú de órdenes:</h6>
                         <a class="collapse-item" href="{{ url('/orden') }}">Órdenes de examen</a>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExamen"
+                    aria-expanded="true" aria-controls="collapseExamen">
+                   <i class="bi bi-lungs-fill"></i>
+                    <span>Exámenes</span>
+                </a>
+                <div id="collapseExamen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menú de Exámenes:</h6>
+                        <a class="collapse-item" href="{{ url('/examen') }}">Examen</a>
+                        <a class="collapse-item" href="{{ url('/resultado') }}">Resultados</a>
+                    </div>
+                </div>
                     </div>
                 </div>
             </li>
@@ -141,7 +201,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExamen"
                     aria-expanded="true" aria-controls="collapseExamen">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa fa-braille" aria-hidden="true"></i>
                     <span>Exámenes</span>
                 </a>
                 <div id="collapseExamen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -152,12 +212,18 @@
                     </div>
                 </div>
             </li>
+            
+            @php
+                }   
 
+                if ( $user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' || $user->rol->nombre == 'Repartidor' ) {    
+            @endphp
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEnvio"
                     aria-expanded="true" aria-controls="collapseEnvio">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
+
                     <span>Envíos</span>
                 </a>
                 <div id="collapseEnvio" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -174,6 +240,24 @@
 
             @php
                 }
+                if ( $user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' || $user->rol->nombre == 'Repartidor' || $user->rol->nombre == 'Doctor' ) {    
+            @endphp
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemail"
+                    aria-expanded="true" aria-controls="collapseEnvio">
+                    <i class="bi bi-envelope-at"></i>
+                    <span>Envio de Mensajes</span>
+                </a>
+                <div id="collapsemail" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('/correo-enviar') }}">ENVIA TU MENSAJE AQUI! </a>
+
+                    </div>
+                </div>
+            </li>
+            @php
+        }
             @endphp
 
             <!-- Divider -->
