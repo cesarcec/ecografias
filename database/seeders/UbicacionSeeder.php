@@ -13,6 +13,6 @@ class UbicacionSeeder extends Seeder
      */
     public function run(): void
     {
-        Ubicacion::factory()->count(10)->create();
+       //
     }
 }

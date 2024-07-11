@@ -14,11 +14,16 @@ class TipoEstudioSeeder extends Seeder
     public function run(): void
     {
         TipoEstudio::create([
-            'nombre' => 'Tipo estudio 1'
+            'nombre' => 'Rayos X'
         ]);
 
         TipoEstudio::create([
-            'nombre' => 'Tipo estudio 2'
+            'nombre' => 'Tomografia'
+        ]);
+
+        
+        TipoEstudio::create([
+            'nombre' => 'Ecografia'
         ]);
     }
 }

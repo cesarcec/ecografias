@@ -14,11 +14,16 @@ class SalaSeeder extends Seeder
     public function run(): void
     {
         Sala::create([
-            'nombre' => 'Sala 1'
+            'nombre' => 'Sala ecografias planta baja'
         ]);
 
         Sala::create([
-            'nombre' => 'Sala 2'
+            'nombre' => 'Sala tomografia plata alta'
+        ]);
+
+        
+        Sala::create([
+            'nombre' => 'Sala rayos x plata alta'
         ]);
     }
 }

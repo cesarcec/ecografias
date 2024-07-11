@@ -13,6 +13,6 @@ class OrdenExamenSeeder extends Seeder
      */
     public function run(): void
     {
-        OrdenExamen::factory()->count(10)->create();
+       //
     }
 }

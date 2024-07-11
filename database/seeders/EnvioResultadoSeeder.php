@@ -13,6 +13,6 @@ class EnvioResultadoSeeder extends Seeder
      */
     public function run(): void
     {
-        EnvioResultado::factory()->count(10)->create();
+      //
     }
 }

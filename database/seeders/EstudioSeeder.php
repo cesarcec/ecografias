@@ -13,6 +13,6 @@ class EstudioSeeder extends Seeder
      */
     public function run(): void
     {
-        Estudio::factory()->count(10)->create();
+       //
     }
 }
