@@ -85,7 +85,9 @@
                         <a class="collapse-item" href="{{ url('/recepcionista') }}">Recepcionistas</a>
                         <a class="collapse-item" href="{{ url('/repartidor') }}">Repartidores</a>
                     </div>
+                    
                 </div>
+                
             </li>
 
             @php
@@ -238,6 +240,24 @@
 
             @php
                 }
+                if ( $user->rol->nombre == 'Administrador' || $user->rol->nombre == 'Recepcionista' || $user->rol->nombre == 'Repartidor' || $user->rol->nombre == 'Doctor' ) {    
+            @endphp
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemail"
+                    aria-expanded="true" aria-controls="collapseEnvio">
+                    <i class="bi bi-envelope-at"></i>
+                    <span>Envio de Mensajes</span>
+                </a>
+                <div id="collapsemail" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('/correo-enviar') }}">ENVIA TU MENSAJE AQUI! </a>
+
+                    </div>
+                </div>
+            </li>
+            @php
+        }
             @endphp
 
             <!-- Divider -->

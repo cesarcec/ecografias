@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tipo_estudio', [TipoEstudioController::class, 'getIndex']);
     Route::get('/sala', [SalaController::class, 'getIndex']);
     Route::get('/estudio', [EstudioController::class, 'getIndex']);
+    
 
     //Citas médicas
     Route::get('/orden', [OrdenExamenController::class, 'getIndex']);
