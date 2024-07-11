@@ -39,6 +39,21 @@ class ResultadoController extends Controller
         return $pdf->stream('resultado-' . $resultado->id . '.pdf');
     }
 
+    public function generarPdfDownload(string $id)
+    {
+        $resultado = Resultado::findOrFail($id);
+        $resultado->load(
+            'examen.ordenExamen.doctor.user', 
+            'examen.ordenExamen.paciente.user', 
+            'examen.ordenExamen.recepcionista.user', 
+            'examen.ordenExamen.estudio', 'examen.sala'
+        );
+
+        $pdf = PDF::loadView('ecografias.resultado.comprobante', compact('resultado'));
+
+        return $pdf->download('resultado-' . $resultado->id . '.pdf');
+    }
+
     #API REST
 
     public function getResultadoCreate(string $id_examen)

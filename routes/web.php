@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/resultado', [ResultadoController::class, 'getIndex']);
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
     Route::get('/resultado-comprobante/{id}', [ResultadoController::class, 'generarPdf']);
+    Route::get('/resultado-comprobante/download/{id}', [ResultadoController::class, 'generarPdfDownload']);
     // Envios
     Route::get('/envio-resultado/pendiente', [EnvioResultadoController::class, 'pendiente']);
     Route::post('/envio-resultado/asignar', [EnvioResultadoController::class, 'asignarRepartidor']);
@@ -67,11 +68,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/envio-resultado/rechazados', [EnvioResultadoController::class, 'rechazados']);
     Route::post('/envio-resultado/informe', [EnvioResultadoController::class, 'informe']);
 
-
     // Route::get('/envio-resultado/{id}', [EnvioResultadoController::class, 'getResultado'])->name('envio');
-
-    Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
     // Route::post('correo-enviar-mensaje', [CorreoController::class, 'enviarCorreo']);
+    Route::get('correo-enviar', [CorreoController::class, 'getEnviar']);
+    Route::get('correo-enviar-todos', [CorreoController::class, 'getEnviarTodos']);
+    Route::get('correo-enviar-todos-resultados', [CorreoController::class, 'getEnviarTodosResultados']);
     
 
     
@@ -89,3 +90,5 @@ Route::get('/cliente-envios', [ClienteWebController::class, 'getEnvio'])->name('
 });*/
 
 Route::get('correo-enviar-mensaje', [MailController::class, 'send']);
+Route::get('correo-enviar-mensaje-todos', [MailController::class, 'sendAll']);
+Route::get('correo-enviar-mensaje-todos-resultados', [MailController::class, 'sendAllResultado']);

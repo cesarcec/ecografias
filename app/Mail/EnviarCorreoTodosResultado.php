@@ -10,18 +10,17 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class HolaMundo extends Mailable
+class EnviarCorreoTodosResultado extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $remitente;
     private $asunto;
     private $data;
-    /**
-     * Create a new message instance.
-     */
-    public function __construct($correo, $data)
+    public function __construct($remitente, $asunto, $data)
     {
-        $this->asunto = $correo;
+        $this->asunto = $remitente;
+        $this->asunto = $asunto;
         $this->data = $data;
     }
 
@@ -32,7 +31,7 @@ class HolaMundo extends Mailable
     {
         return new Envelope(
             from: new Address('admin@correo.cedisa.bo', 'admin'),
-            subject: $this->asunto,
+            subject: $this->asunto
         );
     }
 
@@ -42,8 +41,8 @@ class HolaMundo extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'ecografias.correo.cuerpo.individual',
-            with:['data' => $this->data]
+            view: 'ecografias.correo.cuerpo.resultados',
+            with: ['data' => $this->data],
         );
     }
 
