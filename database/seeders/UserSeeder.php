@@ -22,34 +22,62 @@ class UserSeeder extends Seeder
             'rol_id' => '1'
         ]); 
         
+/////Recepcionista//////
+User::create([
+    'name' => 'lucia',
+    'email' => 'lucia@correo.cedisa.bo',
+    'password' => Hash::make('123'),
+    'rol_id' => '2'
+]); 
 
+      ///ESPECIALISTAS//
+      //tomografia
         User::create([
-            'name' => 'recepcionista',
-            'email' => 'recepcionista@cedisa.com',
+            'name' => 'liliana',
+            'email' => 'liliana@correo.cedisa.bo',
             'password' => Hash::make('123'),
-            'rol_id' => '2'
-        ]); 
-        
+            'rol_id' => '3'
+        ]);
+       /* 
+        //ecografia
         User::create([
-            'name' => 'doctor',
-            'email' => 'doctor@cedisa.com',
+            'name' => 'carlos',
+            'email' => 'carlos@correo.cedisa.bo',
             'password' => Hash::make('123'),
             'rol_id' => '3'
         ]); 
 
+        //rayosx
         User::create([
-            'name' => 'paciente',
-            'email' => 'paciente@cedisa.com',
+            'name' => 'pedro',
+            'email' => 'pedro@correo.cedisa.bo',
+            'password' => Hash::make('123'),
+            'rol_id' => '3'
+        ]); 
+        ////////////*/
+
+
+         //paciente/////
+        
+         User::create([
+            'name' => 'hugo',
+            'email' => 'hugo@correo.cedisa.bo',
             'password' => Hash::make('123'),
             'rol_id' => '4'
         ]); 
 
+        ///////repartidor////
         User::create([
-            'name' => 'repartidor',
-            'email' => 'repartidor@cedisa.com',
+            'name' => 'ronald',
+            'email' => 'ronald@correo.cedisa.bo',
             'password' => Hash::make('123'),
             'rol_id' => '5'
         ]); 
+
+
+       
+
+
 
     }
 }

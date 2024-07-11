@@ -14,9 +14,9 @@ class PacienteSeeder extends Seeder
     public function run(): void
     {
         Paciente::create([
-            'nombre' => 'Paciente 1 ',
-            'paterno' => 'Vaca',
-            'materno' => 'Gonzales',
+            'nombre' => 'Hugo ',
+            'paterno' => 'Bart',
+            'materno' => 'Gonzalez',
             'fecha_nacimiento' => '2000-09-19',
             // 'direccion' => 'S/D',
             'genero' => 'M',

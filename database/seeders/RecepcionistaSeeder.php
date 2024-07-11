@@ -20,11 +20,20 @@ class RecepcionistaSeeder extends Seeder
             'user_id' => '1',
         ]);
 
-        Recepcionista::create([
+      /*  Recepcionista::create([
             'nombre' => 'Administrador2',
             'paterno' => 'Sistema',
             'materno' => 'SN',
             'user_id' => '2',
+        ]);*/
+
+        ////
+        Recepcionista::create([
+            'nombre' => 'Lucia',
+            'paterno' => 'Carrazco',
+            'materno' => 'Torrez',
+            'user_id' => '2',
         ]);
+
     }
 }

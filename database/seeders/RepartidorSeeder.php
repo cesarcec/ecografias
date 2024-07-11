@@ -14,9 +14,9 @@ class RepartidorSeeder extends Seeder
     public function run(): void
     {
         Repartidor::create([
-            'nombre' => 'Repartidor',
-            'paterno' => 'Roman',
-            'materno' => 'Flores',
+            'nombre' => 'Ronald',
+            'paterno' => 'Flores',
+            'materno' => 'Del Campo',
             'telefono' => '69875412',
             'licencia_conducir' => '13025887 M',
             'user_id' => '5',

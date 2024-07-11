@@ -10,7 +10,7 @@
         <div class="card-header pointer-cursor" data-toggle="collapse" data-target="#collapse-form" aria-expanded="false"
             aria-controls="collapse-form">
             <div class="d-flex justify-content-between">
-                <h3 class="my-2 mx-2">Especialistas</h1>
+                <h3 class="my-2 mx-2">Especialistas.</h1>
             </div>
         </div>
         <div class="card-body">

@@ -15,12 +15,30 @@ class DoctorSeeder extends Seeder
     public function run(): void
     {
         Doctor::create([
-            'nombre' => 'Doctor 1 ',
-            'paterno' => 'Vargas',
-            'materno' => 'Espinoza',
-            'especialidad' => 'Cirugia',
-            'genero' => 'M',
+            'nombre' => 'Liliana',
+            'paterno' => 'Fernandez',
+            'materno' => 'Ortega',
+            'especialidad' => 'Tomografia',
+            'genero' => 'F',
             'user_id' => '3',
         ]);
+/*
+        Doctor::create([
+            'nombre' => 'Carlos',
+            'paterno' => 'Colon',
+            'materno' => 'Rosales',
+            'especialidad' => 'Ecografia',
+            'genero' => 'M',
+            'user_id' => '6',
+        ]);
+
+        Doctor::create([
+            'nombre' => 'Pedro',
+            'paterno' => 'Perez',
+            'materno' => 'Jimenez',
+            'especialidad' => 'Rayos X',
+            'genero' => 'M',
+            'user_id' => '7',
+        ]);*/
     }
 }
