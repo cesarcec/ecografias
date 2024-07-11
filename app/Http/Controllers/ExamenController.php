@@ -22,6 +22,12 @@ class ExamenController extends Controller
         return view('ecografias.examen.index', ['orden' => $orden]);
     }
 
+    public function getIndex()
+    {
+   
+        return view('ecografias.examen.examenes');
+    }
+
     #API REST
 
     /**

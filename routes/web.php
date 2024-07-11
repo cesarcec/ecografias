@@ -49,11 +49,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sala', [SalaController::class, 'getIndex']);
     Route::get('/estudio', [EstudioController::class, 'getIndex']);
     
+    
 
     //Citas médicas
     Route::get('/orden', [OrdenExamenController::class, 'getIndex']);
     Route::get('/orden-cita-medica/{id}/comprobante', [OrdenExamenController::class, 'generarComprobantePDF']);
     Route::get('/examen-cita/{id}', [ExamenController::class, 'getRealizarExamen']);
+    Route::get('/examen', [ExamenController::class, 'getIndex']);
+    
     // Resultados
     Route::get('/resultado', [ResultadoController::class, 'getIndex']);
     Route::get('/resultado-create/{id_examen}', [ResultadoController::class, 'getResultadoCreate']);
