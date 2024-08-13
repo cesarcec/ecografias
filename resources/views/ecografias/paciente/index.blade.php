@@ -48,6 +48,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
+                        <label for="edad">Edad</label>
+                        <input id="edad" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label for="password">Contraseña</label>
                         <input id="password" class="form-control" type="password">
                     </div>
@@ -90,6 +96,7 @@
                             <th data-field="materno">Materno</th>
                             <th data-field="genero">genero</th>
                             <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
+                            <th data-field="edad">Edad</th>
                             <th data-field="user_email">Correo</th>
 
                             <th data-field="action">Acciones</th>
@@ -107,6 +114,7 @@
                             <th data-field="materno">Materno</th>
                             <th data-field="genero">genero</th>
                             <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
+                            <th data-field="edad">Edad</th>
                             <th data-field="user_email">Correo</th>
                             <th data-field="action">Acciones</th>
                         </tr>
@@ -176,6 +184,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="edad_edit">Edad</label>
+                                <input id="edad_edit" class="form-control" type="text   ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="password_edit">Nueva Contraseña</label>
                                 <input id="password_edit" class="form-control" type="password">
                             </div>
@@ -230,6 +246,7 @@
                 "materno",
                 "genero",
                 "fecha_nacimiento",
+                "edad",
                 "email",
                 "user_email",
                 "password",

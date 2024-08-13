@@ -16,6 +16,7 @@ class Paciente extends Model
         'materno',
         'genero',
         'fecha_nacimiento',
+        'edad',
         'user_id',
         'estado',
     ];

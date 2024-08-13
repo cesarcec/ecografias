@@ -48,6 +48,7 @@ class PacienteController extends Controller
                 'materno' => $request->get('materno'),
                 'genero' => $request->get('genero'),
                 'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
+                'edad' => $request->get('edad'),       
             ]);
 
             $passwordRequest = $request->get('password') == "" ? "123" : $request->get('password');
@@ -101,6 +102,7 @@ class PacienteController extends Controller
                 'materno' => $request->get('materno'),
                 'genero' => $request->get('genero'),
                 'fecha_nacimiento' => $request->get('fecha_nacimiento'),       
+                'edad' => $request->get('edad'),       
             ]);
 
             $user = User::where('id', $paciente->user_id)->first();
