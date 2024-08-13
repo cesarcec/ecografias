@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('informe', 2048);
             $table->string('conclusion', 2048);
             $table->string('recomendacion', 2048);
-            $table->date('fecha');
+            $table->timestamp('fecha')->nullable();
             $table->string('imagen_1', 2048)->nullable();
             $table->string('imagen_2', 2048)->nullable();
             $table->string('imagen_3', 2048)->nullable();

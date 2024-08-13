@@ -54,7 +54,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="{{ asset('assets/img/cedisa_logo_final-01.svg') }}" alt="CEDISA Logo">
+            <img src="{{ asset('assets/img/cedisa_logo_final-01.svg') }}" alt="CEDISA ">
             <h1>Correo de CEDISA</h1>
         </div>
         <div class="content">

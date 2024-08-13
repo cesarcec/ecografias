@@ -4,7 +4,7 @@ const asignado = document.querySelectorAll('.entregar');
 asignado.forEach(elemento => {
     elemento.addEventListener('click', entregar);
 });
-
+//llol
 
 function entregar(e){
     const btn = e.target;

@@ -27,8 +27,18 @@
                         <select name="sala_id" id="sala_id" class="form-control"></select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="fecha">fecha</label>
-                        <input id="fecha" class="form-control" type="date">
+                        <label for="fecha">Fecha de examen</label>
+                        <input id="fecha_programada" value="{{$orden->fecha_programada}}" class="form-control" type="text" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Hora de inicio</label>
+                        <input id="hora_inicio" value="{{$orden->hora_inicio}}" class="form-control" type="text" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="fecha">Hora de fin</label>
+                        <input id="hora_fin" value="{{$orden->hora_fin}}" class="form-control" type="text" disabled>
                     </div>
                 </div>
                 <div class="form-row">

@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <th>Hora</th>
-                        <td>{{ $orden->hora_inicio }}</td>
+                        <td>{{ $orden->hora }}</td>
                     </tr>
                     <tr>
                         <th>Estado de la Orden</th>

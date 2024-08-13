@@ -103,7 +103,8 @@ class ResultadoController extends Controller
                 'informe' => $request->get('informe'),
                 'conclusion' => $request->get('conclusion'),
                 'recomendacion' => $request->get('recomendacion'),
-                'fecha' => $request->get('fecha'),
+                // 'fecha' => $request->get('fecha'),
+                'fecha' => $request->get('fecha') . ' ' . now()->format('H:i:s'),
                 'examen_id' => $request->get('examen_id'),
             ]);
             $resultado->load('examen');
